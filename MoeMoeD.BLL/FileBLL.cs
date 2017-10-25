@@ -7,10 +7,11 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Practices.Unity;
 using MoeMoeD.Model.ViewData;
+using MoeMoeD.IBLL;
 
 namespace MoeMoeD.BLL
 {
-    public class FileBLL : BaseBLL<Flie,Model.Entity.Flie>
+    public class FileBLL : BaseBLL<Flie,Model.Entity.Flie>, IFileBLL
     {
         public FileBLL(IFileDAL fileDAL) : base(fileDAL) { }
 
