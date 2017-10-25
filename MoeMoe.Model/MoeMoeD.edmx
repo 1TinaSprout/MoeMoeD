@@ -7,63 +7,52 @@
     <Schema Namespace="MoeMoeD.Model.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityContainer Name="MoeMoeDModelStoreContainer">
     <EntitySet Name="Flie" EntityType="MoeMoeD.Model.Store.Flie" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Floder" EntityType="MoeMoeD.Model.Store.Floder" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Folder" EntityType="MoeMoeD.Model.Store.Folder" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="User" EntityType="MoeMoeD.Model.Store.User" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="FloderFloder" EntityType="MoeMoeD.Model.Store.FloderFloder" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="UserFlie" Association="MoeMoeD.Model.Store.UserFlie">
       <End Role="User" EntitySet="User" />
       <End Role="Flie" EntitySet="Flie" />
     </AssociationSet>
     <AssociationSet Name="UserFloder" Association="MoeMoeD.Model.Store.UserFloder">
       <End Role="User" EntitySet="User" />
-      <End Role="Floder" EntitySet="Floder" />
+      <End Role="Floder" EntitySet="Folder" />
     </AssociationSet>
     <AssociationSet Name="FloderFlie" Association="MoeMoeD.Model.Store.FloderFlie">
-      <End Role="Floder" EntitySet="Floder" />
+      <End Role="Floder" EntitySet="Folder" />
       <End Role="Flie" EntitySet="Flie" />
     </AssociationSet>
-    <AssociationSet Name="FK_FloderFloder_Floder" Association="MoeMoeD.Model.Store.FK_FloderFloder_Floder">
-      <End Role="Floder" EntitySet="Floder" />
-      <End Role="FloderFloder" EntitySet="FloderFloder" />
-    </AssociationSet>
-    <AssociationSet Name="FK_FloderFloder_Floder1" Association="MoeMoeD.Model.Store.FK_FloderFloder_Floder1">
-      <End Role="Floder1" EntitySet="Floder" />
-      <End Role="FloderFloder" EntitySet="FloderFloder" />
+    <AssociationSet Name="FolderFolder" Association="MoeMoeD.Model.Store.FolderFolder">
+      <End Role="Folder" EntitySet="Folder" />
+      <End Role="Folder1" EntitySet="Folder" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="Flie">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="UserId" Type="int" Nullable="false" DefaultValue="1" />
-    <Property Name="FloderId" Type="int" Nullable="false" DefaultValue="1" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" DefaultValue="0" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" DefaultValue="0" />
+    <Property Name="UserId" Type="int" Nullable="false" DefaultValue="0" />
+    <Property Name="FolderId" Type="int" Nullable="false" DefaultValue="0" />
+    <Property Name="Type" Type="nvarchar(max)" Nullable="false" DefaultValue="0" />
   </EntityType>
-  <EntityType Name="Floder">
+  <EntityType Name="Folder">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="UserId" Type="int" Nullable="false" DefaultValue="1" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" DefaultValue="0" />
+    <Property Name="UserId" Type="int" Nullable="false" DefaultValue="0" />
+    <Property Name="FolderId" Type="int" Nullable="false" DefaultValue="0" />
   </EntityType>
   <EntityType Name="User">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" DefaultValue="0" />
+    <Property Name="Password" Type="nvarchar(max)" Nullable="false" DefaultValue="0" />
     <Property Name="Email" Type="nvarchar(max)" Nullable="false" DefaultValue="0" />
-  </EntityType>
-  <EntityType Name="FloderFloder">
-    <Key>
-      <PropertyRef Name="ParentFloder_Id" />
-      <PropertyRef Name="ChildFloder_Id" />
-    </Key>
-    <Property Name="ParentFloder_Id" Type="int" Nullable="false" />
-    <Property Name="ChildFloder_Id" Type="int" Nullable="false" />
   </EntityType>
   <Association Name="UserFlie">
     <End Role="User" Type="MoeMoeD.Model.Store.User" Multiplicity="1" />
@@ -79,7 +68,7 @@
   </Association>
   <Association Name="UserFloder">
     <End Role="User" Type="MoeMoeD.Model.Store.User" Multiplicity="1" />
-    <End Role="Floder" Type="MoeMoeD.Model.Store.Floder" Multiplicity="*" />
+    <End Role="Floder" Type="MoeMoeD.Model.Store.Folder" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="User">
         <PropertyRef Name="Id" />
@@ -90,38 +79,26 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FloderFlie">
-    <End Role="Floder" Type="MoeMoeD.Model.Store.Floder" Multiplicity="1" />
+    <End Role="Floder" Type="MoeMoeD.Model.Store.Folder" Multiplicity="1" />
     <End Role="Flie" Type="MoeMoeD.Model.Store.Flie" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Floder">
         <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="Flie">
-        <PropertyRef Name="FloderId" />
+        <PropertyRef Name="FolderId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_FloderFloder_Floder">
-    <End Role="Floder" Type="MoeMoeD.Model.Store.Floder" Multiplicity="1" />
-    <End Role="FloderFloder" Type="MoeMoeD.Model.Store.FloderFloder" Multiplicity="*" />
+  <Association Name="FolderFolder">
+    <End Role="Folder" Type="MoeMoeD.Model.Store.Folder" Multiplicity="1" />
+    <End Role="Folder1" Type="MoeMoeD.Model.Store.Folder" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Floder">
+      <Principal Role="Folder">
         <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="FloderFloder">
-        <PropertyRef Name="ParentFloder_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_FloderFloder_Floder1">
-    <End Role="FloderFloder" Type="MoeMoeD.Model.Store.FloderFloder" Multiplicity="*" />
-    <End Role="Floder1" Type="MoeMoeD.Model.Store.Floder" Multiplicity="1" />
-    <ReferentialConstraint>
-      <Principal Role="Floder1">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="FloderFloder">
-        <PropertyRef Name="ChildFloder_Id" />
+      <Dependent Role="Folder1">
+        <PropertyRef Name="FolderId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -133,57 +110,59 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" DefaultValue="0" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" DefaultValue="0" />
           <NavigationProperty Name="User" Relationship="MoeMoeD.Model.UserFlie" FromRole="Flie" ToRole="User" />
-          <Property Name="UserId" Type="Int32" Nullable="false" DefaultValue="1" />
-          <NavigationProperty Name="Floder" Relationship="MoeMoeD.Model.FloderFlie" FromRole="Flie" ToRole="Floder" />
-          <Property Name="FloderId" Type="Int32" Nullable="false" DefaultValue="1" ConcurrencyMode="None" />
+          <Property Name="UserId" Type="Int32" Nullable="false" DefaultValue="0" />
+          <NavigationProperty Name="Folder" Relationship="MoeMoeD.Model.FloderFlie" FromRole="Flie" ToRole="Floder" />
+          <Property Name="FolderId" Type="Int32" Nullable="false" DefaultValue="0" ConcurrencyMode="None" />
+          <Property Name="Type" Type="String" Nullable="false" DefaultValue="0" />
         </EntityType>
-        <EntityType Name="Floder">
+        <EntityType Name="Folder">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" DefaultValue="0" />
           <NavigationProperty Name="User" Relationship="MoeMoeD.Model.UserFloder" FromRole="Floder" ToRole="User" />
-          <Property Name="UserId" Type="Int32" Nullable="false" DefaultValue="1" />
-          <NavigationProperty Name="ChildFloder" Relationship="MoeMoeD.Model.FloderFloder" FromRole="Floder" ToRole="Floder1" />
-          <NavigationProperty Name="ParentFloder" Relationship="MoeMoeD.Model.FloderFloder" FromRole="Floder1" ToRole="Floder" />
+          <Property Name="UserId" Type="Int32" Nullable="false" DefaultValue="0" />
+          <NavigationProperty Name="ChildFolder" Relationship="MoeMoeD.Model.FolderFolder" FromRole="Folder" ToRole="Folder1" />
+          <NavigationProperty Name="ParentFolder" Relationship="MoeMoeD.Model.FolderFolder" FromRole="Folder1" ToRole="Folder" />
+          <Property Name="FolderId" Type="Int32" Nullable="false" DefaultValue="0" />
         </EntityType>
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Password" Type="String" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" DefaultValue="0" />
+          <Property Name="Password" Type="String" Nullable="false" DefaultValue="0" />
           <Property Name="Email" Type="String" Nullable="false" DefaultValue="0" />
         </EntityType>
         <EntityContainer Name="MoeMoeDEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Flie" EntityType="Self.Flie" />
-          <EntitySet Name="Floder" EntityType="Self.Floder" />
+          <EntitySet Name="Folder" EntityType="MoeMoeD.Model.Folder" />
           <EntitySet Name="User" EntityType="Self.User" />
           <AssociationSet Name="UserFlie" Association="MoeMoeD.Model.UserFlie">
-            <End Role="User" EntitySet="User" />
-            <End Role="Flie" EntitySet="Flie" />
+            <End EntitySet="User" Role="User" />
+            <End EntitySet="Flie" Role="Flie" />
           </AssociationSet>
           <AssociationSet Name="UserFloder" Association="MoeMoeD.Model.UserFloder">
-            <End Role="User" EntitySet="User" />
-            <End Role="Floder" EntitySet="Floder" />
+            <End EntitySet="User" Role="User" />
+            <End EntitySet="Folder" Role="Floder" />
           </AssociationSet>
           <AssociationSet Name="FloderFlie" Association="MoeMoeD.Model.FloderFlie">
-            <End Role="Floder" EntitySet="Floder" />
+            <End Role="Floder" EntitySet="Folder" />
             <End Role="Flie" EntitySet="Flie" />
           </AssociationSet>
-          <AssociationSet Name="FloderFloder" Association="MoeMoeD.Model.FloderFloder">
-            <End Role="Floder" EntitySet="Floder" />
-            <End Role="Floder1" EntitySet="Floder" />
+          <AssociationSet Name="FolderFolder" Association="MoeMoeD.Model.FolderFolder">
+            <End Role="Folder" EntitySet="Folder" />
+            <End Role="Folder1" EntitySet="Folder" />
           </AssociationSet>
         </EntityContainer>
         <Association Name="UserFlie">
-          <End Type="MoeMoeD.Model.User" Role="User" Multiplicity="1" />
-          <End Type="MoeMoeD.Model.Flie" Role="Flie" Multiplicity="*" />
+          <End Type="MoeMoeD.Model.User" Multiplicity="1" Role="User" />
+          <End Type="MoeMoeD.Model.Flie" Multiplicity="*" Role="Flie" />
           <ReferentialConstraint>
             <Principal Role="User">
               <PropertyRef Name="Id" />
@@ -194,8 +173,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="UserFloder">
-          <End Type="MoeMoeD.Model.User" Role="User" Multiplicity="1" />
-          <End Type="MoeMoeD.Model.Floder" Role="Floder" Multiplicity="*" />
+          <End Type="MoeMoeD.Model.User" Multiplicity="1" Role="User" />
+          <End Type="MoeMoeD.Model.Folder" Multiplicity="*" Role="Floder" />
           <ReferentialConstraint>
             <Principal Role="User">
               <PropertyRef Name="Id" />
@@ -206,20 +185,28 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FloderFlie">
-          <End Type="MoeMoeD.Model.Floder" Role="Floder" Multiplicity="1" />
+          <End Type="MoeMoeD.Model.Folder" Role="Floder" Multiplicity="1" />
           <End Type="MoeMoeD.Model.Flie" Role="Flie" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Floder">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Flie">
-              <PropertyRef Name="FloderId" />
+              <PropertyRef Name="FolderId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FloderFloder">
-          <End Type="MoeMoeD.Model.Floder" Role="Floder" Multiplicity="*" />
-          <End Type="MoeMoeD.Model.Floder" Role="Floder1" Multiplicity="*" />
+        <Association Name="FolderFolder">
+          <End Type="MoeMoeD.Model.Folder" Role="Folder" Multiplicity="1" />
+          <End Type="MoeMoeD.Model.Folder" Role="Folder1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Folder">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Folder1">
+              <PropertyRef Name="FolderId" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
       </Schema>
     </edmx:ConceptualModels>
@@ -233,16 +220,18 @@
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="UserId" ColumnName="UserId" />
-          <ScalarProperty Name="FloderId" ColumnName="FloderId" />
+          <ScalarProperty Name="FolderId" ColumnName="FolderId" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Floder">
-      <EntityTypeMapping TypeName="IsTypeOf(MoeMoeD.Model.Floder)">
-        <MappingFragment StoreEntitySet="Floder">
+    <EntitySetMapping Name="Folder">
+      <EntityTypeMapping TypeName="IsTypeOf(MoeMoeD.Model.Folder)">
+        <MappingFragment StoreEntitySet="Folder">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="FolderId" ColumnName="FolderId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -256,14 +245,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <AssociationSetMapping Name="FloderFloder" TypeName="MoeMoeD.Model.FloderFloder" StoreEntitySet="FloderFloder">
-      <EndProperty Name="Floder">
-        <ScalarProperty Name="Id" ColumnName="ParentFloder_Id" />
-      </EndProperty>
-      <EndProperty Name="Floder1">
-        <ScalarProperty Name="Id" ColumnName="ChildFloder_Id" />
-      </EndProperty>
-    </AssociationSetMapping>
   </EntityContainerMapping>
 </Mapping></edmx:Mappings>
   </edmx:Runtime>
