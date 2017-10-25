@@ -10,11 +10,29 @@ using MoeMoeD.Model.ViewData;
 
 namespace MoeMoeD.BLL
 {
-    public class FileBLL : BaseBLL<Flie>
+    public class FileBLL : BaseBLL<Flie,Model.Entity.Flie>
     {
-        [Dependency]
-        public IFileDAL fileDAL { get; set; }
+        public FileBLL(IFileDAL fileDAL) : base(fileDAL) { }
 
-     
+
+        protected override Model.Entity.Flie DataToEntity(Flie t)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override List<Model.Entity.Flie> DataToEntity(List<Flie> t)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override Flie EntityToData(Model.Entity.Flie t)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override List<Flie> DataToEntity(List<Model.Entity.Flie> t)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

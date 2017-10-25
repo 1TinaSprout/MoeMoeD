@@ -7,11 +7,10 @@ using System.Threading.Tasks;
 
 namespace MoeMoeD.IBLL
 {
-    public interface IBaseBLL<D> where D:BaseData
+    public interface IBaseBLL<D> where D:class
     {
         D Add(D t);
         D DeleteById(int id);
-        IQueryable<D> SelectById(int id);
         bool Update(D t);
     }
 }
