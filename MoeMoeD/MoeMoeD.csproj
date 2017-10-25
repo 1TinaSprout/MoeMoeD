@@ -138,7 +138,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
-    <None Include="Views\Home\Home.cshtml" />
+    <None Include="Views\Home\index.cshtml" />
     <Content Include="image\index_bg1.jpg" />
     <Content Include="image\index_bg2.jpg" />
     <Content Include="image\index_bg3.jpg" />
@@ -178,6 +178,7 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\UnityConfig.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -200,7 +201,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Controllers\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MoeMoe.DAL\MoeMoeD.DAL.csproj">
@@ -214,6 +214,10 @@
     <ProjectReference Include="..\MoeMoeD.BLL\MoeMoeD.BLL.csproj">
       <Project>{2cb00d14-166b-45d3-ab5f-dc9d0885da55}</Project>
       <Name>MoeMoeD.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MoeMoeD.IBLL\MoeMoeD.IBLL.csproj">
+      <Project>{a3aa2b1e-04d4-4dde-9349-79320817a9ff}</Project>
+      <Name>MoeMoeD.IBLL</Name>
     </ProjectReference>
     <ProjectReference Include="..\MoeMoeD.IDAL\MoeMoeD.IDAL.csproj">
       <Project>{4e99c899-60be-4138-9b67-dab2c4128792}</Project>
