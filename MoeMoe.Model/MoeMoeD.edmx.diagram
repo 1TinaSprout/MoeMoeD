@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f7977951d31f4eb68cea0d4596712652" Name="MoeMoeD">
+        <EntityTypeShape EntityType="MoeMoeD.Model.Flie" Width="1.5" PointX="3.625" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="MoeMoeD.Model.Floder" Width="1.5" PointX="3.625" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MoeMoeD.Model.User" Width="1.5" PointX="1.125" PointY="4" IsExpanded="true" />
+        <AssociationConnector Association="MoeMoeD.Model.UserFlie" />
+        <AssociationConnector Association="MoeMoeD.Model.UserFloder" />
+        <AssociationConnector Association="MoeMoeD.Model.FloderFlie" />
+        <AssociationConnector Association="MoeMoeD.Model.FloderFloder" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

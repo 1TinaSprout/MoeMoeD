@@ -1,0 +1,125 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <script type="text/javascript" src="vue.js"></script>
+    <script type="text/javascript" src="vue-resource.js"></script>
+    <script type="text/javascript" src="iview.js"></script>
+    <link rel="stylesheet" type="text/css" href="styles/iview.css" />
+    <link rel="stylesheet" type="text/css" href="styles/index.css" />
+</head>
+<body>
+<div id="login-carousel">  
+    <div :class="banner" class="ibg-bg" style="transform: matrix(1, 0, 0, 1, 0, 0); transition: all 1500ms linear;"></div>
+</div>    
+<nav id="login-container">	    
+    <Row class="login-container-nav">
+        <i-col span="1" offset="1">
+            <div class="layout-logo"></div>
+        </i-col>
+        <i-col span="12" class="login-container-nav-container">
+            <i-button type="text"><span class="nav-font" style="color: red">严打违规文件和盗版侵权传播</span></i-button>
+            <i-button type="text"><span class="nav-font" >客户端下载</span></i-button>
+            <i-button type="text"><span class="nav-font" >官方微博</span></i-button>
+            <i-button type="text"><span class="nav-font" >问题反馈</span></i-button>
+            <i-button type="error" shape="circle" size="small" class="nav-font" ><span>会员中心</span></i-button>
+        </i-col>
+    </Row>
+    
+    <Row>
+        <i-col span="14" class="login-container-font">
+            <div style="margin: 200px 20%;">
+                <p>“好友分享<br />
+                        共度幸福时光”</p>
+            </div>
+            
+        </i-col>
+        <i-col span="8">
+            <div id="login-middle">
+                <Card>
+                    <div style="margin:20px 95px">
+                        <h3>账号密码登录</h3>
+                    </div>
+                    
+                <div id="login-middle-container">
+                    <i-form ref="formValidate" :model="formValidate" :rules="ruleValidate">
+                        <formitem prop="username" style="margin-bottom:0px">
+                            <i-Input icon="close-circled" @on-click="clean" size="large" type="text" v-model="formValidate.username" placeholder="手机/邮箱/用户名">
+                            </i-Input>
+                        </formitem>
+                        <formitem prop="password">
+                            <i-Input size="large" type="password" v-model="formValidate.password" placeholder="密码">
+                            </i-Input>
+                        </formitem>
+                        <Checkbox v-model="single">下次自动登录</Checkbox><br/>
+
+                        <i-button type="primary" :loading="this.loading" @click="this.Login" long>
+                            <span v-if="!loading">登录</span>
+                            <span v-else>Loading...</span>
+                        </i-button>
+                    </i-form>
+                </div>
+                <div id="login-middle-foorter">
+                    <Row>
+                        <i-col span="6">
+                            <i-button type="text">登录遇到问题</i-button>
+                        </i-col>
+                        <i-col span="8" offset="10">
+                            <i-button type="text">海外手机号</i-button>
+                        </i-col> 
+                </Row>
+                </div>
+            </Card>
+            </div>
+        </i-col>
+        <i-col span="2"></i-col>
+    </Row>
+</nav>
+<section id="login-download">
+    <Row>
+        <i-col span="4" offset="4" style="min-width:80px">
+            <a>
+                <Icon type="social-windows" size="60" style="display:block"></Icon>
+                <span>Window</span>
+            </a>
+        </i-col>
+        <i-col span="4" style="min-width:80px">
+            <a>
+                <Icon type="social-android" size="60" style="display:block"></Icon>
+                <span>Android</span>
+            </a>
+        </i-col>
+        <i-col span="4" style="min-width:80px">
+            <a>
+                <Icon type="iphone" size="60" style="display:block"></Icon>
+                <span>IOS</span>
+            </a>
+        </i-col>
+        <i-col span="4" style="min-width:80px">
+            <a>
+                <Icon type="social-apple" size="60" style="display:block"></Icon>
+                <span>MacOS</span>
+            </a>
+        </i-col>
+    </Row>
+</section>
+<footer id="footer">
+    ©2017 MoeMoeD 移动开放平台 | <i-button type="text">服务协议</i-button> | <i-button type="text">权利声明</i-button> | <i-button type="text">版本更新</i-button> | <i-button type="text">帮助中心</i-button> | <i-button type="text">版权投诉</i-button>
+
+</footer>
+
+<Modal
+id="ErrorModal"
+title="服务器错误"
+v-model="modal"
+:styles="{top: '50px'}"
+:mask-closable="false"
+@on-ok="ok"
+@on-cancel="cancel">
+<Icon type="close-circled" color="red" size="20px"></Icon>
+<span>服务器异常，请稍后再试</span>
+</Modal>
+
+<script type="text/javascript" src="./script/index.js"></script>
+</body>
+</html>
