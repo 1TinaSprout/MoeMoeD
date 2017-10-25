@@ -57,7 +57,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IBaseDAL.cs" />
     <Compile Include="IFileDAL.cs" />
+    <Compile Include="IFolderDAL.cs" />
     <Compile Include="IUserDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

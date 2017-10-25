@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoeMoeD", "MoeMoeD\MoeMoeD.csproj", "{49B39D2F-91A2-4FF6-A724-6066991099ED}"
 EndProject
@@ -12,6 +12,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoeMoeD.DAL", "MoeMoe.DAL\MoeMoeD.DAL.csproj", "{8BDCD7B7-5F28-41BF-8B5B-E1D2E9551D42}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoeMoeD.IDAL", "MoeMoeD.IDAL\MoeMoeD.IDAL.csproj", "{4E99C899-60BE-4138-9B67-DAB2C4128792}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoeMoeD.IBLL", "MoeMoeD.IBLL\MoeMoeD.IBLL.csproj", "{A3AA2B1E-04D4-4DDE-9349-79320817A9FF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{4E99C899-60BE-4138-9B67-DAB2C4128792}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4E99C899-60BE-4138-9B67-DAB2C4128792}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4E99C899-60BE-4138-9B67-DAB2C4128792}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3AA2B1E-04D4-4DDE-9349-79320817A9FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3AA2B1E-04D4-4DDE-9349-79320817A9FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3AA2B1E-04D4-4DDE-9349-79320817A9FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3AA2B1E-04D4-4DDE-9349-79320817A9FF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
