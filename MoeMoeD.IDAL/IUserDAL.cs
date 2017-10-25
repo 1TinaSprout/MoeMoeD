@@ -1,4 +1,5 @@
 ﻿using MoeMoeD.Model;
+using MoeMoeD.Model.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,10 +8,7 @@ using System.Threading.Tasks;
 
 namespace MoeMoeD.IDAL
 {
-    public interface IUserDAL
+    public interface IUserDAL : IBaseDAL<MoeMoeD.Model.Entity.User>
     {
-        User GetUserByPhone(String phone);
-        User GetUserByName(String name);
-        User GetUserByEmail(String email);
     }
 }

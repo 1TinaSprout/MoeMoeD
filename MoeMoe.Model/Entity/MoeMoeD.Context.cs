@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MoeMoeD.Model
+namespace MoeMoeD.Model.Entity
 {
     using System;
     using System.Data.Entity;

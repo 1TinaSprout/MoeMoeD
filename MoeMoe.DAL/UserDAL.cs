@@ -5,10 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MoeMoeD.Model;
+using MoeMoeD.Model.Entity;
 
 namespace MoeMoeD.DAL
 {
-    public class UserDAL : IUserDAL
+    public class UserDAL : BaseDAL<User>,IUserDAL
     {
 
         public User GetUserByEmail(string email)

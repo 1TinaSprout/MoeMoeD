@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Data.Entity;
 using MoeMoeD.Model;
 using System.Threading;
+using MoeMoeD.Model.Entity;
 
 namespace MoeMoeD.DAL
 {

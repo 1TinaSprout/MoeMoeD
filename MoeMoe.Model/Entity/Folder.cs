@@ -7,24 +7,27 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MoeMoeD.Model
+namespace MoeMoeD.Model.Entity
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class User
+    public partial class Folder
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public User()
+        public Folder()
         {
-            this.Name = "0";
-            this.Password = "0";
-            this.Email = "0";
+            this.Flie = new HashSet<Flie>();
+            this.ChildFolder = new HashSet<Folder>();
         }
     
         public int Id { get; set; }
         public string Name { get; set; }
-        public string Password { get; set; }
-        public string Email { get; set; }
+        public int UserId { get; set; }
+        public int FolderId { get; set; }
+    
+        public virtual ICollection<Flie> Flie { get; set; }
+        public virtual ICollection<Folder> ChildFolder { get; set; }
+        public virtual Folder ParentFolder { get; set; }
+        public virtual User User { get; set; }
     }
 }

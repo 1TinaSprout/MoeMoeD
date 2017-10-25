@@ -1,0 +1,17 @@
+﻿using MoeMoeD.Model.ViewData;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace MoeMoeD.IBLL
+{
+    public interface IBaseBLL<D> where D:BaseData
+    {
+        D Add(D t);
+        D DeleteById(int id);
+        IQueryable<D> SelectById(int id);
+        bool Update(D t);
+    }
+}

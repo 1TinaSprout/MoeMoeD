@@ -6,21 +6,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Practices.Unity;
+using MoeMoeD.Model.ViewData;
 
 namespace MoeMoeD.BLL
 {
-    public class FileBLL
+    public class FileBLL : BaseBLL<Flie>
     {
         [Dependency]
         public IFileDAL fileDAL { get; set; }
 
-        public List<Flie> GetFileByFloderId(int id)
-        {
-            return fileDAL.GetFileByFloderId(id);
-        }
-        public List<Flie> GetFileByUserId(int id)
-        {
-            return fileDAL.GetFileByUserId(id);
-        }
+     
     }
 }

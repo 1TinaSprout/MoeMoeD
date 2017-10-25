@@ -1,5 +1,5 @@
 ﻿using MoeMoeD.IDAL;
-using MoeMoeD.Model;
+using MoeMoeD.Model.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace MoeMoeD.DAL
 {
-    public class FileDAL : IFileDAL
+    public class FlieDAL : BaseDAL<Flie>, IFileDAL
     {
         public List<Flie> GetFileByFloderId(int id)
         {
             MoeMoeDEntities context = ContextFactory.GetDBContext();
 
-            IQueryable<Flie> fileList = from value in context.Flie where value.FloderId.Equals(id) select value;
+            IQueryable<Flie> fileList = from value in context.Flie where value.FolderId.Equals(id) select value;
 
             ContextFactory.RevertDBContext(context);
 
