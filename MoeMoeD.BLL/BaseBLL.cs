@@ -17,9 +17,9 @@ namespace MoeMoeD.BLL
         {
             this.BaseDAL = baseDAL;
         }
-        public virtual D Add(D t)
+        public virtual bool Add(D t)
         {
-            return EntityToData(BaseDAL.Add(DataToEntity(t)));
+            return BaseDAL.Add(DataToEntity(t));
         }
 
         public virtual D DeleteById(int id)

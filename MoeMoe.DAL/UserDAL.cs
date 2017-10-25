@@ -11,6 +11,9 @@ namespace MoeMoeD.DAL
 {
     public class UserDAL : BaseDAL<User>,IUserDAL
     {
+        public UserDAL(MoeMoeDEntities context) : base(context)
+        {
+        }
 
         public User GetUserByEmail(string email)
         {

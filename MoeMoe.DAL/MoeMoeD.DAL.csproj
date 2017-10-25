@@ -58,6 +58,9 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Data.Entity.Design" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
@@ -71,6 +74,7 @@
     <Compile Include="BaseDAL.cs" />
     <Compile Include="ContextFactory.cs" />
     <Compile Include="FileDAL.cs" />
+    <Compile Include="FolderDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserDAL.cs" />
   </ItemGroup>
