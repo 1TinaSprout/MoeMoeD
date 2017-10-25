@@ -2,12 +2,13 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 10/09/2017 21:04:28
--- Generated from EDMX file: C:\Users\匀强的磁场\Desktop\Moe\MoeMoeD\MoeMoe.Model\MoeMoeD.edmx
+-- Date Created: 10/25/2017 10:25:28
+-- Generated from EDMX file: E:\Moe\MoeMoeD\MoeMoeD\MoeMoe.Model\MoeMoeD.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
 GO
+Create database [MoeMoeD]
 USE [MoeMoeD];
 GO
 IF SCHEMA_ID(N'dbo') IS NULL EXECUTE(N'CREATE SCHEMA [dbo]');
@@ -21,16 +22,13 @@ IF OBJECT_ID(N'[dbo].[FK_UserFlie]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Flie] DROP CONSTRAINT [FK_UserFlie];
 GO
 IF OBJECT_ID(N'[dbo].[FK_UserFloder]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Floder] DROP CONSTRAINT [FK_UserFloder];
+    ALTER TABLE [dbo].[Folder] DROP CONSTRAINT [FK_UserFloder];
 GO
 IF OBJECT_ID(N'[dbo].[FK_FloderFlie]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Flie] DROP CONSTRAINT [FK_FloderFlie];
 GO
-IF OBJECT_ID(N'[dbo].[FK_FloderFloder_Floder]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[FloderFloder] DROP CONSTRAINT [FK_FloderFloder_Floder];
-GO
-IF OBJECT_ID(N'[dbo].[FK_FloderFloder_Floder1]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[FloderFloder] DROP CONSTRAINT [FK_FloderFloder_Floder1];
+IF OBJECT_ID(N'[dbo].[FK_FolderFolder]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Folder] DROP CONSTRAINT [FK_FolderFolder];
 GO
 
 -- --------------------------------------------------
@@ -40,14 +38,11 @@ GO
 IF OBJECT_ID(N'[dbo].[Flie]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Flie];
 GO
-IF OBJECT_ID(N'[dbo].[Floder]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Floder];
+IF OBJECT_ID(N'[dbo].[Folder]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Folder];
 GO
 IF OBJECT_ID(N'[dbo].[User]', 'U') IS NOT NULL
     DROP TABLE [dbo].[User];
-GO
-IF OBJECT_ID(N'[dbo].[FloderFloder]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[FloderFloder];
 GO
 
 -- --------------------------------------------------
@@ -59,15 +54,17 @@ CREATE TABLE [dbo].[Flie] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Name] nvarchar(max)  NOT NULL,
     [UserId] int  NOT NULL,
-    [FloderId] int  NOT NULL
+    [FolderId] int  NOT NULL,
+    [Type] nvarchar(max)  NOT NULL
 );
 GO
 
--- Creating table 'Floder'
-CREATE TABLE [dbo].[Floder] (
+-- Creating table 'Folder'
+CREATE TABLE [dbo].[Folder] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Name] nvarchar(max)  NOT NULL,
-    [UserId] int  NOT NULL
+    [UserId] int  NOT NULL,
+    [FolderId] int  NOT NULL
 );
 GO
 
@@ -77,13 +74,6 @@ CREATE TABLE [dbo].[User] (
     [Name] nvarchar(max)  NOT NULL,
     [Password] nvarchar(max)  NOT NULL,
     [Email] nvarchar(max)  NOT NULL
-);
-GO
-
--- Creating table 'FloderFloder'
-CREATE TABLE [dbo].[FloderFloder] (
-    [ParentFloder_Id] int  NOT NULL,
-    [ChildFloder_Id] int  NOT NULL
 );
 GO
 
@@ -97,9 +87,9 @@ ADD CONSTRAINT [PK_Flie]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
--- Creating primary key on [Id] in table 'Floder'
-ALTER TABLE [dbo].[Floder]
-ADD CONSTRAINT [PK_Floder]
+-- Creating primary key on [Id] in table 'Folder'
+ALTER TABLE [dbo].[Folder]
+ADD CONSTRAINT [PK_Folder]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
@@ -107,12 +97,6 @@ GO
 ALTER TABLE [dbo].[User]
 ADD CONSTRAINT [PK_User]
     PRIMARY KEY CLUSTERED ([Id] ASC);
-GO
-
--- Creating primary key on [ParentFloder_Id], [ChildFloder_Id] in table 'FloderFloder'
-ALTER TABLE [dbo].[FloderFloder]
-ADD CONSTRAINT [PK_FloderFloder]
-    PRIMARY KEY CLUSTERED ([ParentFloder_Id], [ChildFloder_Id] ASC);
 GO
 
 -- --------------------------------------------------
@@ -134,8 +118,8 @@ ON [dbo].[Flie]
     ([UserId]);
 GO
 
--- Creating foreign key on [UserId] in table 'Floder'
-ALTER TABLE [dbo].[Floder]
+-- Creating foreign key on [UserId] in table 'Folder'
+ALTER TABLE [dbo].[Folder]
 ADD CONSTRAINT [FK_UserFloder]
     FOREIGN KEY ([UserId])
     REFERENCES [dbo].[User]
@@ -145,15 +129,15 @@ GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_UserFloder'
 CREATE INDEX [IX_FK_UserFloder]
-ON [dbo].[Floder]
+ON [dbo].[Folder]
     ([UserId]);
 GO
 
--- Creating foreign key on [FloderId] in table 'Flie'
+-- Creating foreign key on [FolderId] in table 'Flie'
 ALTER TABLE [dbo].[Flie]
 ADD CONSTRAINT [FK_FloderFlie]
-    FOREIGN KEY ([FloderId])
-    REFERENCES [dbo].[Floder]
+    FOREIGN KEY ([FolderId])
+    REFERENCES [dbo].[Folder]
         ([Id])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 GO
@@ -161,31 +145,22 @@ GO
 -- Creating non-clustered index for FOREIGN KEY 'FK_FloderFlie'
 CREATE INDEX [IX_FK_FloderFlie]
 ON [dbo].[Flie]
-    ([FloderId]);
+    ([FolderId]);
 GO
 
--- Creating foreign key on [ParentFloder_Id] in table 'FloderFloder'
-ALTER TABLE [dbo].[FloderFloder]
-ADD CONSTRAINT [FK_FloderFloder_Floder]
-    FOREIGN KEY ([ParentFloder_Id])
-    REFERENCES [dbo].[Floder]
+-- Creating foreign key on [FolderId] in table 'Folder'
+ALTER TABLE [dbo].[Folder]
+ADD CONSTRAINT [FK_FolderFolder]
+    FOREIGN KEY ([FolderId])
+    REFERENCES [dbo].[Folder]
         ([Id])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 GO
 
--- Creating foreign key on [ChildFloder_Id] in table 'FloderFloder'
-ALTER TABLE [dbo].[FloderFloder]
-ADD CONSTRAINT [FK_FloderFloder_Floder1]
-    FOREIGN KEY ([ChildFloder_Id])
-    REFERENCES [dbo].[Floder]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_FloderFloder_Floder1'
-CREATE INDEX [IX_FK_FloderFloder_Floder1]
-ON [dbo].[FloderFloder]
-    ([ChildFloder_Id]);
+-- Creating non-clustered index for FOREIGN KEY 'FK_FolderFolder'
+CREATE INDEX [IX_FK_FolderFolder]
+ON [dbo].[Folder]
+    ([FolderId]);
 GO
 
 -- --------------------------------------------------

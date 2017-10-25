@@ -17,16 +17,20 @@ namespace MoeMoeD.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Flie()
         {
-            this.UserId = 1;
-            this.FloderId = 1;
+            this.Id = 0;
+            this.Name = "0";
+            this.UserId = 0;
+            this.FolderId = 0;
+            this.Type = "0";
         }
     
         public int Id { get; set; }
         public string Name { get; set; }
         public int UserId { get; set; }
-        public int FloderId { get; set; }
+        public int FolderId { get; set; }
+        public string Type { get; set; }
     
         public virtual User User { get; set; }
-        public virtual Floder Floder { get; set; }
+        public virtual Folder Folder { get; set; }
     }
 }

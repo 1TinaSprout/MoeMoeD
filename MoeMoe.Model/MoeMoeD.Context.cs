@@ -26,7 +26,7 @@ namespace MoeMoeD.Model
         }
     
         public virtual DbSet<Flie> Flie { get; set; }
-        public virtual DbSet<Floder> Floder { get; set; }
+        public virtual DbSet<Folder> Folder { get; set; }
         public virtual DbSet<User> User { get; set; }
     }
 }

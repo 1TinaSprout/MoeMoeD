@@ -12,24 +12,25 @@ namespace MoeMoeD.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class Floder
+    public partial class Folder
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Floder()
+        public Folder()
         {
-            this.UserId = 1;
-            this.ChildFloder = new HashSet<Floder>();
-            this.ParentFloder = new HashSet<Floder>();
+            this.Name = "0";
+            this.UserId = 0;
+            this.FolderId = 0;
+            this.ChildFolder = new HashSet<Folder>();
         }
     
         public int Id { get; set; }
         public string Name { get; set; }
         public int UserId { get; set; }
+        public int FolderId { get; set; }
     
         public virtual User User { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Floder> ChildFloder { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Floder> ParentFloder { get; set; }
+        public virtual ICollection<Folder> ChildFolder { get; set; }
+        public virtual Folder ParentFolder { get; set; }
     }
 }
