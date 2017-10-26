@@ -14,11 +14,20 @@ namespace MoeMoeD.Model.Entity
     
     public partial class Flie
     {
+        public Flie()
+        {
+            this.UpdateTime = "-";
+            this.MD5 = "0";
+        }
+    
         public int Id { get; set; }
         public string Name { get; set; }
         public int UserId { get; set; }
         public int FolderId { get; set; }
         public string Type { get; set; }
+        public string UpdateTime { get; set; }
+        public int Size { get; set; }
+        public string MD5 { get; set; }
     
         public virtual Folder Folder { get; set; }
         public virtual User User { get; set; }

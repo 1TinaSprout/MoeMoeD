@@ -13,9 +13,9 @@ namespace MoeMoeD.DAL
         public FolderDAL(MoeMoeDEntities context):base(context)
         {
         }
-        public override Folder Delete(Folder t)
+        public override bool Delete(Folder t)
         {
-            return base.Delete(t);
+            return true;
         }
     }
 }

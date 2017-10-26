@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MoeMoeD.IDAL;
-using MoeMoeD.Model.Entity;
 using MoeMoeD.Model.ViewData;
 
 namespace MoeMoeD.BLL
@@ -15,22 +14,12 @@ namespace MoeMoeD.BLL
         {
         }
 
-        protected override List<Model.ViewData.Folder> DataToEntity(List<Model.Entity.Folder> t)
+        protected override Model.Entity.Folder DataToEntity(Folder t)
         {
             throw new NotImplementedException();
         }
 
-        protected override List<Model.Entity.Folder> DataToEntity(List<Model.ViewData.Folder> t)
-        {
-            throw new NotImplementedException();
-        }
-
-        protected override Model.Entity.Folder DataToEntity(Model.ViewData.Folder t)
-        {
-            throw new NotImplementedException();
-        }
-
-        protected override Model.ViewData.Folder EntityToData(Model.Entity.Folder t)
+        public override bool DeleteById(int id)
         {
             throw new NotImplementedException();
         }
