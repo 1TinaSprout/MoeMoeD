@@ -12,7 +12,7 @@ namespace MoeMoeD.Controllers
         // GET: /Home/
         public ActionResult Index()
         {
-            return View();
+            return Redirect(Url.Content("~/index.html"));
         }
 	}
 }

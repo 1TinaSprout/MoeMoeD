@@ -14,23 +14,12 @@ namespace MoeMoeD.BLL
     {
         public UserBLL(IUserDAL userDAL) : base(userDAL) { }
 
+        public override bool DeleteById(int id)
+        {
+            throw new NotImplementedException();
+        }
 
         protected override Model.Entity.User DataToEntity(User t)
-        {
-            throw new NotImplementedException();
-        }
-
-        protected override List<Model.Entity.User> DataToEntity(List<User> t)
-        {
-            throw new NotImplementedException();
-        }
-
-        protected override User EntityToData(Model.Entity.User t)
-        {
-            throw new NotImplementedException();
-        }
-
-        protected override List<User> DataToEntity(List<Model.Entity.User> t)
         {
             throw new NotImplementedException();
         }

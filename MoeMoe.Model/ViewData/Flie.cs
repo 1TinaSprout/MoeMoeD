@@ -10,6 +10,8 @@ namespace MoeMoeD.Model.ViewData
     {
         public String Name { get; set; }
         public String Type { get; set; }
+        public String UpdateTime { get; set; }
+        public String Size { get; set; }
         public int FolderId { get; set; }
         public int UserId { get; set; }
     }

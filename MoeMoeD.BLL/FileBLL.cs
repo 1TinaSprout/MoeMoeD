@@ -15,23 +15,12 @@ namespace MoeMoeD.BLL
     {
         public FileBLL(IFileDAL fileDAL) : base(fileDAL) { }
 
-
         protected override Model.Entity.Flie DataToEntity(Flie t)
         {
             throw new NotImplementedException();
         }
 
-        protected override List<Model.Entity.Flie> DataToEntity(List<Flie> t)
-        {
-            throw new NotImplementedException();
-        }
-
-        protected override Flie EntityToData(Model.Entity.Flie t)
-        {
-            throw new NotImplementedException();
-        }
-
-        protected override List<Flie> DataToEntity(List<Model.Entity.Flie> t)
+        public override bool DeleteById(int id)
         {
             throw new NotImplementedException();
         }

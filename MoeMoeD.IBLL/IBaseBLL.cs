@@ -10,7 +10,7 @@ namespace MoeMoeD.IBLL
     public interface IBaseBLL<D> where D:class
     {
         bool Add(D t);
-        D DeleteById(int id);
+        bool DeleteById(int id);
         bool Update(D t);
     }
 }

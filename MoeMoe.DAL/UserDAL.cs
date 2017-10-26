@@ -17,13 +17,9 @@ namespace MoeMoeD.DAL
 
         public User GetUserByEmail(string email)
         {
-            MoeMoeDEntities context = ContextFactory.GetDBContext();
-
             IQueryable<User> userList = from value in context.User
                                         where value.Email.Equals(email)
                                         select value;
-
-            ContextFactory.RevertDBContext(context);
 
             if (userList != null && userList.Count() > 0)
                 return userList.FirstOrDefault<User>();
@@ -33,9 +29,7 @@ namespace MoeMoeD.DAL
 
         public User GetUserByName(string name)
         {
-            MoeMoeDEntities context = ContextFactory.GetDBContext();
             var userList = from value in context.User where value.Email.Equals(name) select value;
-            ContextFactory.RevertDBContext(context);
             if (userList != null && userList.Count() > 0)
                 return userList.FirstOrDefault<User>();
             else
@@ -44,11 +38,7 @@ namespace MoeMoeD.DAL
 
         public User GetUserByPhone(string phone)
         {
-            MoeMoeDEntities context = ContextFactory.GetDBContext();
-
             var userList = from value in context.User where value.Email.Equals(phone) select value;
-
-            ContextFactory.RevertDBContext(context);
 
             if (userList != null && userList.Count() > 0)
                 return userList.FirstOrDefault<User>();

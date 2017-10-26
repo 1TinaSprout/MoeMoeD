@@ -72,7 +72,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseDAL.cs" />
-    <Compile Include="ContextFactory.cs" />
     <Compile Include="FileDAL.cs" />
     <Compile Include="FolderDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
