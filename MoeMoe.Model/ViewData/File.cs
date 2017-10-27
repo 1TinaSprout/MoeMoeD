@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MoeMoeD.Model.ViewData
 {
-    public class Flie : BaseData
+    public class File : BaseData
     {
         public String Name { get; set; }
         public String Type { get; set; }

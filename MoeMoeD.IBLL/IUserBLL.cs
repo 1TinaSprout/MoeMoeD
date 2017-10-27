@@ -9,6 +9,10 @@ namespace MoeMoeD.IBLL
 {
     public interface IUserBLL : IBaseBLL<User>
     {
+        //根据email返回User
+        User GetByEmail(String email);
 
+        //根据name返回User
+        User GetByName(String name);
     }
 }

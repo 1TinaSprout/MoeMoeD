@@ -1,9 +1,6 @@
 using System.Web.Mvc;
 using Microsoft.Practices.Unity;
 using Unity.Mvc5;
-using MoeMoeD.BLL;
-using MoeMoeD.IDAL;
-using MoeMoeD.DAL;
 
 namespace MoeMoeD
 {
