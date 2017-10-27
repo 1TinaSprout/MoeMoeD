@@ -8,11 +8,10 @@ namespace MoeMoeD.Controllers
 {
     public class HomeController : Controller
     {
-        //
-        // GET: /Home/
+        // GET: Home
         public ActionResult Index()
         {
-            return Redirect(Url.Content("~/index.html"));
+            return View();
         }
-	}
+    }
 }

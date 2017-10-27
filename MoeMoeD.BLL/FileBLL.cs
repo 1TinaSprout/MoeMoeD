@@ -11,11 +11,11 @@ using MoeMoeD.IBLL;
 
 namespace MoeMoeD.BLL
 {
-    public class FileBLL : BaseBLL<Flie,Model.Entity.Flie>, IFileBLL
+    public class FileBLL : BaseBLL<File,Model.Entity.Flie>, IFileBLL
     {
         public FileBLL(IFileDAL fileDAL) : base(fileDAL) { }
 
-        protected override Model.Entity.Flie DataToEntity(Flie t)
+        protected override Model.Entity.Flie DataToEntity(File t)
         {
             throw new NotImplementedException();
         }

@@ -94,7 +94,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewData\BaseData.cs" />
-    <Compile Include="ViewData\Flie.cs" />
+    <Compile Include="ViewData\File.cs" />
     <Compile Include="ViewData\Folder.cs" />
     <Compile Include="ViewData\User.cs" />
   </ItemGroup>
