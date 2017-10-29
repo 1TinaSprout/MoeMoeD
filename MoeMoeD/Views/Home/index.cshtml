@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <title>MoeMoeD网盘</title>
     @Scripts.Render("~/js")
-    @Styles.Render("~/css")  
+    @Styles.Render("~/css")
 </head>
 <body>
     <div id="app" style="background-color:#EFF4F8">
@@ -16,32 +16,38 @@
             <BreadcrumbItem href="#">分享</BreadcrumbItem>
             <BreadcrumbItem href="#">更多</BreadcrumbItem>
         </Breadcrumb>
-
-        <div class="section-block" style="width:200px">
-            <i-menu width="70px" style="height: 100%;background:#F8F8F8;" v-on:on-select="select">
+        <div class="section-block" style="width:100px;">
+            <i-menu style="height: 100%;background:#F8F8F8;" v-on:on-select="select">
                 <menugroup>
                     <imenuitem name="add" style="padding-left: 17px">
-                        <Poptip trigger="hover" content="新建笔记" placement="top-start">
-                            <Icon type="ios-plus" size="38" color="#2DBE60"></Icon>
-                        </Poptip>
+                        <Icon type="ios-paper" size="16"></Icon>
+                        全部文件
                     </imenuitem>
                     <imenuitem name="search" style="padding-left: 20px">
-                        <Poptip trigger="hover" content="搜索笔记" placement="top-start">
-                            <Icon type="ios-search-strong" size="38" color="#2DBE60" /></Icon>
-                        </Poptip>
+                        图片
                     </imenuitem>
-                </menugroup>
-
-                <menugroup>
-                    <imenuitem name="note" style="padding-left: 23px">
-                        <Poptip trigger="hover" content="查看笔记" placement="top-start">
-                            <Icon type="document-text" size="38" color="#2DBE60" /></Icon>
-                        </Poptip>
+                    <imenuitem name="search" style="padding-left: 20px">
+                        文档
                     </imenuitem>
-                    <imenuitem name="book" style="padding-left: 20px">
-                        <Poptip trigger="hover" content="查看笔记本" placement="top-start">
-                            <Icon type="ios-book" size="38" color="#2DBE60" /></Icon>
-                        </Poptip>
+                    <imenuitem name="search" style="padding-left: 20px">
+                        视频
+                    </imenuitem>
+                    <imenuitem name="search" style="padding-left: 20px">
+                        种子
+                    </imenuitem>
+                    <imenuitem name="search" style="padding-left: 20px">
+                        音乐
+                    </imenuitem>
+                    <imenuitem name="search" style="padding-left: 20px">
+                        其他
+                    </imenuitem>
+                    <imenuitem name="search" style="padding-left: 20px">
+                        <Icon type="android-share-alt" size="16"></Icon>
+                        我的分享
+                    </imenuitem>
+                    <imenuitem name="search" style="padding-left: 20px">
+                        <Icon type="trash-b" size="16"></Icon>
+                        回收站
                     </imenuitem>
                 </menugroup>
             </i-menu>

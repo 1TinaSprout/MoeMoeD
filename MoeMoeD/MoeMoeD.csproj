@@ -164,6 +164,7 @@
     <Content Include="image\index_bg3.jpg" />
     <Content Include="image\index_bg4.jpg" />
     <Content Include="image\index_bg5.jpg" />
+    <Content Include="image\logo-white.png" />
     <Content Include="image\logo.png" />
     <Content Include="index.html" />
     <Content Include="locale\de-DE.js" />

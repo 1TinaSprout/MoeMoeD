@@ -1,5 +1,10 @@
 ﻿var app = new Vue({
-    el:"#app",
-    data:{
+    el : "#app",
+    data : {
     },
+    methods : {
+        select: function (e) {
+
+        }
+    }
 })
