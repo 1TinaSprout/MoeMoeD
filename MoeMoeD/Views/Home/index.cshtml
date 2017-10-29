@@ -1,12 +1,53 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
-	<title>萌萌哒网盘</title>
-	<link rel="stylesheet" type="text/css" href="~/styles/iview.css">
-    <script type="text/javascript" src="~/script/vue.js"></script>
-    <script type="text/javascript" src="~/script/iview.js"></script>
+    <meta charset="utf-8">
+    <title>MoeMoeD网盘</title>
+    @Scripts.Render("~/js")
+    @Styles.Render("~/css")  
 </head>
 <body>
+    <div id="app" style="background-color:#EFF4F8">
+        <Breadcrumb separator="  ">
+            <BreadcrumbItem href="#">
+                <div class="layout-logo"></div>
+            </BreadcrumbItem>
+            <BreadcrumbItem href="#">网盘</BreadcrumbItem>
+            <BreadcrumbItem href="#">分享</BreadcrumbItem>
+            <BreadcrumbItem href="#">更多</BreadcrumbItem>
+        </Breadcrumb>
 
+        <div class="section-block" style="width:200px">
+            <i-menu width="70px" style="height: 100%;background:#F8F8F8;" v-on:on-select="select">
+                <menugroup>
+                    <imenuitem name="add" style="padding-left: 17px">
+                        <Poptip trigger="hover" content="新建笔记" placement="top-start">
+                            <Icon type="ios-plus" size="38" color="#2DBE60"></Icon>
+                        </Poptip>
+                    </imenuitem>
+                    <imenuitem name="search" style="padding-left: 20px">
+                        <Poptip trigger="hover" content="搜索笔记" placement="top-start">
+                            <Icon type="ios-search-strong" size="38" color="#2DBE60" /></Icon>
+                        </Poptip>
+                    </imenuitem>
+                </menugroup>
+
+                <menugroup>
+                    <imenuitem name="note" style="padding-left: 23px">
+                        <Poptip trigger="hover" content="查看笔记" placement="top-start">
+                            <Icon type="document-text" size="38" color="#2DBE60" /></Icon>
+                        </Poptip>
+                    </imenuitem>
+                    <imenuitem name="book" style="padding-left: 20px">
+                        <Poptip trigger="hover" content="查看笔记本" placement="top-start">
+                            <Icon type="ios-book" size="38" color="#2DBE60" /></Icon>
+                        </Poptip>
+                    </imenuitem>
+                </menugroup>
+            </i-menu>
+        </div>
+    </div>
+    <script type="text/javascript" src="~/Scripts/Home.js"></script>
 </body>
 </html>
+

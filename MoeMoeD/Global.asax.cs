@@ -1,9 +1,9 @@
-﻿using MoeMoeD.Model.ViewData;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Optimization;
 using System.Web.Routing;
 
 namespace MoeMoeD
@@ -13,27 +13,9 @@ namespace MoeMoeD
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
-
-            UnityConfig.RegisterComponents();
-
+            FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
-        }
-
-        protected void Application_BeginRequest()
-        {
-            if (Request.Url.Segments[0] == "/" || Request.Url.Segments[0] + Request.Url.Segments[1] != "/Home/")
-            {
-                return;
-            }
-
-            User user = Session["User"] as User;
-
-            if (user == null)
-            {
-                Response.ContentType = "text/html;charset=UTF-8";
-                Response.Write("404");
-                Response.End();
-            }
+            BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
     }
 }
