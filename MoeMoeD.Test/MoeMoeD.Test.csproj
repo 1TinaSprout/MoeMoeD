@@ -32,6 +32,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
@@ -42,6 +48,8 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.Web.Extensions" />
@@ -81,6 +89,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DAL\UnitTest1.cs" />
+    <Compile Include="Model1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\HomeControllerTest.cs" />
   </ItemGroup>
@@ -91,6 +101,26 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MoeMoe.DAL\MoeMoeD.DAL.csproj">
+      <Project>{8bdcd7b7-5f28-41bf-8b5b-e1d2e9551d42}</Project>
+      <Name>MoeMoeD.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MoeMoe.Model\MoeMoeD.Model.csproj">
+      <Project>{b9fa8f0b-a672-4ded-89ee-b984e64ade4a}</Project>
+      <Name>MoeMoeD.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MoeMoeD.BLL\MoeMoeD.BLL.csproj">
+      <Project>{2cb00d14-166b-45d3-ab5f-dc9d0885da55}</Project>
+      <Name>MoeMoeD.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MoeMoeD.IBLL\MoeMoeD.IBLL.csproj">
+      <Project>{a3aa2b1e-04d4-4dde-9349-79320817a9ff}</Project>
+      <Name>MoeMoeD.IBLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MoeMoeD.IDAL\MoeMoeD.IDAL.csproj">
+      <Project>{4e99c899-60be-4138-9b67-dab2c4128792}</Project>
+      <Name>MoeMoeD.IDAL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MoeMoeD\MoeMoeD.csproj">
       <Project>{BE9F13E8-0C05-41AB-A738-2CA945F72091}</Project>
       <Name>MoeMoeD</Name>

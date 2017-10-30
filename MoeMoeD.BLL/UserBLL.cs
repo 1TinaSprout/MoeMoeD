@@ -19,6 +19,16 @@ namespace MoeMoeD.BLL
             throw new NotImplementedException();
         }
 
+        public User GetByEmail(string email)
+        {
+            throw new NotImplementedException();
+        }
+
+        public User GetByName(string name)
+        {
+            throw new NotImplementedException();
+        }
+
         protected override Model.Entity.User DataToEntity(User t)
         {
             throw new NotImplementedException();
