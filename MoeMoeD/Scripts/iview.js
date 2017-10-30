@@ -4722,7 +4722,7 @@ var iview = {
     BackTop: _backTop2.default,
     Badge: _badge2.default,
     Breadcrumb: _breadcrumb2.default,
-    BreadcrumbItem: _breadcrumb2.default.Item,
+    breadcrumbitem: _breadcrumb2.default.Item,
     iButton: _button2.default,
     Button: _button2.default,
     ButtonGroup: _button2.default.Group,
@@ -4751,8 +4751,8 @@ var iview = {
     LoadingBar: _loadingBar2.default,
     Menu: _menu2.default,
     iMenu: _menu2.default,
-    MenuGroup: _menu2.default.Group,
-    MenuItem: _menu2.default.Item,
+    menugroup: _menu2.default.Group,
+    imenuitem: _menu2.default.Item,
     Submenu: _menu2.default.Sub,
     Message: _message2.default,
     Modal: _modal2.default,
@@ -9104,7 +9104,7 @@ Object.defineProperty(exports, "__esModule", {
 var prefixCls = 'ivu-breadcrumb-item';
 
 exports.default = {
-    name: 'BreadcrumbItem',
+    name: 'breadcrumbitem',
     props: {
         href: {
             type: String
@@ -20496,7 +20496,7 @@ exports.default = {
                 this.currentActiveName = -1;
             }
             this.broadcast('Submenu', 'on-update-active-name', false);
-            this.broadcast('MenuItem', 'on-update-active-name', this.currentActiveName);
+            this.broadcast('imenuitem', 'on-update-active-name', this.currentActiveName);
         },
         updateOpenKeys: function updateOpenKeys(name) {
             var index = this.openNames.indexOf(name);
@@ -20594,7 +20594,7 @@ Object.defineProperty(exports, "__esModule", {
 var prefixCls = 'ivu-menu';
 
 exports.default = {
-    name: 'MenuGroup',
+    name: 'menugroup',
     props: {
         title: {
             type: String,
@@ -20666,7 +20666,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var prefixCls = 'ivu-menu';
 
 exports.default = {
-    name: 'MenuItem',
+    name: 'menuitem',
     mixins: [_emitter2.default],
     props: {
         name: {
