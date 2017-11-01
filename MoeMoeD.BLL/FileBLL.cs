@@ -8,19 +8,51 @@ using System.Threading.Tasks;
 using Microsoft.Practices.Unity;
 using MoeMoeD.Model.ViewData;
 using MoeMoeD.IBLL;
+using System.IO;
+using MoeMoeD.Model.Entity;
 
 namespace MoeMoeD.BLL
 {
-    public class FileBLL : BaseBLL<File,Model.Entity.Flie>, IFileBLL
+    public class FileBLL : BaseBLL<Model.ViewData.File,Model.Entity.Flie>, IFileBLL
     {
         public FileBLL(IFileDAL fileDAL) : base(fileDAL) { }
 
-        protected override Model.Entity.Flie DataToEntity(File t)
+        protected override Model.Entity.Flie DataToEntity(Model.ViewData.File t)
         {
             throw new NotImplementedException();
         }
 
         public override bool DeleteById(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IList<Model.ViewData.File> GetByUserId(int userId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IList<Model.ViewData.File> GetRootByUserId(int userId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Model.ViewData.File GetById(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Stream GetContentById(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IList<Model.ViewData.File> GetByFolderId(int folderid)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool UpdateNameById(int id, string name)
         {
             throw new NotImplementedException();
         }
