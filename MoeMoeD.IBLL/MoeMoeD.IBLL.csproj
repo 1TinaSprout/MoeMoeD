@@ -70,5 +70,11 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MoeMoe.Model\MoeMoeD.Model.csproj">
+      <Project>{b9fa8f0b-a672-4ded-89ee-b984e64ade4a}</Project>
+      <Name>MoeMoeD.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

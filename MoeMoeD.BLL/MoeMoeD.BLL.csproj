@@ -73,6 +73,10 @@
     <Compile Include="UserBLL.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MoeMoe.DAL\MoeMoeD.DAL.csproj">
+      <Project>{8BDCD7B7-5F28-41BF-8B5B-E1D2E9551D42}</Project>
+      <Name>MoeMoeD.DAL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MoeMoe.Model\MoeMoeD.Model.csproj">
       <Project>{B9FA8F0B-A672-4DED-89EE-B984E64ADE4A}</Project>
       <Name>MoeMoeD.Model</Name>
