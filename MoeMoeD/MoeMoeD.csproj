@@ -160,6 +160,8 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="image\chatroom_bg1.jpg" />
+    <Content Include="image\chatroom_bg2.jpg" />
     <Content Include="image\index_bg1.jpg" />
     <Content Include="image\index_bg2.jpg" />
     <Content Include="image\index_bg3.jpg" />
@@ -183,8 +185,11 @@
     <Content Include="locale\vi-VN.js" />
     <Content Include="locale\zh-CN.js" />
     <Content Include="locale\zh-TW.js" />
+    <Content Include="Scripts\axios.js" />
+    <Content Include="Scripts\axios.min.js" />
+    <Content Include="Scripts\Chatroom.js" />
     <Content Include="Scripts\Home.js" />
-    <Content Include="Scripts\index.js" />
+    <Content Include="Scripts\Index.js" />
     <Content Include="Scripts\iview.js" />
     <Content Include="Scripts\iview.min.js" />
     <Content Include="Scripts\vue.js" />
@@ -219,6 +224,8 @@
   <ItemGroup>
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <Content Include="Views\Chatroom\Index.cshtml" />
+    <Content Include="Scripts\axios.map" />
+    <Content Include="Scripts\axios.min.map" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

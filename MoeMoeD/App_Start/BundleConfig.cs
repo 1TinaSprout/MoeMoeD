@@ -10,7 +10,8 @@ namespace MoeMoeD
         {
             bundles.Add(new ScriptBundle("~/js").Include(
                         "~/Scripts/vue.js",
-                        "~/Scripts/iview.js"));
+                        "~/Scripts/iview.js",
+                        "~/Scripts/axios.js");
 
             bundles.Add(new StyleBundle("~/css").Include(
                       "~/Content/iview.css",

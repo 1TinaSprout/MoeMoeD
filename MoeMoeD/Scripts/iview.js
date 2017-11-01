@@ -4739,8 +4739,8 @@ var iview = {
     ColorPicker: _colorPicker2.default,
     DatePicker: _datePicker2.default,
     Dropdown: _dropdown2.default,
-    DropdownItem: _dropdown2.default.Item,
-    DropdownMenu: _dropdown2.default.Menu,
+    dropdownitem: _dropdown2.default.Item,
+    dropdownmenu: _dropdown2.default.Menu,
     Form: _form2.default,
     iForm: _form2.default,
     formitem: _form2.default.Item,
@@ -18004,7 +18004,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var prefixCls = 'ivu-dropdown-item';
 
 exports.default = {
-    name: 'DropdownItem',
+    name: 'dropdownitem',
     props: {
         name: {
             type: [String, Number]
