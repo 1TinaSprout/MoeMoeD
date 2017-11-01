@@ -1,12 +1,112 @@
 ﻿<!DOCTYPE html>
-
 <html>
 <head>
     <meta charset="utf-8">
     <title>Index</title>
+    @Scripts.Render("~/js")
+    @Styles.Render("~/css")
 </head>
-<body>
-    <div> 
+<body style="background-image:url('../../image/chatroom_bg2.jpg');background-size:cover">
+    <div id="app" style="height:100%;width:100%">
+        <Row style="filter:alpha(opacity=50);padding:10px;height:95%">
+            <i-col span="6" offset="2" style="height:100%;min-width:220px">
+                <div style="margin:10px;height:65px">
+                    <div style="display:inline-block">
+                        <Icon type="person" size="32"></Icon>
+                    </div>
+                    <div style="display:inline-block;padding:3px">
+                        <h4>{{userName}}</h4>
+                        <p style="font-size:12px">{{userSign}}</p>
+                    </div>
+                </div>
+                <div style="height:85%;">
+                    <div style="height:50px;background-color:black;line-height:50px;text-align:center;border-radius:10px 10px 0px 0px">
+                        <h3 style="color:azure">联系人</h3>
+                    </div>
+                    <div style="height:80%;min-height:300px;">
+                        <card v-for="value in work_list">
+                            <h3 style="display:inline-block">{{value.name}}</h3>
+                            <span v-if="value.nickName!=undefined&&value.nickName!=''" style="color: rgb(158, 167, 180);">({{value.nickName}})</span>
+                        </card>
+                    </div>
+                    <div style="height:50px;line-height:50px;text-align:center;border:0px">
+                        <i-menu mode="horizontal" style="background-color:black;border-radius:0px 0px 10px 10px">
+                            <imenuitem name="1">
+                                会话
+                            </imenuitem>
+                            <imenuitem name="2">
+                                联系人
+                            </imenuitem>
+                            <imenuitem name="3">
+                                设置
+                            </imenuitem>
+                        </i-menu>
+                              @*<row>
+                            <i-col span="6" offset="2">
+                                <i-button size="large" type="text">
+                                    会话
+                                </i-button>
+                            </i-col>
+                            <i-col span="6" offset="1">
+                                <i-button size="large" type="text">
+                                    联系人
+                                </i-button>
+                            </i-col>
+                            <i-col span="6" offset="1">
+                                <i-button size="large" type="text">
+                                    设置
+                                </i-button>
+                            </i-col>
+                        </row>*@
+                    </div>
+                </div>
+                <div style="text-align:left;height:30px;">
+                    <i-button type="text">
+                        <Icon type="ios-arrow-left" size="16"></Icon>
+                    </i-button>
+                    <i-button type="text">
+                        <Icon type="ios-arrow-right" size="16"></Icon>
+                    </i-button>
+                    <i-button type="ghost" size="small">
+                        意见反馈
+                    </i-button>
+                </div>
+            </i-col>
+            <i-col span="12" offset="2" style="height:100%">
+                <div style="height:60%;margin-top:80px;min-width:500px">
+                    <div style="height:50px;background-color:black;border-radius:10px 10px 0px 0px">
+                        <row>
+                            <i-col span="2" offset="1">
+                                <Dropdown placement="bottom" style="margin:15px">
+                                    <a href="javascript:void(0)">
+                                        <Icon type="android-arrow-dropdown" size="18px" color="#fdfdfd"></Icon>
+                                    </a>
+                                    <dropdownmenu slot="list" style="background-color:black">
+                                        <dropdownitem>
+                                            <span style="color:#888888">群成员</span>
+                                        </dropdownitem>
+                                        <DropdownItem>
+                                            <span style="color:#888888">群资料</span>
+                                        </DropdownItem>
+                                    </dropdownmenu>
+                                </Dropdown>
+                            </i-col>
+                            <i-col span="18" style="text-align:center;line-height:50px">
+                                <h3 style="color:azure">{{roomName}}</h3>
+                            </i-col>
+                            <i-col span="2" style="line-height:50px">
+                                <i-button type="ghost" shape="circle" style="color:azure">关闭</i-button>
+                            </i-col>
+                        </row>
+                    </div>
+                    <div style="height:70%;min-height:300px">
+
+                    </div>
+                    <
+                </div>
+            </i-col>
+        </Row>
     </div>
+    <script type="text/javascript" src="~/Scripts/Chatroom.js"></script>
 </body>
 </html>
