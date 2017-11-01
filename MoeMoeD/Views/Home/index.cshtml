@@ -6,46 +6,47 @@
     @Scripts.Render("~/js")
     @Styles.Render("~/css")
 </head>
-<body>
-    <div id="app" style="background-color:#EFF4F8">
-        <nav style="height:85px;float:left;width:100%">
-            <div class="layout-logo" style="margin:20px"></div>
-            <i-button type="text" style="margin:20px"><h2>网盘</h2></i-button>
-            <i-button type="text" style="margin:20px"><h2>分享</h2></i-button>
-            <i-button type="text" style="margin:20px"><h2>更多</h2></i-button>
+<body style="min-height:610px">
+    <div id="app" style="background-color:#EFF4F8;min-width:850px">
+        <nav style="height:60px;float:left;width:100%">
+            <div class="layout-logo" style="margin:12px 24px"></div>
+            <i-button type="text" style="margin:6px"><h2>网盘</h2></i-button>
+            <i-button type="text" style="margin:6px"><h2>分享</h2></i-button>
+            <i-button type="text" style="margin:6px"><h2>更多</h2></i-button>
+            <div style="float:right"><i-button type="primary">进入聊天室</i-button></div>
         </nav>
 
-        <section style="height:100%;padding-top:85px;">
+        <section style="height:100%;padding-top:60px;">
             <row style="height:100%">
-                <i-col span="1" style="width:200px;height:100%">
-                    <i-menu style="background:#EFF4F8;height:100%;" v-on:on-select="select" width="200px;">
-                        <imenuitem name="add" style="padding-left: 30px">
-                            <Icon type="ios-paper" size="16" color="#F8F8F8"></Icon>
+                <i-col span="1" style="width:195px;height:100%">
+                    <i-menu theme="light" style="background:#EFF4F8;height:100%;" v-on:on-select="select" width="195px;">
+                        <imenuitem name="file" style="padding-left: 30px;border-right:0px">
+                            <Icon type="ios-paper" size="16"></Icon>
                             全部文件
                         </imenuitem>
-                        <imenuitem name="search" style="padding-left: 53px">
+                        <imenuitem name="picture" style="border: 0px;padding-left: 53px">
                             图片
                         </imenuitem>
-                        <imenuitem name="search" style="padding-left: 53px">
+                        <imenuitem name="document" style="padding-left: 53px">
                             文档
                         </imenuitem>
-                        <imenuitem name="search" style="padding-left: 53px">
+                        <imenuitem name="video" style="padding-left: 53px">
                             视频
                         </imenuitem>
-                        <imenuitem name="search" style="padding-left: 53px">
+                        <imenuitem name="bt" style="padding-left: 53px">
                             种子
                         </imenuitem>
-                        <imenuitem name="search" style="padding-left: 53px">
+                        <imenuitem name="music" style="padding-left: 53px">
                             音乐
                         </imenuitem>
-                        <imenuitem name="search" style="padding-left: 53px">
+                        <imenuitem name="other" style="padding-left: 53px">
                             其他
                         </imenuitem>
-                        <imenuitem name="search" style="padding-left: 30px">
+                        <imenuitem name="share" style="padding-left: 30px">
                             <Icon type="android-share-alt" size="16"></Icon>
                             我的分享
                         </imenuitem>
-                        <imenuitem name="search" style="padding-left: 33px">
+                        <imenuitem name="recycle" style="padding-left: 33px">
                             <Icon type="trash-b" size="16"></Icon>
                             回收站
                         </imenuitem>
@@ -53,26 +54,69 @@
                             <i-button type="text">
                                 <Icon type="social-windows" size="20"></Icon>
                             </i-button>
-                            <i-button type="text">
+                            <i-button type="text" style="padding-left:2px">
                                 <Icon type="social-android" size="20"></Icon>
                             </i-button>
-                            <i-button type="text">
+                            <i-button type="text" style="padding-left:2px">
                                 <Icon type="iphone" size="20"></Icon>
                             </i-button>
-                            <i-button type="text">
+                            <i-button type="text" style="padding-left:2px">
                                 <Icon type="social-apple" size="20"></Icon>
+                            </i-button>
+                            <i-button type="text" style="padding-left:2px">
+                                <Icon type="more" size="24"></Icon>
                             </i-button>
                         </menugroup>
                     </i-menu>
                 </i-col>
-                <i-col span="24" style="position:absolute;min-width:500px;padding-right:5px;height:100%">
-                    <card :dis-hover="true" :padding="6" style="height:100%;padding-top:85px;width:100%;padding-left:200px">
+                <i-col span="24" style="position:absolute;min-width:850px;padding-right:5px;height:100%;padding-left:194px">
+                    <card :dis-hover="true" style="height:100%;width:100%">
+                        <row style="margin-bottom:10px">
+                            <i-col span="18">
+                                <Upload action="/text" style="display:inline-block;margin-right:10px">
+                                    <i-button type="primary" size="large" icon="ios-cloud-upload-outline">上传文件</i-button>
+                                </Upload>
+                                <i-button v-on:click="create_folder=true" size="large" style="margin-right:10px">
+                                    <Icon type="android-folder-open" size="16"></Icon>
+                                    新建文件夹
+                                </i-button>
+                                <i-button size="large" style="margin-right:10px">
+                                    <Icon type="ios-download-outline" size="16"></Icon>
+                                    离线下载
+                                </i-button>
+                                <i-button size="large" style="margin-right:10px">
+                                    <Icon type="iphone" size="16"></Icon>
+                                    我的设备
+                                </i-button>
+                            </i-col>
+                            <i-col span="6">
+                                <div style="float:right">
+                                    <i-input v-model="search_content" size="large" icon="search" placeholder="搜索您的文件" style="width: 200px"></i-input>
+                                </div>
+                            </i-col>
+                        </row>
 
+                        <row>
+                            <i-col span="12">
+                                <div style="margin-bottom:10px">
+                                    <span>全部文件</span>
+                                </div>
+                            </i-col>
+                            <i-col span="12">
+                                <div style="float:right">
+                                    已全部加载，共{{count}}个
+                                </div>
+                            </i-col>
+                        </row>
+                        <i-table :columns="content_columns" :data="content_data" style="width:100%"></i-table>
                     </card>
                 </i-col>
             </row>
         </section>
-        
+
+        <Modal title="新建文件夹" v-model="create_folder" :mask-closable="false" width="330" v-on:on-ok="createfolder" v-on:on-cancel="this.create_folderName=''">
+            <i-input type="text" placeholder="请输入文件夹名" v-model="create_folderName" style="width: 300px"></i-input>
+        </Modal>
     </div>
     <script type="text/javascript" src="~/Scripts/Home.js"></script>
 </body>

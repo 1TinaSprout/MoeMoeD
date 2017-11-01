@@ -14,12 +14,33 @@ namespace MoeMoeD.BLL
         {
         }
 
-        protected override Model.Entity.Folder DataToEntity(Folder t)
+      
+
+        public override bool DeleteById(int id)
         {
             throw new NotImplementedException();
         }
 
-        public override bool DeleteById(int id)
+        public IList<Folder> GetByUserId(int userId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IList<Folder> GetRootByUserId(int userId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Folder GetById(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool UpdateNameById(int id, string name)
+        {
+            throw new NotImplementedException();
+        }
+        protected override Model.Entity.Folder DataToEntity(Folder t)
         {
             throw new NotImplementedException();
         }

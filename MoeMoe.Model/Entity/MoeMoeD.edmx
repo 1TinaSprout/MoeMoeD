@@ -196,7 +196,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="MoeMoeDEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Flie" EntityType="Self.Flie" />
           <EntitySet Name="Folder" EntityType="Self.Folder" />
           <EntitySet Name="User" EntityType="Self.User" />
@@ -222,7 +222,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
     <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="MoeMoeDModelEntityStoreContainer" CdmEntityContainer="Entities">
+  <EntityContainerMapping StorageEntityContainer="MoeMoeDModelEntityStoreContainer" CdmEntityContainer="MoeMoeDEntities">
     <EntitySetMapping Name="Flie">
       <EntityTypeMapping TypeName="IsTypeOf(MoeMoeD.Model.Entity.Flie)">
         <MappingFragment StoreEntitySet="Flie">
