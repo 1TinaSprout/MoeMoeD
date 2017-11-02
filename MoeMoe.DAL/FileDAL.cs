@@ -18,12 +18,15 @@ namespace MoeMoeD.DAL
 
         public IList<Flie> GetByFolderId(int folderid)
         {
-            throw new NotImplementedException();
+            IList<Flie> lstFlie = new List<Flie>();
+            lstFlie = context.Flie.Where(f => f.FolderId == folderid).ToList<Flie>();
+            return lstFlie;
         }
 
         public Flie GetById(int id)
         {
-            throw new NotImplementedException();
+            Flie flie = context.Flie.FirstOrDefault(f => f.Id == id);
+            return flie;
         }
 
         public IList<Flie> GetByUserId(int userId)

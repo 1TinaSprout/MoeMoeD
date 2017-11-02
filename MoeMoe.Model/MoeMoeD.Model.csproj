@@ -115,18 +115,8 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>MoeMoeD.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Entity\MoeMoeD.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>MoeMoeD.edmx</DependentUpon>
-      <LastGenOutput>MoeMoeD.Context.cs</LastGenOutput>
-    </None>
     <None Include="Entity\MoeMoeD.edmx.diagram">
       <DependentUpon>MoeMoeD.edmx</DependentUpon>
-    </None>
-    <None Include="Entity\MoeMoeD.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>MoeMoeD.edmx</DependentUpon>
-      <LastGenOutput>MoeMoeD.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
@@ -134,7 +124,16 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Entity\MoeMoeD.edmx.sql" />
+    <Content Include="Entity\MoeMoeD.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MoeMoeD.edmx</DependentUpon>
+      <LastGenOutput>MoeMoeD.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Entity\MoeMoeD.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MoeMoeD.edmx</DependentUpon>
+      <LastGenOutput>MoeMoeD.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

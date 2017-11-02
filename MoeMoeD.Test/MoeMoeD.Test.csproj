@@ -42,6 +42,8 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Data.Entity.Design" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Web" />
@@ -101,8 +103,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DAL\UnitTest1.cs" />
-    <Compile Include="Model1.cs" />
+    <Compile Include="DAL\UserTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\HomeControllerTest.cs" />
   </ItemGroup>
@@ -125,17 +126,9 @@
       <Project>{2cb00d14-166b-45d3-ab5f-dc9d0885da55}</Project>
       <Name>MoeMoeD.BLL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MoeMoeD.IBLL\MoeMoeD.IBLL.csproj">
-      <Project>{a3aa2b1e-04d4-4dde-9349-79320817a9ff}</Project>
-      <Name>MoeMoeD.IBLL</Name>
-    </ProjectReference>
     <ProjectReference Include="..\MoeMoeD.IDAL\MoeMoeD.IDAL.csproj">
       <Project>{4e99c899-60be-4138-9b67-dab2c4128792}</Project>
       <Name>MoeMoeD.IDAL</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MoeMoeD\MoeMoeD.csproj">
-      <Project>{BE9F13E8-0C05-41AB-A738-2CA945F72091}</Project>
-      <Name>MoeMoeD</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
