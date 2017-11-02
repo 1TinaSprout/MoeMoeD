@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace MoeMoeD.DAL
 {
@@ -12,6 +13,50 @@ namespace MoeMoeD.DAL
     {
         public FlieDAL(MoeMoeDEntities context) : base(context)
         {
+            this.context = context;
+        }
+
+        public IList<Flie> GetByFolderId(int folderid)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Flie GetById(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IList<Flie> GetByUserId(int userId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Stream GetContentById(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IList<Flie> GetRootByUserId(int userId)
+        {
+            try
+            {
+                IList<Flie> lstFlie = context.Flie.Where(t => t.UserId == userId && t.FolderId == 0).ToList<Flie>();
+                return lstFlie;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+
+        public bool UpdateNameById(int id, string name)
+        {
+            Flie flie = context.Flie.Find(id);
+            flie.Name = name;
+            try { context.SaveChanges(); return true; } catch (Exception) { throw; }
+
         }
     }
 }

@@ -15,7 +15,11 @@ namespace MoeMoeD.BLL
 {
     public class FileBLL : BaseBLL<Model.ViewData.File,Model.Entity.Flie>, IFileBLL
     {
-        public FileBLL(IFileDAL fileDAL) : base(fileDAL) { }
+        private IFileDAL FilDAL = null;
+        public FileBLL(IFileDAL fileDAL) : base(fileDAL)
+        {
+            this.FilDAL = fileDAL;
+        }
 
         protected override Model.Entity.Flie DataToEntity(Model.ViewData.File t)
         {
@@ -54,7 +58,18 @@ namespace MoeMoeD.BLL
 
         public bool UpdateNameById(int id, string name)
         {
-            throw new NotImplementedException();
+            if (name == null || name == string.Empty || name == "")
+            {
+                return false;
+            }
+            else if (id == -1)
+            {
+                return false;
+            }
+            else
+            {
+                return FilDAL.UpdateNameById(id, name);
+            }
         }
     }
 }
