@@ -10,8 +10,20 @@
         }, {
             name: "333",
             nickName: "444"
+        }],
+        message_list: [{
+            type: "other",
+            name: "111",
+            content: "11111111111"
+        }, {
+            type: "oneself",
+            name: "",
+            content:"1111111111"
         }]
     },
     methods: {
+        ToHome: function (e) {
+            location.href = '../../';
+        }
     }
 })

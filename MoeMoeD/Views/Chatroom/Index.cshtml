@@ -9,7 +9,7 @@
 <body style="background-image:url('../../image/chatroom_bg2.jpg');background-size:cover">
     <div id="app" style="height:100%;width:100%">
         <Row style="filter:alpha(opacity=50);padding:10px;height:95%">
-            <i-col span="6" offset="2" style="height:100%;min-width:220px">
+            <i-col span="6" offset="2" style="height:100%;width:240px">
                 <div style="margin:10px;height:65px">
                     <div style="display:inline-block">
                         <Icon type="person" size="32"></Icon>
@@ -20,29 +20,18 @@
                     </div>
                 </div>
                 <div style="height:85%;">
-                    <div style="height:50px;background-color:black;line-height:50px;text-align:center;border-radius:10px 10px 0px 0px">
+                    <div style="height:50px;background-color:#a8a8a8;line-height:50px;text-align:center;border-radius:10px 10px 0px 0px">
                         <h3 style="color:azure">联系人</h3>
                     </div>
-                    <div style="height:80%;min-height:300px;">
+                    <div style="height:75%;min-height:300px;">
                         <card v-for="value in work_list">
                             <h3 style="display:inline-block">{{value.name}}</h3>
                             <span v-if="value.nickName!=undefined&&value.nickName!=''" style="color: rgb(158, 167, 180);">({{value.nickName}})</span>
                         </card>
                     </div>
-                    <div style="height:50px;line-height:50px;text-align:center;border:0px">
-                        <i-menu mode="horizontal" style="background-color:black;border-radius:0px 0px 10px 10px">
-                            <imenuitem name="1">
-                                会话
-                            </imenuitem>
-                            <imenuitem name="2">
-                                联系人
-                            </imenuitem>
-                            <imenuitem name="3">
-                                设置
-                            </imenuitem>
-                        </i-menu>
-                              @*<row>
-                            <i-col span="6" offset="2">
+                    <div style="height:50px;line-height:50px;text-align:center;border:0px;background-color:#a8a8a8;border-radius:0px 0px 10px 10px">
+                        <row>
+                            <i-col span="6" offset="1">
                                 <i-button size="large" type="text">
                                     会话
                                 </i-button>
@@ -52,12 +41,12 @@
                                     联系人
                                 </i-button>
                             </i-col>
-                            <i-col span="6" offset="1">
+                            <i-col span="6" offset="2">
                                 <i-button size="large" type="text">
                                     设置
                                 </i-button>
                             </i-col>
-                        </row>*@
+                        </row>
                     </div>
                 </div>
                 <div style="text-align:left;height:30px;">
@@ -74,14 +63,14 @@
             </i-col>
             <i-col span="12" offset="2" style="height:100%">
                 <div style="height:60%;margin-top:80px;min-width:500px">
-                    <div style="height:50px;background-color:black;border-radius:10px 10px 0px 0px">
+                    <div style="height:50px;background-color:#a8a8a8;border-radius:10px 10px 0px 0px">
                         <row>
                             <i-col span="2" offset="1">
                                 <Dropdown placement="bottom" style="margin:15px">
                                     <a href="javascript:void(0)">
                                         <Icon type="android-arrow-dropdown" size="18px" color="#fdfdfd"></Icon>
                                     </a>
-                                    <dropdownmenu slot="list" style="background-color:black">
+                                    <dropdownmenu slot="list">
                                         <dropdownitem>
                                             <span style="color:#888888">群成员</span>
                                         </dropdownitem>
@@ -99,10 +88,25 @@
                             </i-col>
                         </row>
                     </div>
-                    <div style="height:70%;min-height:300px">
-
+                    <div style="height:70%;min-height:400px;background-color:#a8a8a8;filter:alpha(Opacity=80);-moz-opacity:0.5;opacity: 0.5;">
+                        <div v-for="value in this.message_list" style="padding:12px;">
+                            <div v-if="value.type=='other'">
+                                <h2 style="color:#000000">{{value.name}}:{{value.content}}</h2>
+                            </div>
+                            <div v-else-if="value.type=='oneself'" style="text-align:right">
+                                <h2 style="color:#000000">{{value.content}}:{{userName}}</h2>
+                            </div>
+                        </div>
                     </div>
-                    <
+                    <div style="height:50px;background-color:#a8a8a8;border-radius:0px 0px 10px 10px;padding:10px">
+                        <i-input type="text" placeholder="请输入发送内容..." style="width:80%;"></i-input>
+                        <i-button type="dashed">发送</i-button>
+                    </div>
+                </div>
+            </i-col>
+            <i-col span="1">
+                <div style="padding:20px">
+                    <i-button type="dashed" size="large" v-on:click="ToHome">返回网盘</i-button>
                 </div>
             </i-col>
         </Row>
