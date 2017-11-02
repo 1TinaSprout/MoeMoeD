@@ -27,6 +27,9 @@
         },
         createfolder: function (e) {
 
+        },
+        ToChatroom: function (e) {
+            location.href = "../../Chatroom/Index";
         }
     }
 })

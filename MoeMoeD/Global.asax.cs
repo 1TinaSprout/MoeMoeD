@@ -18,5 +18,10 @@ namespace MoeMoeD
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             UnityMvcActivator.Start();
         }
+
+        protected void Application_BeginRequest()
+        {
+            
+        }
     }
 }

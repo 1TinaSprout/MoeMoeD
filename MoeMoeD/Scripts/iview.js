@@ -4780,7 +4780,7 @@ var iview = {
     iTable: _table2.default,
     Table: _table2.default,
     Tabs: _tabs2.default,
-    TabPane: _tabs2.default.Pane,
+    tabpane: _tabs2.default.Pane,
     Tag: _tag2.default,
     Timeline: _timeline2.default,
     TimelineItem: _timeline2.default.Item,
@@ -29264,7 +29264,7 @@ exports.default = {
     methods: {
         getTabs: function getTabs() {
             return this.$children.filter(function (item) {
-                return item.$options.name === 'TabPane';
+                return item.$options.name === 'tabpane';
             });
         },
         updateNav: function updateNav() {
@@ -29504,7 +29504,7 @@ Object.defineProperty(exports, "__esModule", {
 var prefixCls = 'ivu-tabs-tabpane';
 
 exports.default = {
-    name: 'TabPane',
+    name: 'tabpane',
     props: {
         name: {
             type: String
