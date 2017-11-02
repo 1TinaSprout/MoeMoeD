@@ -66,9 +66,9 @@
                     <div style="height:50px;background-color:#a8a8a8;border-radius:10px 10px 0px 0px">
                         <row>
                             <i-col span="2" offset="1">
-                                <Dropdown placement="bottom" style="margin:15px">
+                                <Dropdown placement="bottom" style="padding-top:11px;">
                                     <a href="javascript:void(0)">
-                                        <Icon type="android-arrow-dropdown" size="18px" color="#fdfdfd"></Icon>
+                                        <Icon type="android-arrow-dropdown" size="32" color="#fdfdfd"></Icon>
                                     </a>
                                     <dropdownmenu slot="list">
                                         <dropdownitem>
@@ -88,19 +88,18 @@
                             </i-col>
                         </row>
                     </div>
-                    <div style="height:70%;min-height:400px;background-color:#a8a8a8;filter:alpha(Opacity=80);-moz-opacity:0.5;opacity: 0.5;">
-                        <div v-for="value in this.message_list" style="padding:12px;">
-                            <div v-if="value.type=='other'">
-                                <h2 style="color:#000000">{{value.name}}:{{value.content}}</h2>
-                            </div>
-                            <div v-else-if="value.type=='oneself'" style="text-align:right">
-                                <h2 style="color:#000000">{{value.content}}:{{userName}}</h2>
-                            </div>
-                        </div>
+                    <div style="height:70%;min-height:400px;background-color:#a8a8a8;filter:alpha(Opacity=80);-moz-opacity:0.5;opacity: 0.5;overflow-y:auto">
+                        <ul  style="padding:12px;">
+                            <li v-for="value in this.message_list">
+                                <h2 style="color:#000000" v-if="value.type=='other'">{{value.name}}:{{value.content}}</h2>
+
+                                <h2 style="color:#000000;text-align:right" v-else-if="value.type=='oneself'">{{value.content}}:{{userName}}</h2>
+                            </li>
+                        </ul>
                     </div>
                     <div style="height:50px;background-color:#a8a8a8;border-radius:0px 0px 10px 10px;padding:10px">
-                        <i-input type="text" placeholder="请输入发送内容..." style="width:80%;"></i-input>
-                        <i-button type="dashed">发送</i-button>
+                        <i-input type="text" placeholder="请输入发送内容..." style="width:80%;" v-model="message_content"></i-input>
+                        <i-button type="dashed" v-on:click="this.click_sendMessage">发送</i-button>
                     </div>
                 </div>
             </i-col>
@@ -111,6 +110,10 @@
             </i-col>
         </Row>
     </div>
+    <script src="~/Scripts/jquery-1.6.4.min.js"></script>
+    <script src="~/Scripts/jquery.signalR-2.2.2.min.js"></script>
     <script type="text/javascript" src="~/Scripts/Chatroom.js"></script>
+  
+
 </body>
 </html>
