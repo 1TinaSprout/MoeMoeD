@@ -13,7 +13,7 @@
             <i-button type="text" style="margin:6px"><h2>网盘</h2></i-button>
             <i-button type="text" style="margin:6px"><h2>分享</h2></i-button>
             <i-button type="text" style="margin:6px"><h2>更多</h2></i-button>
-            <div style="float:right"><i-button type="primary">进入聊天室</i-button></div>
+            <div style="float:right;margin:14px"><i-button type="primary" v-on:click="ToChatroom">进入聊天室</i-button></div>
         </nav>
 
         <section style="height:100%;padding-top:60px;">
@@ -72,7 +72,7 @@
                 <i-col span="24" style="position:absolute;min-width:850px;padding-right:5px;height:100%;padding-left:194px">
                     <card :dis-hover="true" style="height:100%;width:100%">
                         <row style="margin-bottom:10px">
-                            <i-col span="18">
+                            <i-col span="16">
                                 <Upload action="/text" style="display:inline-block;margin-right:10px">
                                     <i-button type="primary" size="large" icon="ios-cloud-upload-outline">上传文件</i-button>
                                 </Upload>
@@ -89,10 +89,23 @@
                                     我的设备
                                 </i-button>
                             </i-col>
-                            <i-col span="6">
+                            <i-col span="8" style="min-width:240px">
                                 <div style="float:right">
-                                    <i-input v-model="search_content" size="large" icon="search" placeholder="搜索您的文件" style="width: 200px"></i-input>
+                                    <Dropdown placement="left-start">
+                                        <a>
+                                            <Icon type="navicon-round" size="24" style="margin:5px 5px 0 15px"></Icon>
+                                        </a>
+                                        <DropdownMenu slot="list">
+                                            <DropdownItem selected>文件名</DropdownItem>
+                                            <DropdownItem>大小</DropdownItem>
+                                            <DropdownItem>修改日期</DropdownItem>
+                                        </DropdownMenu>
+                                    </Dropdown>
                                 </div>
+                                <div style="float:right">
+                                    <i-input v-model="search_content" size="large" icon="search" placeholder="搜索您的文件" style="width: 200px"></i-input> 
+                                </div>
+                                
                             </i-col>
                         </row>
 

@@ -4739,8 +4739,8 @@ var iview = {
     ColorPicker: _colorPicker2.default,
     DatePicker: _datePicker2.default,
     Dropdown: _dropdown2.default,
-    DropdownItem: _dropdown2.default.Item,
-    DropdownMenu: _dropdown2.default.Menu,
+    dropdownitem: _dropdown2.default.Item,
+    dropdownmenu: _dropdown2.default.Menu,
     Form: _form2.default,
     iForm: _form2.default,
     formitem: _form2.default.Item,
@@ -4780,7 +4780,7 @@ var iview = {
     iTable: _table2.default,
     Table: _table2.default,
     Tabs: _tabs2.default,
-    TabPane: _tabs2.default.Pane,
+    tabpane: _tabs2.default.Pane,
     Tag: _tag2.default,
     Timeline: _timeline2.default,
     TimelineItem: _timeline2.default.Item,
@@ -18004,7 +18004,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var prefixCls = 'ivu-dropdown-item';
 
 exports.default = {
-    name: 'DropdownItem',
+    name: 'dropdownitem',
     props: {
         name: {
             type: [String, Number]
@@ -29264,7 +29264,7 @@ exports.default = {
     methods: {
         getTabs: function getTabs() {
             return this.$children.filter(function (item) {
-                return item.$options.name === 'TabPane';
+                return item.$options.name === 'tabpane';
             });
         },
         updateNav: function updateNav() {
@@ -29504,7 +29504,7 @@ Object.defineProperty(exports, "__esModule", {
 var prefixCls = 'ivu-tabs-tabpane';
 
 exports.default = {
-    name: 'TabPane',
+    name: 'tabpane',
     props: {
         name: {
             type: String

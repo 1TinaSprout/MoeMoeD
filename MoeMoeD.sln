@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoeMoeD.Test", "MoeMoeD.Tes
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoeMoeD.Model", "MoeMoe.Model\MoeMoeD.Model.csproj", "{B9FA8F0B-A672-4DED-89EE-B984E64ADE4A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoeMoeD.Common", "MoeMoeD.Common\MoeMoeD.Common.csproj", "{1E5AEA43-13D3-44C4-8E67-905233A83327}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{B9FA8F0B-A672-4DED-89EE-B984E64ADE4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B9FA8F0B-A672-4DED-89EE-B984E64ADE4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B9FA8F0B-A672-4DED-89EE-B984E64ADE4A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E5AEA43-13D3-44C4-8E67-905233A83327}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E5AEA43-13D3-44C4-8E67-905233A83327}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E5AEA43-13D3-44C4-8E67-905233A83327}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E5AEA43-13D3-44C4-8E67-905233A83327}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

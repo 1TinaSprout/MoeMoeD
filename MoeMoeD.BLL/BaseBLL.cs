@@ -8,9 +8,7 @@ using System.Threading.Tasks;
 
 namespace MoeMoeD.BLL
 {
-    public abstract class BaseBLL<D, E> : IBaseBLL<D>
-        where D : class
-        where E : class, new()
+    public abstract class BaseBLL<D, E> : IBaseBLL<D> where D : class where E : class, new()
     {
         public MoeMoeD.IDAL.IBaseDAL<E> BaseDAL { get; set; }
         public BaseBLL(MoeMoeD.IDAL.IBaseDAL<E> baseDAL)

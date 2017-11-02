@@ -10,5 +10,7 @@ namespace MoeMoeD.IDAL
 {
     public interface IUserDAL : IBaseDAL<MoeMoeD.Model.Entity.User>
     {
+        User GetUserByEmail(string email);
+        User GetUserByName(string name);
     }
 }
