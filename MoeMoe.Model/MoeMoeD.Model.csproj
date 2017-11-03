@@ -74,6 +74,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entity\FileContent.cs">
+      <DependentUpon>MoeMoeD.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entity\Flie.cs">
       <DependentUpon>MoeMoeD.tt</DependentUpon>
     </Compile>
@@ -100,6 +103,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewData\File.cs" />
+    <Compile Include="ViewData\FileContent.cs" />
     <Compile Include="ViewData\Folder.cs" />
     <Compile Include="ViewData\User.cs" />
   </ItemGroup>
@@ -125,6 +129,7 @@
       <DependentUpon>MoeMoeD.edmx</DependentUpon>
       <LastGenOutput>MoeMoeD.Context.cs</LastGenOutput>
     </Content>
+    <Content Include="Entity\MoeMoeD.edmx.sql" />
     <Content Include="Entity\MoeMoeD.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>MoeMoeD.edmx</DependentUpon>
