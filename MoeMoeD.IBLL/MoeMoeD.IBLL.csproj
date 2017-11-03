@@ -66,6 +66,7 @@
   <ItemGroup>
     <Compile Include="IBaseBLL.cs" />
     <Compile Include="IFileBLL.cs" />
+    <Compile Include="IFileContentBLL.cs" />
     <Compile Include="IFolderBLL.cs" />
     <Compile Include="IUserBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

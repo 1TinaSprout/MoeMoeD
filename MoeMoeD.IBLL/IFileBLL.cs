@@ -22,5 +22,7 @@ namespace MoeMoeD.IBLL
         IList<File> GetByFolderId(int folderid);
 
         bool UpdateNameById(int id, String name);
+
+        bool IsContains(byte[] MD5);
     }
 }

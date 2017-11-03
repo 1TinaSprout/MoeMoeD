@@ -12,6 +12,8 @@
         <AssociationConnector Association="MoeMoeD.Entity.FK_UserFlie" ManuallyRouted="false" />
         <AssociationConnector Association="MoeMoeD.Entity.FK_FolderFolder" ManuallyRouted="false" />
         <AssociationConnector Association="MoeMoeD.Entity.FK_UserFloder" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="MoeMoeD.Entity.FileContent" Width="1.5" PointX="8.125" PointY="3.375" />
+        <AssociationConnector Association="MoeMoeD.Entity.FileContentFlie" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

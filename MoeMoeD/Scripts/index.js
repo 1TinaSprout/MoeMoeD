@@ -12,7 +12,7 @@
         },
         ruleValidate: {
             username: [
-                { required: true, message: '姓名不能为空', trigger: 'blur' }
+                { required: true, message: '用户名不能为空', trigger: 'blur' }
             ],
             password: [
                 { required: true, message: '密码不能为空', trigger: 'blur' }
@@ -20,22 +20,23 @@
         }
     },
     methods:{
-        Login: function(e){
-            this.$refs['formValidate'].validate((valid) => {
-                if (valid) {
-                    this.loading = true;
-                    axios.post("Home/Login", {"Email": this.username, "Password": this.password }).then(function (response) {
-                        if(response.Data.Result != 1)
-                        {
-                            app.modal = true;
-                        }
-                    }).catch(function(e){
-                        app.modal = true;
-                    });
-                } else {
-                    this.$Message.error('请输入格式正确的账号和密码!');
-                }
+        Login: function (e) {
+            var isValid = false;
+            this.$refs['formValidate'].validate(function (valid) {
+                isValid = valid;
             })
+            if (isValid) {
+                this.loading = true;
+                axios.post("Home/Login", { "Name": this.username, "Password": this.password }).then(function (response) {
+                    if (response.Data.Result != true) {
+                        app.modal = true;
+                    }
+                }).catch(function (e) {
+                    app.modal = true;
+                });
+            } else {
+                this.$Message.error('请输入格式正确的账号和密码!');
+            }
         },
         clean: function(e){
             app.username = "";

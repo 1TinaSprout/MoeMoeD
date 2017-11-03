@@ -28,5 +28,6 @@ namespace MoeMoeD.Model.Entity
         public virtual DbSet<Flie> Flie { get; set; }
         public virtual DbSet<Folder> Folder { get; set; }
         public virtual DbSet<User> User { get; set; }
+        public virtual DbSet<FileContent> FileContent { get; set; }
     }
 }
