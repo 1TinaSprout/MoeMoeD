@@ -107,6 +107,7 @@
   <ItemGroup>
     <DesignData Include="App.Config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </DesignData>
     <EntityDeploy Include="Entity\MoeMoeD.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
