@@ -5,8 +5,8 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="1247524f165043dabd50596849787107" Name="Diagram1">
-        <EntityTypeShape EntityType="MoeMoeD.Entity.Flie" Width="1.5" PointX="5.375" PointY="3.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="MoeMoeD.Entity.Folder" Width="1.5" PointX="3.25" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MoeMoeD.Entity.Flie" Width="1.5" PointX="7.25" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MoeMoeD.Entity.Folder" Width="1.5" PointX="4" PointY="3.5" IsExpanded="true" />
         <EntityTypeShape EntityType="MoeMoeD.Entity.User" Width="1.5" PointX="0.75" PointY="3.125" IsExpanded="true" />
         <AssociationConnector Association="MoeMoeD.Entity.FK_FloderFlie" ManuallyRouted="false" />
         <AssociationConnector Association="MoeMoeD.Entity.FK_UserFlie" ManuallyRouted="false" />

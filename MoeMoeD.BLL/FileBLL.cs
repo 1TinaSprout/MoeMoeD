@@ -80,11 +80,10 @@ namespace MoeMoeD.BLL
             foreach (Model.Entity.Flie file in t)
             {
                 Model.ViewData.File vFile = new Model.ViewData.File();
-                vFile.FolderId = file.FolderId;
                 vFile.Id = file.Id;
+                vFile.UpdateTime = file.UpdateTime;
                 vFile.Name = file.Name;
                 vFile.Size = DataSizeToView(file.Size);
-                vFile.UserId = file.UserId;
                 vFileLst.Add(vFile);
             }
             return vFileLst;
@@ -93,13 +92,11 @@ namespace MoeMoeD.BLL
         protected Model.ViewData.File DataToView(Flie t)
         {
             Model.ViewData.File vFile = new Model.ViewData.File();
-            vFile.FolderId = t.FolderId;
             vFile.Id = t.Id;
             vFile.Name = vFile.Name;
             vFile.Size = DataSizeToView(t.Size);
             vFile.Type = t.Type;
             vFile.UpdateTime = t.UpdateTime;
-            vFile.UserId = t.UserId;
             return vFile;
         }
 

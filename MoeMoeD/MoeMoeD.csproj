@@ -26,6 +26,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -273,6 +274,12 @@
     <Content Include="Views\Chatroom\Index.cshtml" />
     <Content Include="Scripts\axios.map" />
     <Content Include="Scripts\axios.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MoeMoeD.Common\MoeMoeD.Common.csproj">
+      <Project>{1e5aea43-13d3-44c4-8e67-905233a83327}</Project>
+      <Name>MoeMoeD.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

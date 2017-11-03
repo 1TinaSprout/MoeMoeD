@@ -16,8 +16,6 @@ namespace MoeMoeD.BLL
             this.FolderDAL = folderDAL;
         }
 
-
-
         public override bool DeleteById(int id)
         {
             Model.Entity.Folder folder = FolderDAL.GetById(id);
@@ -51,10 +49,8 @@ namespace MoeMoeD.BLL
         protected Model.ViewData.Folder DataToView(Model.Entity.Folder t)
         {
             Model.ViewData.Folder folder = new Folder();
-            folder.FolderId = t.FolderId;
             folder.Id = t.Id;
             folder.Name = t.Name;
-            folder.UserId = t.UserId;
             return folder;
         }
 
@@ -64,10 +60,8 @@ namespace MoeMoeD.BLL
             foreach (Model.Entity.Folder folder in t)
             {
                 Model.ViewData.Folder vFolder = new Folder();
-                vFolder.FolderId = folder.FolderId;
                 vFolder.Id = folder.Id;
                 vFolder.Name = folder.Name;
-                vFolder.UserId = folder.UserId;
                 vFolderLst.Add(vFolder);
             }
             return vFolderLst;
