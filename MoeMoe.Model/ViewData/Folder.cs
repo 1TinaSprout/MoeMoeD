@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace MoeMoeD.Model.ViewData
 {
-    public class Folder : BaseData
+    public class Folder
     {
+        public int Id { get; set; }
         public String Name { get; set; }
-        public int FolderId { get; set; }
-        public int UserId { get; set; }
+        public String UpdateTime { get; set; }
     }
 }

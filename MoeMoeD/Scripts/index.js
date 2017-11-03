@@ -24,7 +24,7 @@
             this.$refs['formValidate'].validate((valid) => {
                 if (valid) {
                     this.loading = true;
-                    axios.post("User/Login", {"UserName": this.username, "Password": this.password }).then(function (response) {
+                    axios.post("Home/Login", {"Email": this.username, "Password": this.password }).then(function (response) {
                         if(response.Data.Result != 1)
                         {
                             app.modal = true;
