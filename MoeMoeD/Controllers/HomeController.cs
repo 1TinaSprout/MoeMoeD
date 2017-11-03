@@ -44,6 +44,7 @@ namespace MoeMoeD.Controllers
 
             if (Request.Files.Count > 0)
             {
+                Console.Write(Request.Files[0].GetType());
                 foreach(HttpPostedFileWrapper file in Request.Files)
                 {
                     var md5 = new System.Security.Cryptography.MD5CryptoServiceProvider();

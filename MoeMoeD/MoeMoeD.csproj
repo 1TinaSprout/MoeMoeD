@@ -190,6 +190,7 @@
     <Compile Include="ChatConnection.cs" />
     <Compile Include="Controllers\ChatroomController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
+    <Compile Include="Controllers\FileController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -236,6 +237,7 @@
     <Content Include="Scripts\Index.js" />
     <Content Include="Scripts\iview.js" />
     <Content Include="Scripts\iview.min.js" />
+    <Content Include="homepage-hero-video%402x.webm" />
     <None Include="Scripts\jquery-1.6.4-vsdoc.js" />
     <Content Include="Scripts\jquery-1.6.4.js" />
     <Content Include="Scripts\jquery-1.6.4.min.js" />
@@ -261,6 +263,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\File\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -280,24 +283,18 @@
     <Content Include="Scripts\axios.min.map" />
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
-=======
     <ProjectReference Include="..\MoeMoe.Model\MoeMoeD.Model.csproj">
       <Project>{b9fa8f0b-a672-4ded-89ee-b984e64ade4a}</Project>
       <Name>MoeMoeD.Model</Name>
     </ProjectReference>
->>>>>>> 619f25605708681adc900009e9e3ee339f538fce
     <ProjectReference Include="..\MoeMoeD.Common\MoeMoeD.Common.csproj">
       <Project>{1e5aea43-13d3-44c4-8e67-905233a83327}</Project>
       <Name>MoeMoeD.Common</Name>
     </ProjectReference>
-<<<<<<< HEAD
-=======
     <ProjectReference Include="..\MoeMoeD.IBLL\MoeMoeD.IBLL.csproj">
       <Project>{F82526B9-1EAF-4CE8-AF44-8C3109967411}</Project>
       <Name>MoeMoeD.IBLL</Name>
     </ProjectReference>
->>>>>>> 619f25605708681adc900009e9e3ee339f538fce
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

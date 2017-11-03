@@ -4,6 +4,7 @@
         create_folderName: "",
         search_content: "",
         create_folder: false,
+        video: true,
         count:0,
         content_columns: [{
             title: "文件名",
