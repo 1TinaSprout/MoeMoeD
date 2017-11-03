@@ -73,7 +73,7 @@
                     <card :dis-hover="true" style="height:100%;width:100%">
                         <row style="margin-bottom:10px">
                             <i-col span="16">
-                                <Upload action="/text" style="display:inline-block;margin-right:10px">
+                                <Upload action="Home/Upload" style="display:inline-block;margin-right:10px" :multiple="true" :max-size="500000">
                                     <i-button type="primary" size="large" icon="ios-cloud-upload-outline">上传文件</i-button>
                                 </Upload>
                                 <i-button v-on:click="create_folder=true" size="large" style="margin-right:10px">
