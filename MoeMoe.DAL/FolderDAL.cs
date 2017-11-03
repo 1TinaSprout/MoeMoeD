@@ -10,7 +10,7 @@ namespace MoeMoeD.DAL
 {
     public class FolderDAL : BaseDAL<Folder>, IFolderDAL
     {
-        public FolderDAL(MoeMoeDEntities context):base(context)
+        public FolderDAL(MoeMoeDEntities context) : base(context)
         {
             this.context = context;
         }
@@ -38,6 +38,56 @@ namespace MoeMoeD.DAL
             {
                 Flie flie = context.Flie.Find(folder.FolderId);
                 context.Flie.Remove(flie);
+            }
+        }
+
+        public IList<Folder> GetByUserId(int userId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IList<Folder> GetRootByUserId(int userId)
+        {
+            try
+            {
+                IList<Folder> lstfolder = context.Folder.Where(f => f.UserId == userId && f.FolderId == 0).ToList<Folder>();
+                return lstfolder;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        public Folder GetById(int id)
+        {
+            Folder folder = new Folder();
+            try
+            {
+                folder = context.Folder.FirstOrDefault(f => f.Id == id);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            return folder;
+        }
+
+        public bool UpdateNameById(int id, string name)
+        {
+            Folder folder = new Folder();
+            try
+            {
+                folder = context.Folder.FirstOrDefault(f => f.Id == id);
+                folder.Name = name;
+                context.SaveChanges();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
             }
         }
     }

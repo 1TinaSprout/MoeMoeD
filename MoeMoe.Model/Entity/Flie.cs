@@ -14,12 +14,6 @@ namespace MoeMoeD.Model.Entity
     
     public partial class Flie
     {
-        public Flie()
-        {
-            this.UpdateTime = "-";
-            this.MD5 = "0";
-        }
-    
         public int Id { get; set; }
         public string Name { get; set; }
         public int UserId { get; set; }
