@@ -5,129 +5,185 @@
     <title>MoeMoeD网盘</title>
     @Scripts.Render("~/js")
     @Styles.Render("~/css")
+    <link href="http://vjs.zencdn.net/6.2.8/video-js.css" rel="stylesheet">
+    <script src="http://vjs.zencdn.net/ie8/1.1.0/videojs-ie8.min.js"></script>
+    <script src="http://vjs.zencdn.net/6.2.8/video.js"></script>
 </head>
-<body style="min-height:610px">
+<body style="min-height:610px;overflow:hidden">
     <div id="app" style="background-color:#EFF4F8;min-width:850px">
-        <nav style="height:60px;float:left;width:100%">
-            <div class="layout-logo" style="margin:12px 24px"></div>
-            <i-button type="text" style="margin:6px"><h2>网盘</h2></i-button>
-            <i-button type="text" style="margin:6px"><h2>分享</h2></i-button>
-            <i-button type="text" style="margin:6px"><h2>更多</h2></i-button>
-            <div style="float:right;margin:14px"><i-button type="primary" v-on:click="ToChatroom">进入聊天室</i-button></div>
-        </nav>
+        <section style="height:100%">
+            <nav style="height:60px;float:left;width:100%">
+                <div class="layout-logo" style="margin:12px 24px"></div>
+                <i-button type="text" style="margin:6px"><h2>网盘</h2></i-button>
+                <i-button type="text" style="margin:6px"><h2>分享</h2></i-button>
+                <i-button type="text" style="margin:6px"><h2>更多</h2></i-button>
+                <div style="float:right;margin:14px"><i-button type="primary" v-on:click="ToChatroom">进入聊天室</i-button></div>
+            </nav>
 
-        <section style="height:100%;padding-top:60px;">
-            <row style="height:100%">
-                <i-col span="1" style="width:195px;height:100%">
-                    <i-menu theme="light" style="background:#EFF4F8;height:100%;" v-on:on-select="select" width="195px;">
-                        <imenuitem name="file" style="padding-left: 30px;border-right:0px">
-                            <Icon type="ios-paper" size="16"></Icon>
-                            全部文件
-                        </imenuitem>
-                        <imenuitem name="picture" style="border: 0px;padding-left: 53px">
-                            图片
-                        </imenuitem>
-                        <imenuitem name="document" style="padding-left: 53px">
-                            文档
-                        </imenuitem>
-                        <imenuitem name="video" style="padding-left: 53px">
-                            视频
-                        </imenuitem>
-                        <imenuitem name="bt" style="padding-left: 53px">
-                            种子
-                        </imenuitem>
-                        <imenuitem name="music" style="padding-left: 53px">
-                            音乐
-                        </imenuitem>
-                        <imenuitem name="other" style="padding-left: 53px">
-                            其他
-                        </imenuitem>
-                        <imenuitem name="share" style="padding-left: 30px">
-                            <Icon type="android-share-alt" size="16"></Icon>
-                            我的分享
-                        </imenuitem>
-                        <imenuitem name="recycle" style="padding-left: 33px">
-                            <Icon type="trash-b" size="16"></Icon>
-                            回收站
-                        </imenuitem>
-                        <menugroup>
-                            <i-button type="text">
-                                <Icon type="social-windows" size="20"></Icon>
-                            </i-button>
-                            <i-button type="text" style="padding-left:2px">
-                                <Icon type="social-android" size="20"></Icon>
-                            </i-button>
-                            <i-button type="text" style="padding-left:2px">
-                                <Icon type="iphone" size="20"></Icon>
-                            </i-button>
-                            <i-button type="text" style="padding-left:2px">
-                                <Icon type="social-apple" size="20"></Icon>
-                            </i-button>
-                            <i-button type="text" style="padding-left:2px">
-                                <Icon type="more" size="24"></Icon>
-                            </i-button>
-                        </menugroup>
-                    </i-menu>
-                </i-col>
-                <i-col span="24" style="position:absolute;min-width:850px;padding-right:5px;height:100%;padding-left:194px">
-                    <card :dis-hover="true" style="height:100%;width:100%">
-                        <row style="margin-bottom:10px">
-                            <i-col span="16">
-                                <Upload action="Home/Upload" style="display:inline-block;margin-right:10px" :multiple="true" :max-size="500000">
-                                    <i-button type="primary" size="large" icon="ios-cloud-upload-outline">上传文件</i-button>
-                                </Upload>
-                                <i-button v-on:click="create_folder=true" size="large" style="margin-right:10px">
-                                    <Icon type="android-folder-open" size="16"></Icon>
-                                    新建文件夹
+            <section style="height:100%;padding-top:60px;">
+                <row style="height:100%">
+                    <i-col span="1" style="width:195px;height:100%">
+                        <i-menu theme="light" style="background:#EFF4F8;height:100%;" v-on:on-select="select" width="195px;">
+                            <imenuitem name="file" style="padding-left: 30px;border-right:0px">
+                                <Icon type="ios-paper" size="16"></Icon>
+                                全部文件
+                            </imenuitem>
+                            <imenuitem name="picture" style="border: 0px;padding-left: 53px">
+                                图片
+                            </imenuitem>
+                            <imenuitem name="document" style="padding-left: 53px">
+                                文档
+                            </imenuitem>
+                            <imenuitem name="video" style="padding-left: 53px">
+                                视频
+                            </imenuitem>
+                            <imenuitem name="bt" style="padding-left: 53px">
+                                种子
+                            </imenuitem>
+                            <imenuitem name="music" style="padding-left: 53px">
+                                音乐
+                            </imenuitem>
+                            <imenuitem name="other" style="padding-left: 53px">
+                                其他
+                            </imenuitem>
+                            <imenuitem name="share" style="padding-left: 30px">
+                                <Icon type="android-share-alt" size="16"></Icon>
+                                我的分享
+                            </imenuitem>
+                            <imenuitem name="recycle" style="padding-left: 33px">
+                                <Icon type="trash-b" size="16"></Icon>
+                                回收站
+                            </imenuitem>
+                            <menugroup style="position:absolute;left:0px;bottom:20px;">
+                                <i-button type="text">
+                                    <Icon type="social-windows" size="20"></Icon>
                                 </i-button>
-                                <i-button size="large" style="margin-right:10px">
-                                    <Icon type="ios-download-outline" size="16"></Icon>
-                                    离线下载
+                                <i-button type="text" style="padding-left:2px">
+                                    <Icon type="social-android" size="20"></Icon>
                                 </i-button>
-                                <i-button size="large" style="margin-right:10px">
-                                    <Icon type="iphone" size="16"></Icon>
-                                    我的设备
+                                <i-button type="text" style="padding-left:2px">
+                                    <Icon type="iphone" size="20"></Icon>
                                 </i-button>
-                            </i-col>
-                            <i-col span="8" style="min-width:240px">
-                                <div style="float:right">
-                                    <Dropdown placement="left-start">
-                                        <a>
-                                            <Icon type="navicon-round" size="24" style="margin:5px 5px 0 15px"></Icon>
-                                        </a>
+                                <i-button type="text" style="padding-left:2px">
+                                    <Icon type="social-apple" size="20"></Icon>
+                                </i-button>
+                                <i-button type="text" style="padding-left:2px">
+                                    <Icon type="more" size="24"></Icon>
+                                </i-button>
+                            </menugroup>
+                        </i-menu>
+                    </i-col>
+                    <i-col span="24" style="position:absolute;min-width:1000px;padding-right:5px;height:100%;padding-left:194px">
+                        <card :dis-hover="true" style="height:100%;width:100%">
+                            <row style="margin-bottom:10px">
+                                <i-col span="4" style="width:120px">
+                                    <Upload v-on:on-success="this.onUploadSuccess" action="Home/Upload" style="display:inline-block;margin-right:10px" :multiple="true" :max-size="500000">
+                                        <i-button type="primary" size="large" icon="ios-cloud-upload-outline">上传文件</i-button>
+                                    </Upload>
+                                </i-col>
+                                <i-col span="12">
+                                    <i-button v-on:click="create_folder=true" size="large" style="margin-right:10px">
+                                        <Icon type="android-folder-open" size="16"></Icon>
+                                        新建文件夹
+                                    </i-button>
+                                    <i-button v-if="!current" size="large" style="margin-right:10px">
+                                        <Icon type="ios-download-outline" size="16"></Icon>
+                                        离线下载
+                                    </i-button>
+                                    <i-button v-if="!current" size="large" style="margin-right:10px">
+                                        <Icon type="iphone" size="16"></Icon>
+                                        我的设备
+                                    </i-button>
+                                    <i-button v-if="current" size="large" style="border-radius:4px 0px 0px 4px">
+                                        <Icon type="android-share-alt" size="16"></Icon>
+                                        分享
+                                    </i-button>
+                                    <i-button v-if="current" :disabled="!is_download" size="large" style="border-radius:0px 0px 0px 0px;margin-left:-4px">
+                                        <Icon type="ios-cloud-download-outline" size="16"></Icon>
+                                        下载
+                                    </i-button>
+                                    <i-button v-if="current" size="large" style="border-radius:0px 0px 0px 0px;margin-left:-4px">
+                                        <Icon type="trash-b" size="16"></Icon>
+                                        删除
+                                    </i-button>
+                                    <Dropdown v-if="current">
+                                        <i-button size="large" style="border-radius:0px 4px 4px 0px;margin-left:-4px">
+                                            <Icon type="ios-more-outline" size="16"></Icon>
+                                            更多
+                                        </i-button>
                                         <DropdownMenu slot="list">
-                                            <DropdownItem selected>文件名</DropdownItem>
-                                            <DropdownItem>大小</DropdownItem>
-                                            <DropdownItem>修改日期</DropdownItem>
+                                            <DropdownItem>
+                                                重命名
+                                            </DropdownItem>
+                                            <DropdownItem>
+                                                复制到
+                                            </DropdownItem>
+                                            <DropdownItem>
+                                                移动到
+                                            </DropdownItem>
                                         </DropdownMenu>
                                     </Dropdown>
-                                </div>
-                                <div style="float:right">
-                                    <i-input v-model="search_content" size="large" icon="search" placeholder="搜索您的文件" style="width: 200px"></i-input> 
-                                </div>
-                                
-                            </i-col>
-                        </row>
+                                </i-col>
+                                <i-col span="8" style="min-width:240px">
+                                    <div style="float:right">
+                                        <Dropdown placement="left-start">
+                                            <a>
+                                                <Icon type="navicon-round" size="24" style="margin:5px 5px 0 15px"></Icon>
+                                            </a>
+                                            <DropdownMenu slot="list">
+                                                <DropdownItem selected>文件名</DropdownItem>
+                                                <DropdownItem>大小</DropdownItem>
+                                                <DropdownItem>修改日期</DropdownItem>
+                                            </DropdownMenu>
+                                        </Dropdown>
+                                    </div>
+                                    <div style="float:right">
+                                        <i-input v-model="search_content" size="large" icon="search" placeholder="搜索您的文件" style="width: 200px"></i-input>
+                                    </div>
+                                </i-col>
+                            </row>
 
-                        <row>
-                            <i-col span="12">
-                                <div style="margin-bottom:10px">
-                                    <span>全部文件</span>
-                                </div>
-                            </i-col>
-                            <i-col span="12">
-                                <div style="float:right">
-                                    已全部加载，共{{count}}个
-                                </div>
-                            </i-col>
-                        </row>
-                        <i-table :columns="content_columns" :data="content_data" style="width:100%"></i-table>
-                    </card>
-                </i-col>
-            </row>
+                            <row>
+                                <i-col span="12">
+                                    <div style="margin-bottom:10px">
+                                        <span>全部文件</span>
+                                    </div>
+                                </i-col>
+                                <i-col span="12">
+                                    <div style="float:right">
+                                        已全部加载，共{{count}}个
+                                    </div>
+                                </i-col>
+                            </row>
+                            <i-table v-on:on-selection-change="this.onSelectionChange"
+                                     v-on:on-select-all="this.onSelectAll"
+                                     v-on:on-sort-change="this.onSort"
+                                     v-on:on-select="this.onSelect"
+                                     v-on:on-select-cancel="this.onSelectCancel"
+                                     :columns="content_columns"
+                                     :data="content_data"
+                                     style="width:100%"></i-table>
+                        </card>
+                    </i-col>
+                </row>
+            </section>
+
         </section>
 
-        <Modal title="新建文件夹" v-model="create_folder" :mask-closable="false" width="330" v-on:on-ok="createfolder" v-on:on-cancel="this.create_folderName=''">
+        <section v-show="video" style="position:absolute;left:0;top:0;z-index:1000;background:black;height:100%;width:100%;opacity: 0.5;"></section>
+
+        <section v-show="video" style="position:absolute;left:25%;top:20%;z-index:1000;width:50%;height:40%">
+            <i-button type="ghost" style="position:absolute;left:100%;" v-on:click="this.closeVideo"><Icon type="ios-close-outline" size="32"></Icon></i-button>
+            <video id="myvideo" class="video-js" controls preload="auto" data-setup="{}">
+                <source :src="video_src" type='video/webm'>
+                <p class="vjs-no-js">
+                    To view this video please enable JavaScript, and consider upgrading to a web browser that
+                    <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+                </p>
+            </video>
+        </section>
+
+        <Modal title="新建文件夹" v-model="create_folder" :closable="false" :mask-closable="false" width="330" v-on:on-ok="this.createfolder" v-on:on-cancel="this.create_folderName=''" :transition-names="transition" :loading="loading">
             <i-input type="text" placeholder="请输入文件夹名" v-model="create_folderName" style="width: 300px"></i-input>
         </Modal>
     </div>

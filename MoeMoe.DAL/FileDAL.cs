@@ -58,6 +58,7 @@ namespace MoeMoeD.DAL
         {
             Flie flie = context.Flie.Find(id);
             flie.Name = name;
+            flie.UpdateTime = DateTime.Now.ToString();
             try { context.SaveChanges(); return true; } catch (Exception) { throw; }
 
         }
