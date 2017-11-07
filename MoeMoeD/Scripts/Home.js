@@ -5,10 +5,10 @@
         current: false,
         download: true,
         create_folder: false,
-        video: true,
+        video: false,
         create_folderName: "",
         search_content: "",
-        video_src: "homepage-hero-video@2x.webm",
+        video_src: "/",
         count: 0,
         transition: ['ease', 'fade'],
         content_columns: [{
@@ -115,16 +115,8 @@
             location.href = "Chatroom/Index";
         }, //ok
         onSelect: function (selection, row) {
-            if (row.type == "Folder") {
-                app.$Message.info("文件夹：" + row.Name + "被选中")
-            } else if (row.type == "mp4") {
-                app.$Message.info("视频：" + row.Name + "被选中")
-            } else {
-                app.$Message.info("文件：" + row.Name + "被选中")
-            }
             app.current = true;
             app.current_data.push(row);
-            app.$Message.info("当前选中" + row.Name)
         },
         onSelectCancel: function (selection, row) {
             if (app.current_data.length > 0) {
@@ -165,7 +157,10 @@
         },
         closeVideo: function (e) {
             app.video = false;
-            player.pause();
+            player.src("/")
+        },
+        onUploadSuccess(response, file, fileList) {
+            
         }
     }
 })
@@ -177,9 +172,14 @@ function playVideo(e) {
     }
     var mp4id = btn.attributes["mp4id"].value;
     if (mp4id != undefined && mp4id != 0) {
-        //app.video_src = "/File/GetContent?mp4id=" + mp4id;
+        player.src("/File/GetContent?mp4id=" + mp4id)
         app.video = true;
     }
+}
+
+function playVideoById(id) {
+    player.src("/File/GetContent?mp4id=" + id)
+    app.video = true;
 }
 
 function inToFolder(e) {
@@ -190,12 +190,20 @@ function inToFolder(e) {
     app.$Message.info("进入文件夹")
 }
 
+function inToFolderById(folderId) {
+
+}
+
 function downloadFile(e) {
     var btn = e.target;
     while (btn.localName != "button") {
         btn = btn.parentElement;
     }
     app.$Message.info("下载文件")
+}
+
+function downloadFileById(fileId) {
+
 }
 
 var player = videojs("myvideo", { fluid: true, autoplay: true }, function () {
