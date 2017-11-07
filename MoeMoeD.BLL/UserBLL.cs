@@ -1,13 +1,7 @@
-﻿using Microsoft.Practices.Unity;
-using MoeMoeD.DAL;
-using MoeMoeD.IBLL;
+﻿using MoeMoeD.IBLL;
 using MoeMoeD.IDAL;
 using MoeMoeD.Model.ViewData;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MoeMoeD.BLL
 {
@@ -34,6 +28,7 @@ namespace MoeMoeD.BLL
         {
             return DataToView(UserDAL.GetUserByName(name));
         }
+
 
         protected Model.ViewData.User DataToView(Model.Entity.User t)
         {
