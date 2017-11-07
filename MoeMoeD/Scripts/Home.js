@@ -1,54 +1,54 @@
 ﻿var app = new Vue({
     el: "#app",
     data: {
-        is_loading: false,
-        is_current: false,
-        is_download: true,
+        loading: false,
+        current: false,
+        download: true,
         create_folder: false,
-        video: false,
+        video: true,
         create_folderName: "",
         search_content: "",
-        video_src: "",
+        video_src: "homepage-hero-video@2x.webm",
         count: 0,
         transition: ['ease', 'fade'],
         content_columns: [{
             type: 'selection',
             width: 60,
             align: 'center'
-            },{
+        }, {
             title: "文件名",
             key: "Name",
             render: function (h, params) {
                 if (params.row.type == "Folder") {
-                    return h('div', [
+                    return h('div', { attrs: { style: "padding-top:8px" } }, [
                         h('Icon', { attrs: { type: "folder", style: "padding-left:3px;font-size:18px" } }),
-                        h('i-button', { attrs: { type: "text", style: "padding-left:10px;padding-top:0px" } }, params.row.Name)
+                        h('i-button', {
+                            attrs: { type: "text", style: "padding-left:10px;padding-top:0px", folderid: params.row.Id },
+                            on: { click: inToFolder }
+                        }, params.row.Name)
                     ]);
-                } else if (params.row.type == "video/mp4") {
-                    return h('div', [
+                } else if (params.row.type == "mp4") {
+                    return h('div', { attrs: { style: "padding-top:8px" } }, [
                         h('Icon', { attrs: { type: "social-youtube-outline", style: "font-size:18px" } }),
                         h('i-button', {
-                            attrs: { type: "text", style: "padding-left:8px;padding-top:0px" },
-                            on: {
-                                click: function () {
-                                    app.$Message.info("开始播放视频")
-                                }
-                            }
+                            attrs: { type: "text", style: "padding-left:8px;padding-top:0px", mp4id: params.row.Id },
+                            on: { click: playVideo }
                         }, params.row.Name)
                     ]);
                 } else {
-                    return h('div', [
+                    return h('div', { attrs: { style: "padding-top:8px" } }, [
                         h('Icon', { attrs: { type: "document-text", style: "padding-left:4px;font-size:18px" } }),
                         h('i-button', {
-                            attrs: { type: "text", style: "padding-left:12px;padding-top:0px" }
+                            attrs: { type: "text", style: "padding-left:12px;padding-top:0px", fileid: params.row.Id},
+                            on: { click: downloadFile }
                         }, params.row.Name)
                     ]);
                 }
             }
-            }, {
+        }, {
             title: "大小",
             key: "Size"
-            }, {
+        }, {
             title: "修改日期",
             key: "UpdateTime"
         }],
@@ -69,7 +69,7 @@
             Name: "我的文件",
             Size: "100K",
             UpdateTime: "2017-01-01",
-            type: "video/mp4"
+            type: "mp4"
         }],
         current_data: [],
         navigation: [0]
@@ -91,10 +91,10 @@
                         } else {
                             app.$Message.error("服务器异常，请稍后再试");
                         }
-                        app.is_loading = false;
+                        app.loading = false;
                     }).catch(function (error) {
                         app.$Message.error("服务器异常，请稍后再试");
-                        app.is_loading = false;
+                        app.loading = false;
                     })
                 } else {
                     axios.post("Folder/Add", { Name: app.create_folderName, FolderId: app.navigation[app.navigation.length - 1] }).then(function (response) {
@@ -103,10 +103,10 @@
                         } else {
                             app.$Message.error("服务器异常，请稍后再试");
                         }
-                        is_loading = false;
+                        loading = false;
                     }).catch(function (error) {
                         app.$Message.error("服务器异常，请稍后再试");
-                        app.is_loading = false;
+                        app.loading = false;
                     })
                 }
             }
@@ -117,12 +117,12 @@
         onSelect: function (selection, row) {
             if (row.type == "Folder") {
                 app.$Message.info("文件夹：" + row.Name + "被选中")
-            } else if (row.type == "video/mp4") {
+            } else if (row.type == "mp4") {
                 app.$Message.info("视频：" + row.Name + "被选中")
             } else {
                 app.$Message.info("文件：" + row.Name + "被选中")
             }
-            app.is_current = true;
+            app.current = true;
             app.current_data.push(row);
             app.$Message.info("当前选中" + row.Name)
         },
@@ -134,7 +134,7 @@
                     }
                 }
                 if (app.current_data.length == 0) {
-                    app.is_current = false
+                    app.current = false
                 }
             }
         },
@@ -142,14 +142,14 @@
 
         },
         onSelectAll: function (selection) {
-            app.is_current = true
+            app.current = true
             app.current_data.splice(0, app.current_data.length);
             app.current_data = selection
             app.isDownLoad(selection)
         },
         onSelectionChange: function (selection) {
             if (selection.length == 0) {
-                app.is_current = false
+                app.current = false
                 app.current_data.splice(0, app.current_data.length);
             }
             app.isDownLoad(selection);
@@ -157,14 +157,46 @@
         isDownLoad: function (data) {
             for (var i in data) {
                 if (data[i].type == "Folder") {
-                    app.is_download = false
+                    app.download = false
                     return
                 }
             }
-            app.is_download = true
+            app.download = true
         },
-        inFolder: function (e) {
-
+        closeVideo: function (e) {
+            app.video = false;
+            player.pause();
         }
     }
+})
+
+function playVideo(e) {
+    var btn = e.target;
+    while (btn.localName != "button") {
+        btn = btn.parentElement;
+    }
+    var mp4id = btn.attributes["mp4id"].value;
+    if (mp4id != undefined && mp4id != 0) {
+        //app.video_src = "/File/GetContent?mp4id=" + mp4id;
+        app.video = true;
+    }
+}
+
+function inToFolder(e) {
+    var btn = e.target;
+    while (btn.localName != "button") {
+        btn = btn.parentElement;
+    }
+    app.$Message.info("进入文件夹")
+}
+
+function downloadFile(e) {
+    var btn = e.target;
+    while (btn.localName != "button") {
+        btn = btn.parentElement;
+    }
+    app.$Message.info("下载文件")
+}
+
+var player = videojs("myvideo", { fluid: true, autoplay: true }, function () {
 })
