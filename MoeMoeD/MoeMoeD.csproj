@@ -239,7 +239,6 @@
     <Content Include="Scripts\Index.js" />
     <Content Include="Scripts\iview.js" />
     <Content Include="Scripts\iview.min.js" />
-    <Content Include="homepage-hero-video%402x.webm" />
     <None Include="Scripts\jquery-1.6.4-vsdoc.js" />
     <Content Include="Scripts\jquery-1.6.4.js" />
     <Content Include="Scripts\jquery-1.6.4.min.js" />

@@ -29,7 +29,7 @@
                 this.loading = true;
                 axios.post("Home/Login", { "Name": this.username, "Password": this.password }).then(function (response) {
                     if (response.Data.Result != true) {
-                        app.modal = true;
+                        this.$Message.error('用户名或密码错误!');
                     }
                 }).catch(function (e) {
                     app.modal = true;

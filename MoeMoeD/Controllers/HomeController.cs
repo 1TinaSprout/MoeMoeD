@@ -16,6 +16,10 @@ namespace MoeMoeD.Controllers
         public IFileContentBLL FileContentBLL { get; set; }
         public ActionResult Index()
         {
+            if (Request.Url.LocalPath != "/")
+            {
+                return Redirect("/");
+            }
             User user = Session["User"] as User;
 
             return View();
@@ -37,6 +41,7 @@ namespace MoeMoeD.Controllers
 
         public ActionResult Upload()
         {
+<<<<<<< HEAD
             User user = Session["User"] as User;
             if (user == null)
             {
@@ -50,18 +55,30 @@ namespace MoeMoeD.Controllers
                 {
                     var md5 = new System.Security.Cryptography.MD5CryptoServiceProvider();
                     var MD5 = md5.ComputeHash(file.InputStream);
+=======
+            //User user = Session["User"] as User;
+            //if(user == null)
+            //{
+            //    return new RedirectResult(Url.Action("Index", "Error"));
+            //}
 
-                    if (!FileBLL.IsContains(MD5))
-                    {
-                        if (FileContentBLL.Add(new FileContent() { })) ;
-                    }
-                }
-                ResponseHelper.WriteTrue(Response);
-            }
-            else
-            {
-                ResponseHelper.WriteFalse(Response);
-            }
+            //if (Request.Files.Count > 0)
+            //{
+            //    Console.Write(Request.Files[0].GetType());
+            //    foreach(HttpPostedFileWrapper file in Request.Files)
+            //    {
+            //        var md5 = new System.Security.Cryptography.MD5CryptoServiceProvider();
+            //        var MD5 = md5.ComputeHash(file.InputStream);
+>>>>>>> 1dbae1a4b8d4508695364ba1e300fc696f981389
+
+            //    }
+            //    ResponseHelper.WriteTrue(Response);
+            //}
+            //else
+            //{
+            //    ResponseHelper.WriteFalse(Response);
+            //}
+            ResponseHelper.WriteFalse(Response);
 
             return null;
         }
