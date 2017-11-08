@@ -1,16 +1,16 @@
 ﻿var app = new Vue({
     el: "#app",
     data: {
-        loading: false,
-        current: false,
-        download: true,
-        create_folder: false,
-        video: false,
-        create_folderName: "",
-        search_content: "",
-        video_src: "/",
-        count: 0,
-        transition: ['ease', 'fade'],
+        loading: false, //是否有事件执行中
+        current: false, //是否有选中的数据
+        download: true, //选中数据中是否含有文件夹
+        create_folder: false, //是否打开新建文件夹对话框
+        video: false, //是否显示播放器
+        create_folderName: "", //新建文件夹的名字
+        search_content: "", //搜素框的内容
+        video_src: "/test.mp4", //播放器的src
+        count: 0, //当前页的文件总个数
+        transition: ['ease', 'fade'], //对话框的动画效果
         content_columns: [{
             type: 'selection',
             width: 60,
@@ -19,7 +19,7 @@
             title: "文件名",
             key: "Name",
             render: function (h, params) {
-                if (params.row.type == "Folder") {
+                if (params.row.Type == "Folder") {
                     return h('div', { attrs: { style: "padding-top:8px" } }, [
                         h('Icon', { attrs: { type: "folder", style: "padding-left:3px;font-size:18px" } }),
                         h('i-button', {
@@ -27,7 +27,7 @@
                             on: { click: inToFolder }
                         }, params.row.Name)
                     ]);
-                } else if (params.row.type == "mp4") {
+                } else if (params.row.Type == "Mp4") {
                     return h('div', { attrs: { style: "padding-top:8px" } }, [
                         h('Icon', { attrs: { type: "social-youtube-outline", style: "font-size:18px" } }),
                         h('i-button', {
@@ -51,28 +51,28 @@
         }, {
             title: "修改日期",
             key: "UpdateTime"
-        }],
+        }], //当前页数据的表头
         content_data: [{
             Id: 1,
             Name: "我的文件",
             Size: "100K",
             UpdateTime: "2017-01-01",
-            type: "Folder"
+            Type: "Folder"
         }, {
             Id: 2,
             Name: "文件",
             Size: "100K",
             UpdateTime: "2017-01-01",
-            type: "File"
+            Type: "File"
         }, {
             Id: 3,
             Name: "我的文件",
             Size: "100K",
             UpdateTime: "2017-01-01",
-            type: "mp4"
-        }],
-        current_data: [],
-        navigation: [0]
+            Type: "mp4"
+        }], //当前页数据的内容
+        current_data: [], //当前选中的内容
+        navigation: [0]  //导航栏的FolderId的集合
     },
     methods: {
         select: function (e) {
@@ -148,7 +148,7 @@
         },
         isDownLoad: function (data) {
             for (var i in data) {
-                if (data[i].type == "Folder") {
+                if (data[i].Type == "Folder") {
                     app.download = false
                     return
                 }
@@ -160,7 +160,31 @@
             player.src("/")
         },
         onUploadSuccess(response, file, fileList) {
-            
+            app.$Message.success(file.name + " 上传成功")
+        },
+        currentDelete: function (e) {
+            var idList = new Array();
+            for (var i in app.current_data) {
+                var data = app.current_data[i]
+                idList.push({ type: data.type, Id: data.Id })
+            }
+            axios.post("Home/Delete", { IdList: idList }).then(function (response) {
+                if (response.data.Result == true) {
+                    for (var i in app.current_data) {
+                        var current = app.current_data[i]
+                        for (var j in app.content_data) {
+                            var content = app.content_data[j]
+                            if (current.Id = content.Id && current.Type == content.Type) {
+                                app.content_data.splice(j, 1)
+                            }
+                        }
+                    }
+                } else {
+                    showError(error)
+                }
+            }).catch(function (error) {
+                showError(error)
+            })
         }
     }
 })
@@ -187,11 +211,40 @@ function inToFolder(e) {
     while (btn.localName != "button") {
         btn = btn.parentElement;
     }
-    app.$Message.info("进入文件夹")
+    var folderid = btn.attributes["folderid"].value
+    if (folderid != undefined && folderid != 0) {
+        //清空数据
+        app.content_data.splice(0, app.content_data.length)
+        app.current_data.splice(0, app.current_data.length)
+        //请求数据并赋值
+        axios.post("Home/Get", { FolderId: folderid }).then(function (response) {
+            app.content_data = response.DataList
+        }).catch(function (error) {
+            showError(error)
+        })
+        //页面刷新
+        app.current = false
+        app.download = false
+        app.video = false
+    }
 }
 
 function inToFolderById(folderId) {
-
+    if (folderid != undefined && folderid != 0) {
+        //清空数据
+        app.content_data.splice(0, app.content_data.length)
+        app.current_data.splice(0, app.current_data.length)
+        //请求数据并赋值
+        axios.post("Home/Get", { FolderId: folderid }).then(function (response) {
+            app.content_data = response.data.DataList
+        }).catch(function (error) {
+            showError(error)
+        })
+        //页面刷新
+        app.current = false
+        app.download = false
+        app.video = false
+    }
 }
 
 function downloadFile(e) {
@@ -199,12 +252,41 @@ function downloadFile(e) {
     while (btn.localName != "button") {
         btn = btn.parentElement;
     }
-    app.$Message.info("下载文件")
+    var fileid = btn.attributes["fileid"].value;
+    if (fileid != undefined && fileid != 0) {
+        window.open("https://" + window.location.host + "/File/GetContent" + "?Id=" + fileid)
+    }
 }
 
 function downloadFileById(fileId) {
-
+    if (fileid != undefined && fileid != 0) {
+        window.open("https://" + window.location.host + "/File/GetContent" + "?Id=" + fileid)
+    }
 }
 
 var player = videojs("myvideo", { fluid: true, autoplay: true }, function () {
 })
+
+function showError(error) {
+    app.$modal.error({
+        title: "处理失败",
+        content: "服务器异常,请稍后再试",
+        onOk: function (e) {
+            app.$modal.remove()
+            window.location.href = "https://" + window.location.host;
+        },
+        onCancel: function (e) {
+            app.$modal.remove()
+            window.location.href = "https://" + window.location.host;
+        }
+    })
+}
+
+window.onload = function () {
+    //请求初始数据
+    axios.post("Home/Get").then(function (response) {
+        app.content_data = response.data.DataList
+    }).catch(function (error) {
+        showError(error)
+    })
+}
