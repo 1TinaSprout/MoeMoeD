@@ -11,6 +11,7 @@ namespace MoeMoeD.Controllers
 {
     public class HomeController : Controller
     {
+        public IUserBLL UserBLL { get; set; }
         public IFileBLL FileBLL { get; set; }
         public IFileContentBLL FileContentBLL { get; set; }
         public ActionResult Index()
@@ -40,6 +41,21 @@ namespace MoeMoeD.Controllers
 
         public ActionResult Upload()
         {
+<<<<<<< HEAD
+            User user = Session["User"] as User;
+            if (user == null)
+            {
+                return new RedirectResult(Url.Action("Index", "Error"));
+            }
+
+            if (Request.Files.Count > 0)
+            {
+                Console.Write(Request.Files[0].GetType());
+                foreach (HttpPostedFileWrapper file in Request.Files)
+                {
+                    var md5 = new System.Security.Cryptography.MD5CryptoServiceProvider();
+                    var MD5 = md5.ComputeHash(file.InputStream);
+=======
             //User user = Session["User"] as User;
             //if(user == null)
             //{
@@ -53,6 +69,7 @@ namespace MoeMoeD.Controllers
             //    {
             //        var md5 = new System.Security.Cryptography.MD5CryptoServiceProvider();
             //        var MD5 = md5.ComputeHash(file.InputStream);
+>>>>>>> 1dbae1a4b8d4508695364ba1e300fc696f981389
 
             //    }
             //    ResponseHelper.WriteTrue(Response);
@@ -63,6 +80,56 @@ namespace MoeMoeD.Controllers
             //}
             ResponseHelper.WriteFalse(Response);
 
+            return null;
+        }
+
+        public ActionResult Login()
+        {
+            string email = Request["Email"];
+            string name = Request["Name"];
+            string passWord = Request["Password"];
+
+            if (email == null || name == "")
+            {
+                if (UserBLL.GetByName(name) == null)
+                {
+                    ResponseHelper.WriteNull(Response);
+                }
+                else
+                {
+                    User user = UserBLL.GetByName(name);
+                    if (user.Password == passWord)
+                    {
+                        Session["User"] = user;
+                        ResponseHelper.WriteObject(Response, user);
+                    }
+                    else
+                    {
+                        ResponseHelper.WriteNull(Response);
+                    }
+                }
+            }
+            else if (name != null && name != "")
+            {
+                if (UserBLL.GetByEmail(email) == null)
+                {
+                    ResponseHelper.WriteNull(Response);
+                }
+                else
+                {
+                    User user = UserBLL.GetByEmail(email);
+                    if (user.Password == passWord)
+                    {
+                        Session["User"] = user;
+                        ResponseHelper.WriteObject(Response, user);
+                    }
+                    else
+                    {
+                        ResponseHelper.WriteNull(Response);
+                    }
+                }
+            }
+            ResponseHelper.WriteNull(Response);
             return null;
         }
     }

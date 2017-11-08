@@ -34,7 +34,7 @@ namespace MoeMoeD.BLL
 
         public IList<Model.ViewData.File> GetByUserId(int userId)
         {
-            throw new NotImplementedException();
+            return ListDataToView(FilDAL.GetByUserId(userId));
         }
 
         public IList<Model.ViewData.File> GetRootByUserId(int userId)
@@ -118,6 +118,11 @@ namespace MoeMoeD.BLL
                 return (Math.Round(item, 2)).ToString() + "G";
             }
             return "0";
+        }
+
+        public bool IsContains(byte[] MD5)
+        {
+            throw new NotImplementedException();
         }
     }
 }

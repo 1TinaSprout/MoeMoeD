@@ -66,6 +66,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IBaseDAL.cs" />
+    <Compile Include="IFileContentDAL.cs" />
     <Compile Include="IFileDAL.cs" />
     <Compile Include="IFolderDAL.cs" />
     <Compile Include="IUserDAL.cs" />

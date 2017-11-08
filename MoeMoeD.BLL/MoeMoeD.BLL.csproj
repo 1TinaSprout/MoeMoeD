@@ -67,21 +67,18 @@
   <ItemGroup>
     <Compile Include="BaseBLL.cs" />
     <Compile Include="FileBLL.cs" />
+    <Compile Include="FileContentBLL.cs" />
     <Compile Include="FolderBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserBLL.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MoeMoe.DAL\MoeMoeD.DAL.csproj">
-      <Project>{8BDCD7B7-5F28-41BF-8B5B-E1D2E9551D42}</Project>
-      <Name>MoeMoeD.DAL</Name>
-    </ProjectReference>
     <ProjectReference Include="..\MoeMoe.Model\MoeMoeD.Model.csproj">
       <Project>{B9FA8F0B-A672-4DED-89EE-B984E64ADE4A}</Project>
       <Name>MoeMoeD.Model</Name>
     </ProjectReference>
     <ProjectReference Include="..\MoeMoeD.IBLL\MoeMoeD.IBLL.csproj">
-      <Project>{a3aa2b1e-04d4-4dde-9349-79320817a9ff}</Project>
+      <Project>{f82526b9-1eaf-4ce8-af44-8c3109967411}</Project>
       <Name>MoeMoeD.IBLL</Name>
     </ProjectReference>
     <ProjectReference Include="..\MoeMoeD.IDAL\MoeMoeD.IDAL.csproj">

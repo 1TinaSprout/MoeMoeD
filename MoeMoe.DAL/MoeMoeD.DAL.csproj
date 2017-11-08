@@ -77,6 +77,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseDAL.cs" />
+    <Compile Include="FileContentDAL.cs" />
     <Compile Include="FileDAL.cs" />
     <Compile Include="FolderDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
