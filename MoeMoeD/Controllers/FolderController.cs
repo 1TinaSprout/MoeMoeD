@@ -51,7 +51,8 @@ namespace MoeMoeD.Controllers
             }
             ResponseHelper.WriteFalse(Response);
             return null;
-        }
+        }
+
         [HttpPost]
         public ActionResult Delete()
         {
@@ -64,9 +65,22 @@ namespace MoeMoeD.Controllers
             }
             ResponseHelper.WriteFalse(Response);
             return null;
-        }        [HttpPost]        public ActionResult Add()
+        }
+
+        [HttpPost]
+        public ActionResult Add()
         {
+            if (Request["Name"] != null && Request["Name"] != "")
+            {
+                string name = Request["Name"];
+                if (FolderBLL.GetByName(name) != null)
+                {
+
+                }
+            }
+
             return null;
-        }
+        }
+
     }
 }

@@ -5,14 +5,14 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="1247524f165043dabd50596849787107" Name="Diagram1" ZoomLevel="88">
-        <EntityTypeShape EntityType="MoeMoeD.Entity.Flie" Width="1.5" PointX="5.25" PointY="2.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="MoeMoeD.Entity.Folder" Width="1.5" PointX="3" PointY="3.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="MoeMoeD.Entity.User" Width="1.5" PointX="0.75" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MoeMoeD.Entity.Flie" Width="1.5" PointX="5.875" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="MoeMoeD.Entity.Folder" Width="1.5" PointX="3.125" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MoeMoeD.Entity.User" Width="1.5" PointX="0.625" PointY="4.125" IsExpanded="true" />
         <AssociationConnector Association="MoeMoeD.Entity.FK_FloderFlie" ManuallyRouted="false" />
         <AssociationConnector Association="MoeMoeD.Entity.FK_UserFlie" ManuallyRouted="false" />
         <AssociationConnector Association="MoeMoeD.Entity.FK_FolderFolder" ManuallyRouted="false" />
-        <AssociationConnector Association="MoeMoeD.Entity.FK_UserFloder" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="MoeMoeD.Entity.FileContent" Width="1.5" PointX="3" PointY="0.75" />
+        <AssociationConnector ManuallyRouted="false" Association="MoeMoeD.Entity.FK_UserFloder" />
+        <EntityTypeShape EntityType="MoeMoeD.Entity.FileContent" Width="1.5" PointX="7.875" PointY="3.625" />
         <AssociationConnector Association="MoeMoeD.Entity.FileContentFlie" />
       </Diagram>
     </edmx:Diagrams>

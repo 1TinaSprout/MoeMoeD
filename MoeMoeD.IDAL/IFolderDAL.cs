@@ -16,5 +16,8 @@ namespace MoeMoeD.IDAL
         Folder GetById(int id);
 
         bool UpdateNameById(int id, String name);
+
+
+        Folder GetByName(string name);
     }
 }

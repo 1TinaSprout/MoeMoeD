@@ -20,14 +20,15 @@ namespace MoeMoeD.DAL
 
         public virtual bool Add(T t)
         {
+            context.Set<T>().Attach(t);
             context.Set<T>().Add(t);
             context.SaveChanges();
-
             return true;
         }
 
         public virtual bool Delete(T t)
         {
+            context.Set<T>().Attach(t);
             context.Set<T>().Remove(t);
             context.SaveChanges();
 

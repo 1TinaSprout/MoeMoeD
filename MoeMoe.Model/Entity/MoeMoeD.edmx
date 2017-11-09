@@ -51,8 +51,9 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="UserId" Type="int" Nullable="false" />
-    <Property Name="FolderId" Type="int" Nullable="false" />
+    <Property Name="UpdateTime" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" DefaultValue="0" />
+    <Property Name="FolderId" Type="int" Nullable="false" DefaultValue="0" />
   </EntityType>
   <EntityType Name="User">
     <Key>
@@ -157,12 +158,13 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="UserId" Type="Int32" Nullable="false" />
-          <Property Name="FolderId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Flie" Relationship="Self.FK_FloderFlie" FromRole="Folder" ToRole="Flie" />
           <NavigationProperty Name="ChildFolder" Relationship="Self.FK_FolderFolder" FromRole="Folder" ToRole="Folder1" />
           <NavigationProperty Name="ParentFolder" Relationship="Self.FK_FolderFolder" FromRole="Folder1" ToRole="Folder" />
           <NavigationProperty Name="User" Relationship="Self.FK_UserFloder" FromRole="Folder" ToRole="User" />
+          <Property Name="UpdateTime" Type="String" Nullable="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" DefaultValue="0" />
+          <Property Name="FolderId" Type="Int32" Nullable="false" DefaultValue="0" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -212,8 +214,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_UserFloder">
-          <End Role="User" Type="Self.User" Multiplicity="1" />
-          <End Role="Folder" Type="Self.Folder" Multiplicity="*" />
+          <End Type="Self.User" Multiplicity="1" Role="User" />
+          <End Type="Self.Folder" Multiplicity="*" Role="Folder" />
           <ReferentialConstraint>
             <Principal Role="User">
               <PropertyRef Name="Id" />
@@ -240,8 +242,8 @@
             <End Role="Folder1" EntitySet="Folder" />
           </AssociationSet>
           <AssociationSet Name="FK_UserFloder" Association="Self.FK_UserFloder">
-            <End Role="User" EntitySet="User" />
-            <End Role="Folder" EntitySet="Folder" />
+            <End EntitySet="User" Role="User" />
+            <End EntitySet="Folder" Role="Folder" />
           </AssociationSet>
           <EntitySet Name="FileContent" EntityType="MoeMoeD.Entity.FileContent" />
           <AssociationSet Name="FileContentFlie" Association="MoeMoeD.Entity.FileContentFlie">
@@ -295,6 +297,7 @@
         <MappingFragment StoreEntitySet="Folder">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
           <ScalarProperty Name="UserId" ColumnName="UserId" />
           <ScalarProperty Name="FolderId" ColumnName="FolderId" />
         </MappingFragment>

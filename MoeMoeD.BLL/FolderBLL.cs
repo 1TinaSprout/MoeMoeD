@@ -41,9 +41,26 @@ namespace MoeMoeD.BLL
         {
             return FolderDAL.UpdateNameById(id, name);
         }
+
+        public override bool Add(Folder t)
+        {
+            t.UpdateTime = DateTime.Now.ToString();
+
+            return base.Add(t);
+        }
+
+        public Folder GetByName(string name)
+        {
+            return DataToView(FolderDAL.GetByName(name));
+        }
         protected override Model.Entity.Folder DataToEntity(Folder t)
         {
-            throw new NotImplementedException();
+            Model.Entity.Folder folder = new Model.Entity.Folder();
+            folder.Id = t.Id;
+            folder.Name = t.Name;
+            folder.UpdateTime = t.UpdateTime;
+            
+            return folder;
         }
 
         protected Model.ViewData.Folder DataToView(Model.Entity.Folder t)
@@ -51,6 +68,7 @@ namespace MoeMoeD.BLL
             Model.ViewData.Folder folder = new Folder();
             folder.Id = t.Id;
             folder.Name = t.Name;
+            folder.UpdateTime = t.UpdateTime;
             return folder;
         }
 
@@ -66,5 +84,7 @@ namespace MoeMoeD.BLL
             }
             return vFolderLst;
         }
+
+
     }
 }

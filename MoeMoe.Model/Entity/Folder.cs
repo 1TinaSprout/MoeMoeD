@@ -17,12 +17,15 @@ namespace MoeMoeD.Model.Entity
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Folder()
         {
+            this.UserId = 0;
+            this.FolderId = 0;
             this.Flie = new HashSet<Flie>();
             this.ChildFolder = new HashSet<Folder>();
         }
     
         public int Id { get; set; }
         public string Name { get; set; }
+        public string UpdateTime { get; set; }
         public int UserId { get; set; }
         public int FolderId { get; set; }
     
