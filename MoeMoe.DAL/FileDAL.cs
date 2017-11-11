@@ -28,10 +28,25 @@ namespace MoeMoeD.DAL
             Flie flie = context.Flie.FirstOrDefault(f => f.Id == id);
             return flie;
         }
+        public Flie GetContent(int id)
+        {
+            Flie file = context.Flie.FirstOrDefault(f => f.Id == id);
+            file.FileContent.Content = context.FileContent.FirstOrDefault<FileContent>(fc => fc.Id == file.Id).Content;
+            return file;
+        }
 
         public IList<Flie> GetByUserId(int userId)
         {
-            throw new NotImplementedException();
+            try
+            {
+                IList<Flie> lstFlie = context.Flie.Where(t => t.UserId == userId && t.FolderId == 0).ToList<Flie>();
+                return lstFlie;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         public Stream GetContentById(int id)

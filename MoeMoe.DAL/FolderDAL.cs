@@ -90,5 +90,28 @@ namespace MoeMoeD.DAL
                 return false;
             }
         }
+
+        public Folder GetByName(string name)
+        {
+            try
+            {
+                Folder folder = context.Folder.FirstOrDefault(f => f.Name == name);
+                return folder;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        public override bool Add(Folder t)
+        {
+            
+            base.Add(t);
+            var i = GetById(t.Id);
+            var user = i.User;
+            return true;
+        }
     }
 }

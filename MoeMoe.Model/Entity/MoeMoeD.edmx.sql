@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 11/03/2017 11:04:00
--- Generated from EDMX file: C:\Users\匀强的磁场\Desktop\MoeMoeD\MoeMoe.Model\Entity\MoeMoeD.edmx
+-- Date Created: 11/09/2017 10:12:48
+-- Generated from EDMX file: D:\Moe\MoeMoeD\MoeMoe.Model\Entity\MoeMoeD.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -29,6 +29,9 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_UserFloder]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Folder] DROP CONSTRAINT [FK_UserFloder];
 GO
+IF OBJECT_ID(N'[dbo].[FK_FileContentFlie]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Flie] DROP CONSTRAINT [FK_FileContentFlie];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
@@ -42,6 +45,9 @@ IF OBJECT_ID(N'[dbo].[Folder]', 'U') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[User]', 'U') IS NOT NULL
     DROP TABLE [dbo].[User];
+GO
+IF OBJECT_ID(N'[dbo].[FileContent]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[FileContent];
 GO
 
 -- --------------------------------------------------
@@ -66,6 +72,7 @@ GO
 CREATE TABLE [dbo].[Folder] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Name] nvarchar(max)  NOT NULL,
+    [UpdateTime] nvarchar(max)  NOT NULL,
     [UserId] int  NOT NULL,
     [FolderId] int  NOT NULL
 );

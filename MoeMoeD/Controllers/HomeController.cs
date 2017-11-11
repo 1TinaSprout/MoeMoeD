@@ -11,8 +11,10 @@ namespace MoeMoeD.Controllers
 {
     public class HomeController : Controller
     {
+        public IUserBLL UserBLL { get; set; }
         public IFileBLL FileBLL { get; set; }
         public IFileContentBLL FileContentBLL { get; set; }
+
         public ActionResult Index()
         {
             if (Request.Url.LocalPath != "/")
@@ -21,14 +23,14 @@ namespace MoeMoeD.Controllers
             }
             User user = Session["User"] as User;
 
-            return View();
-            //if (user == null)
-            //{
-            //    return Redirect(Url.Content("~/index.html"));
-            //}
-            //else
-            //{
-            //}
+            if (user == null)
+            {
+                return Redirect(Url.Content("~/index.html"));
+            }
+            else
+            {
+                return View();
+            }
         }
 
         public ActionResult Get()
@@ -40,29 +42,55 @@ namespace MoeMoeD.Controllers
 
         public ActionResult Upload()
         {
-            //User user = Session["User"] as User;
-            //if(user == null)
-            //{
-            //    return new RedirectResult(Url.Action("Index", "Error"));
-            //}
+            User user = Session["User"] as User;
+            if (user == null)
+            {
+                return new RedirectResult(Url.Action("Index", "Error"));
+            }
 
-            //if (Request.Files.Count > 0)
-            //{
-            //    Console.Write(Request.Files[0].GetType());
-            //    foreach(HttpPostedFileWrapper file in Request.Files)
-            //    {
-            //        var md5 = new System.Security.Cryptography.MD5CryptoServiceProvider();
-            //        var MD5 = md5.ComputeHash(file.InputStream);
+            if (Request.Files.Count > 0)
+            {
+                Console.Write(Request.Files[0].GetType());
+                foreach (HttpPostedFileWrapper file in Request.Files)
+                {
+                    var md5 = new System.Security.Cryptography.MD5CryptoServiceProvider();
+                    var MD5 = md5.ComputeHash(file.InputStream);
+                }
+                ResponseHelper.WriteFalse(Response);
+            }
 
-            //    }
-            //    ResponseHelper.WriteTrue(Response);
-            //}
-            //else
-            //{
-            //    ResponseHelper.WriteFalse(Response);
-            //}
-            ResponseHelper.WriteFalse(Response);
+            return null;
+        }
 
+        public ActionResult Login()
+        {
+            string email = Request["Email"];
+            string name = Request["Name"];
+            string passWord = Request["Password"];
+
+            if (String.IsNullOrEmpty(email))
+            {
+                var user = UserBLL.GetByEmail(email);
+                if (user == null || user.Password != passWord)
+                {
+                    ResponseHelper.WriteFalse(Response);
+                    return null;
+                }
+                Session["User"] = user;
+                ResponseHelper.WriteObject(Response, user);
+            }
+            else if (String.IsNullOrEmpty(name))
+            {
+                var user = UserBLL.GetByEmail(email);
+                if (user == null || user.Password != passWord)
+                {
+                    ResponseHelper.WriteFalse(Response);
+                    return null;
+                }
+                Session["User"] = user;
+                ResponseHelper.WriteObject(Response, user);
+            }
+            ResponseHelper.WriteNull(Response);
             return null;
         }
     }
