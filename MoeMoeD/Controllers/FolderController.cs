@@ -22,17 +22,17 @@ namespace MoeMoeD.Controllers
             if (Request["Id"] != null && Request["Id"] != "")
             {
                 Folder folder = FolderBLL.GetById(Convert.ToInt32(Request["Id"]));
-                ResponseHelper.WriteObject(Response, folder);
+                ResponseHelper.WriteObject(Response, "Folder", folder);
             }
             if (Request["UserId"] != null && Request["UserId"] != "")
             {
                 IList<Folder> folder = FolderBLL.GetRootByUserId(Convert.ToInt32(Request["UserId"]));
-                ResponseHelper.WriteObject(Response, folder);
+                ResponseHelper.WriteList(Response, "FolderList", folder);
             }
             if (Request["FolderId"] != null && Request["FolderId"] != "")
             {
                 IList<Folder> folder = FolderBLL.GetByUserId(Convert.ToInt32(Request["FolderId"]));
-                ResponseHelper.WriteObject(Response, folder);
+                ResponseHelper.WriteList(Response, "FolderList", folder);
             }
             ResponseHelper.WriteNull(Response);
             return null;
@@ -47,7 +47,6 @@ namespace MoeMoeD.Controllers
                 {
                     ResponseHelper.WriteTrue(Response);
                 }
-                
             }
             ResponseHelper.WriteFalse(Response);
             return null;

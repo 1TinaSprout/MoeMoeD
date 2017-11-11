@@ -14,6 +14,7 @@ namespace MoeMoeD.Controllers
         public IUserBLL UserBLL { get; set; }
         public IFileBLL FileBLL { get; set; }
         public IFileContentBLL FileContentBLL { get; set; }
+
         public ActionResult Index()
         {
             if (Request.Url.LocalPath != "/")
@@ -22,14 +23,14 @@ namespace MoeMoeD.Controllers
             }
             User user = Session["User"] as User;
 
-            return View();
-            //if (user == null)
-            //{
-            //    return Redirect(Url.Content("~/index.html"));
-            //}
-            //else
-            //{
-            //}
+            if (user == null)
+            {
+                return Redirect(Url.Content("~/index.html"));
+            }
+            else
+            {
+                return View();
+            }
         }
 
         public ActionResult Get()
@@ -41,7 +42,6 @@ namespace MoeMoeD.Controllers
 
         public ActionResult Upload()
         {
-<<<<<<< HEAD
             User user = Session["User"] as User;
             if (user == null)
             {
@@ -55,30 +55,9 @@ namespace MoeMoeD.Controllers
                 {
                     var md5 = new System.Security.Cryptography.MD5CryptoServiceProvider();
                     var MD5 = md5.ComputeHash(file.InputStream);
-=======
-            //User user = Session["User"] as User;
-            //if(user == null)
-            //{
-            //    return new RedirectResult(Url.Action("Index", "Error"));
-            //}
-
-            //if (Request.Files.Count > 0)
-            //{
-            //    Console.Write(Request.Files[0].GetType());
-            //    foreach(HttpPostedFileWrapper file in Request.Files)
-            //    {
-            //        var md5 = new System.Security.Cryptography.MD5CryptoServiceProvider();
-            //        var MD5 = md5.ComputeHash(file.InputStream);
->>>>>>> 1dbae1a4b8d4508695364ba1e300fc696f981389
-
-            //    }
-            //    ResponseHelper.WriteTrue(Response);
-            //}
-            //else
-            //{
-            //    ResponseHelper.WriteFalse(Response);
-            //}
-            ResponseHelper.WriteFalse(Response);
+                }
+                ResponseHelper.WriteFalse(Response);
+            }
 
             return null;
         }
@@ -89,45 +68,27 @@ namespace MoeMoeD.Controllers
             string name = Request["Name"];
             string passWord = Request["Password"];
 
-            if (email == null || name == "")
+            if (String.IsNullOrEmpty(email))
             {
-                if (UserBLL.GetByName(name) == null)
+                var user = UserBLL.GetByEmail(email);
+                if (user == null || user.Password != passWord)
                 {
-                    ResponseHelper.WriteNull(Response);
+                    ResponseHelper.WriteFalse(Response);
+                    return null;
                 }
-                else
-                {
-                    User user = UserBLL.GetByName(name);
-                    if (user.Password == passWord)
-                    {
-                        Session["User"] = user;
-                        ResponseHelper.WriteObject(Response, user);
-                    }
-                    else
-                    {
-                        ResponseHelper.WriteNull(Response);
-                    }
-                }
+                Session["User"] = user;
+                ResponseHelper.WriteObject(Response, user);
             }
-            else if (name != null && name != "")
+            else if (String.IsNullOrEmpty(name))
             {
-                if (UserBLL.GetByEmail(email) == null)
+                var user = UserBLL.GetByEmail(email);
+                if (user == null || user.Password != passWord)
                 {
-                    ResponseHelper.WriteNull(Response);
+                    ResponseHelper.WriteFalse(Response);
+                    return null;
                 }
-                else
-                {
-                    User user = UserBLL.GetByEmail(email);
-                    if (user.Password == passWord)
-                    {
-                        Session["User"] = user;
-                        ResponseHelper.WriteObject(Response, user);
-                    }
-                    else
-                    {
-                        ResponseHelper.WriteNull(Response);
-                    }
-                }
+                Session["User"] = user;
+                ResponseHelper.WriteObject(Response, user);
             }
             ResponseHelper.WriteNull(Response);
             return null;

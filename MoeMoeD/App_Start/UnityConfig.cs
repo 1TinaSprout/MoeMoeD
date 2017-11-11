@@ -1,3 +1,8 @@
+using MoeMoeD.BLL;
+using MoeMoeD.DAL;
+using MoeMoeD.IBLL;
+using MoeMoeD.IDAL;
+using MoeMoeD.Model.Entity;
 using System;
 
 using Unity;
@@ -42,6 +47,9 @@ namespace MoeMoeD
 
             // TODO: Register your type's mappings here.
             // container.RegisterType<IProductRepository, ProductRepository>();
+            container.RegisterType<IUserBLL, UserBLL>();
+            container.RegisterType<IUserDAL, UserDAL>();
+            container.RegisterType<MoeMoeDEntities>();
         }
     }
 }

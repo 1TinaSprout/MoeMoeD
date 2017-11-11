@@ -25,19 +25,19 @@ namespace MoeMoeD.Controllers
             {
                 int id = Convert.ToInt32(Request["Id"]);
                 File file = FileBLL.GetById(id);
-                ResponseHelper.WriteObject(Response, file);
+                ResponseHelper.WriteObject(Response, "File", file);
             }
             if (Request["UserId"] != null && Request["UserId"] != "")
             {
                 int userId = Convert.ToInt32(Request["UserId"]);
                 IList<File> listFile = FileBLL.GetRootByUserId(userId);
-                ResponseHelper.WriteList(Response, listFile);
+                ResponseHelper.WriteList(Response, "FileList", listFile);
             }
             if (Request["FolderId"] != null && Request["FolderId"] != "")
             {
                 int folderId = Convert.ToInt32(Request["FolderId"]);
                 IList<File> filelst = FileBLL.GetByFolderId(folderId);
-                ResponseHelper.WriteObject(Response, filelst);
+                ResponseHelper.WriteList(Response, "FileList", filelst);
             }
             ResponseHelper.WriteNull(Response);
             return null;
