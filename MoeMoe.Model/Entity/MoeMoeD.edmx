@@ -42,7 +42,6 @@
     <Property Name="Type" Type="nvarchar(max)" Nullable="false" />
     <Property Name="UpdateTime" Type="varchar" Nullable="false" MaxLength="30" />
     <Property Name="Size" Type="int" Nullable="false" />
-    <Property Name="MD5" Type="nvarchar" Nullable="false" MaxLength="128" />
     <Property Name="FileContentId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Folder">
@@ -70,6 +69,7 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Content" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="MD5" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <Association Name="FK_FloderFlie">
     <End Role="Folder" Type="MoeMoeD.Entity.Store.Folder" Multiplicity="1" />
@@ -146,7 +146,6 @@
           <Property Name="Type" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="UpdateTime" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Size" Type="Int32" Nullable="false" />
-          <Property Name="MD5" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" Type="String" />
           <NavigationProperty Name="Folder" Relationship="Self.FK_FloderFlie" FromRole="Flie" ToRole="Folder" />
           <NavigationProperty Name="User" Relationship="Self.FK_UserFlie" FromRole="Flie" ToRole="User" />
           <NavigationProperty Name="FileContent" Relationship="MoeMoeD.Entity.FileContentFlie" FromRole="Flie" ToRole="FileContent" />
@@ -258,6 +257,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Content" Type="String" Nullable="false" Unicode="true" MaxLength="Max" FixedLength="false" />
           <NavigationProperty Name="Flie" Relationship="MoeMoeD.Entity.FileContentFlie" FromRole="FileContent" ToRole="Flie" />
+          <Property Name="MD5" Type="String" Nullable="false" />
         </EntityType>
         <Association Name="FileContentFlie">
           <End Type="MoeMoeD.Entity.FileContent" Role="FileContent" Multiplicity="1" />
@@ -287,7 +287,6 @@
           <ScalarProperty Name="Type" ColumnName="Type" />
           <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
           <ScalarProperty Name="Size" ColumnName="Size" />
-          <ScalarProperty Name="MD5" ColumnName="MD5" />
           <ScalarProperty Name="FileContentId" ColumnName="FileContentId" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -318,6 +317,7 @@
         <MappingFragment StoreEntitySet="FileContent">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Content" ColumnName="Content" />
+          <ScalarProperty Name="MD5" ColumnName="MD5" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

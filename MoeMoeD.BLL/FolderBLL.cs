@@ -27,6 +27,11 @@ namespace MoeMoeD.BLL
             throw new NotImplementedException();
         }
 
+        public IList<Folder> GetByFolderId(int folderId)
+        {
+            return ListDataToView(FolderDAL.GetByFolderId(folderId));
+        }
+
         public IList<Folder> GetRootByUserId(int userId)
         {
             return ListDataToView(FolderDAL.GetRootByUserId(userId));
@@ -42,44 +47,62 @@ namespace MoeMoeD.BLL
             return FolderDAL.UpdateNameById(id, name);
         }
 
-        public override bool Add(Folder t)
+        public new Folder Add(Folder t)
         {
             t.UpdateTime = DateTime.Now.ToString();
 
-            return base.Add(t);
+            if (base.Add(t))
+            {
+                return t;
+            }
+            else
+            {
+                return null;
+            }
         }
 
-        public Folder GetByName(string name)
+        public Folder GetByNameAndUserId(string name, int userId)
         {
-            return DataToView(FolderDAL.GetByName(name));
+            return DataToView(FolderDAL.GetByNameAndUserId(name, userId));
         }
+
+        public Folder GetByNameAndFolderId(string name, int folderId)
+        {
+            return DataToView(FolderDAL.GetByNameAndFolderId(name, folderId));
+        }
+
         protected override Model.Entity.Folder DataToEntity(Folder t)
         {
+            if (t == null) return null;
             Model.Entity.Folder folder = new Model.Entity.Folder();
             folder.Id = t.Id;
             folder.Name = t.Name;
             folder.UpdateTime = t.UpdateTime;
-            
+            folder.FolderId = t.ParentId;
+            folder.UserId = t.UserId;
+
             return folder;
         }
 
         protected Model.ViewData.Folder DataToView(Model.Entity.Folder t)
         {
+            if (t == null) return null;
             Model.ViewData.Folder folder = new Folder();
             folder.Id = t.Id;
             folder.Name = t.Name;
             folder.UpdateTime = t.UpdateTime;
+            folder.ParentId = t.FolderId;
+            folder.UserId = t.UserId;
             return folder;
         }
 
         protected IList<Model.ViewData.Folder> ListDataToView(IList<Model.Entity.Folder> t)
         {
+            if (t == null) return null;
             IList<Model.ViewData.Folder> vFolderLst = new List<Folder>();
             foreach (Model.Entity.Folder folder in t)
             {
-                Model.ViewData.Folder vFolder = new Folder();
-                vFolder.Id = folder.Id;
-                vFolder.Name = folder.Name;
+                var vFolder = DataToView(folder);
                 vFolderLst.Add(vFolder);
             }
             return vFolderLst;

@@ -29,7 +29,7 @@ namespace MoeMoeD.DAL
 
         public User GetUserByName(string name)
         {
-            var userList = from value in context.User where value.Email.Equals(name) select value;
+            var userList = from value in context.User where value.Name.Equals(name) select value;
             if (userList != null && userList.Count() > 0)
                 return userList.FirstOrDefault<User>();
             else

@@ -2,21 +2,23 @@
 using MoeMoeD.Model.ViewData;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using MagneticNote.Common;
+using Unity.Attributes;
 
 namespace MoeMoeD.Controllers
 {
     public class FolderController : Controller
     {
-        private IFolderBLL FolderBLL { get; set; }
+        [Dependency]
+        protected IFolderBLL FolderBLL { get; set; }
+
         // GET: Folder
         public ActionResult Index()
         {
             return View();
         }
+
         public ActionResult Get()
         {
             if (Request["Id"] != null && Request["Id"] != "")
@@ -37,6 +39,7 @@ namespace MoeMoeD.Controllers
             ResponseHelper.WriteNull(Response);
             return null;
         }
+
         [HttpPost]
         public ActionResult UpdateName()
         {
@@ -53,11 +56,11 @@ namespace MoeMoeD.Controllers
         }
 
         [HttpPost]
-        public ActionResult Delete()
+        public ActionResult Delete(int Id)
         {
-            if (Request["Id"] != null && Request["Id"] != "")
+            if (Id != 0)
             {
-                if (FolderBLL.DeleteById(Convert.ToInt32(Request["Id"])))
+                if (FolderBLL.DeleteById(Id))
                 {
                     ResponseHelper.WriteTrue(Response);
                 }
@@ -67,17 +70,52 @@ namespace MoeMoeD.Controllers
         }
 
         [HttpPost]
-        public ActionResult Add()
+        public ActionResult Add(String Name, String FolderId)
         {
-            if (Request["Name"] != null && Request["Name"] != "")
+            User user = Session["User"] as User;
+            if(user == null)
             {
-                string name = Request["Name"];
-                if (FolderBLL.GetByName(name) != null)
+                ResponseHelper.WriteNull(Response);
+                return null;
+            }
+            if (!String.IsNullOrEmpty(Name))
+            {
+                if (FolderId == null && FolderBLL.GetByNameAndUserId(Name, user.Id) == null)
                 {
-
+                    var folder = new Folder() { Name = Name, UserId = user.Id, ParentId = 1, UpdateTime = DateTime.Now.ToShortDateString() };
+                    folder = FolderBLL.Add(folder);
+                    if (folder == null)
+                    {
+                        ResponseHelper.WriteFalse(Response);
+                    }
+                    else
+                    {
+                        var val = new { Id = folder.Id, Type = "Folder", Size = "-", UpdateTime = folder.UpdateTime, Name = folder.Name};
+                        ResponseHelper.WriteObject(Response, new { Result = true, Folder = val });
+                    }
+                }
+                else if(FolderId != null){
+                    var folderId = Convert.ToInt32(FolderId);
+                    if (FolderBLL.GetByNameAndFolderId(Name, folderId) == null)
+                    {
+                        var folder = new Folder() { Name = Name, UserId = 1, ParentId = folderId, UpdateTime = DateTime.Now.ToShortDateString() };
+                        folder = FolderBLL.Add(folder);
+                        if (folder == null)
+                        {
+                            ResponseHelper.WriteFalse(Response);
+                        }
+                        else
+                        {
+                            var val = new { Id = folder.Id, Type = "Folder", Size = "-", UpdateTime = folder.UpdateTime, Name = folder.Name };
+                            ResponseHelper.WriteObject(Response, new { Result = true, Folder = val });
+                        }
+                    }
+                }
+                else
+                {
+                    ResponseHelper.WriteNull(Response);
                 }
             }
-
             return null;
         }
 

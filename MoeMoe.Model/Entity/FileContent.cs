@@ -22,6 +22,7 @@ namespace MoeMoeD.Model.Entity
     
         public int Id { get; set; }
         public string Content { get; set; }
+        public string MD5 { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Flie> Flie { get; set; }

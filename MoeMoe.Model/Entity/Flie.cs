@@ -21,7 +21,6 @@ namespace MoeMoeD.Model.Entity
         public string Type { get; set; }
         public string UpdateTime { get; set; }
         public int Size { get; set; }
-        public string MD5 { get; set; }
         public int FileContentId { get; set; }
     
         public virtual Folder Folder { get; set; }

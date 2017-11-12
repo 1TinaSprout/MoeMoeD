@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 11/09/2017 10:12:48
--- Generated from EDMX file: D:\Moe\MoeMoeD\MoeMoe.Model\Entity\MoeMoeD.edmx
+-- Date Created: 11/12/2017 15:17:21
+-- Generated from EDMX file: C:\Users\29749\Desktop\MoeMoeD\MoeMoe.Model\Entity\MoeMoeD.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -63,7 +63,6 @@ CREATE TABLE [dbo].[Flie] (
     [Type] nvarchar(max)  NOT NULL,
     [UpdateTime] varchar(30)  NOT NULL,
     [Size] int  NOT NULL,
-    [MD5] nvarchar(128)  NOT NULL,
     [FileContentId] int  NOT NULL
 );
 GO
@@ -90,7 +89,8 @@ GO
 -- Creating table 'FileContent'
 CREATE TABLE [dbo].[FileContent] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [Content] nvarchar(max)  NOT NULL
+    [Content] nvarchar(max)  NOT NULL,
+    [MD5] nvarchar(max)  NOT NULL
 );
 GO
 

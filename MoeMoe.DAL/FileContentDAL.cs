@@ -1,10 +1,7 @@
 ﻿using MoeMoeD.IDAL;
 using MoeMoeD.Model.Entity;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MoeMoeD.DAL
 {
@@ -28,6 +25,25 @@ namespace MoeMoeD.DAL
                 throw;
             }
 
+        }
+
+        public FileContent GetByMD5(string mD5)
+        {
+            var list = from value in context.FileContent where value.MD5 == mD5 select value;
+            if(list != null && list.Count() > 0)
+            {
+                return list.FirstOrDefault();
+            }
+            return null;
+        }
+
+        FileContent IFileContentDAL.Add(FileContent fileContent)
+        {
+            context.FileContent.Attach(fileContent);
+            context.FileContent.Add(fileContent);
+            context.SaveChanges();
+
+            return fileContent;
         }
     }
 }

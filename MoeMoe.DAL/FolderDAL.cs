@@ -46,11 +46,17 @@ namespace MoeMoeD.DAL
             throw new NotImplementedException();
         }
 
+        public IList<Folder> GetByFolderId(int folderId)
+        {
+            IList<Folder> lstfolder = context.Folder.Where(f => f.FolderId == folderId).ToList<Folder>();
+            return lstfolder;
+        }
+
         public IList<Folder> GetRootByUserId(int userId)
         {
             try
             {
-                IList<Folder> lstfolder = context.Folder.Where(f => f.UserId == userId && f.FolderId == 0).ToList<Folder>();
+                IList<Folder> lstfolder = context.Folder.Where(f => f.UserId == userId).ToList<Folder>();
                 return lstfolder;
             }
             catch (Exception)
@@ -91,11 +97,25 @@ namespace MoeMoeD.DAL
             }
         }
 
-        public Folder GetByName(string name)
+        public Folder GetByNameAndUserId(string name, int userId)
         {
             try
             {
-                Folder folder = context.Folder.FirstOrDefault(f => f.Name == name);
+                Folder folder = context.Folder.FirstOrDefault(f => f.Name == name && f.UserId == userId);
+                return folder;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        public Folder GetByNameAndFolderId(string name, int folderId)
+        {
+            try
+            {
+                Folder folder = context.Folder.FirstOrDefault(f => f.Name == name && f.FolderId == folderId);
                 return folder;
             }
             catch (Exception)

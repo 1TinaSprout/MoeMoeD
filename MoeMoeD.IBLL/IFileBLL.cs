@@ -16,13 +16,10 @@ namespace MoeMoeD.IBLL
         File GetById(int id);
 
         //根据Id查出文件的内容
-        System.IO.Stream GetContentById(int id);
-
-        //根据Id查出文件的内容
         IList<File> GetByFolderId(int folderid);
 
         bool UpdateNameById(int id, String name);
 
-        bool IsContains(byte[] MD5);
+        new File Add(File file);
     }
 }

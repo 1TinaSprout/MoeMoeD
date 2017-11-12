@@ -39,7 +39,7 @@ namespace MoeMoeD.DAL
         {
             try
             {
-                IList<Flie> lstFlie = context.Flie.Where(t => t.UserId == userId && t.FolderId == 0).ToList<Flie>();
+                IList<Flie> lstFlie = context.Flie.Where(t => t.UserId == userId).ToList<Flie>();
                 return lstFlie;
             }
             catch (Exception)
@@ -58,7 +58,7 @@ namespace MoeMoeD.DAL
         {
             try
             {
-                IList<Flie> lstFlie = context.Flie.Where(t => t.UserId == userId && t.FolderId == 0).ToList<Flie>();
+                IList<Flie> lstFlie = context.Flie.Where(t => t.UserId == userId).ToList<Flie>();
                 return lstFlie;
             }
             catch (Exception)
@@ -76,6 +76,14 @@ namespace MoeMoeD.DAL
             flie.UpdateTime = DateTime.Now.ToString();
             try { context.SaveChanges(); return true; } catch (Exception) { throw; }
 
+        }
+
+        Flie IFileDAL.Add(Flie flie)
+        {
+            context.Flie.Attach(flie);
+            context.Flie.Add(flie);
+            context.SaveChanges();
+            return flie;
         }
     }
 }
