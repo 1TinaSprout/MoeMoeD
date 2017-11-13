@@ -105,12 +105,15 @@ namespace MoeMoeD.Controllers
                     String MD5 = Convert.ToBase64String(md5byte);
                     MD5 = Hash_MD5_16(MD5);
 
-                    int folderId = 1;
+                    int folderId = Convert.ToInt32(FolderId);
                     int userId = user.Id;
-                    if (FolderId != null)
+                    if (folderId > 0)
                     {
-                        folderId = Convert.ToInt32(FolderId);
                         userId = 1;
+                    }
+                    else
+                    {
+                        folderId = 1;
                     }
 
                     var fileContent = FileContentBLL.GetByMD5(MD5);
