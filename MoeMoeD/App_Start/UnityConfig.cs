@@ -68,6 +68,11 @@ namespace MoeMoeD
             container.RegisterType<Model.ViewData.File>();
             container.RegisterType<Model.ViewData.Folder>();
             container.RegisterType<Model.ViewData.FileContent>();
+
+            container.RegisterType<User>();
+            container.RegisterType<Flie>();
+            container.RegisterType<Folder>();
+            container.RegisterType<FileContent>();
         }
     }
 }

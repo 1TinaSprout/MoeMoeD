@@ -73,7 +73,7 @@
                             </menugroup>
                         </i-menu>
                     </i-col>
-                    <i-col span="24" style="position:absolute;min-width:1000px;padding-right:5px;height:100%;padding-left:194px">
+                    <i-col span="24" style="position:absolute;min-width:1150px;padding-right:5px;height:100%;padding-left:194px">
                         <card :dis-hover="true" style="height:100%;width:100%">
                             <row style="margin-bottom:10px">
                                 <i-col span="4" style="width:120px">
@@ -179,8 +179,7 @@
 
         <section v-show="video" style="position:absolute;left:25%;top:20%;z-index:1000;width:50%;height:40%">
             <i-button type="ghost" style="position:absolute;left:100%;" v-on:click="this.closeVideo"><Icon type="ios-close-outline" size="32"></Icon></i-button>
-            <video id="myvideo" class="video-js" controls preload="auto" data-setup="{}">
-                <source :src="video_src" type='video/webm'>
+            <video id="myvideo" class="video-js" controls="controls" preload="auto" data-setup="">
                 <p class="vjs-no-js">
                     To view this video please enable JavaScript, and consider upgrading to a web browser that
                     <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>

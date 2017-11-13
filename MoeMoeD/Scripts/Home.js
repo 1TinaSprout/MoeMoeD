@@ -5,7 +5,7 @@
         current: false, //是否有选中的数据
         download: true, //选中数据中是否可以下载（是否含有文件夹）
         create_folder: false, //是否打开新建文件夹对话框
-        video: false, //是否显示播放器
+        video: false, //是否显示播放器,
         create_folderName: "", //新建文件夹的名字
         search_content: "", //搜素框的内容
         video_src: "/video_error.mp4", //播放器的src
@@ -27,7 +27,7 @@
                             on: { click: inToFolder }
                         }, params.row.Name)
                     ]);
-                } else if (params.row.Type == "Mp4") {
+                } else if (params.row.Type == "video/mp4") {
                     return h('div', { attrs: { style: "padding-top:8px" } }, [
                         h('Icon', { attrs: { type: "social-youtube-outline", style: "font-size:18px" } }),
                         h('i-button', {
@@ -69,7 +69,7 @@
             Name: "我的文件",
             Size: "100K",
             UpdateTime: "2017-01-01",
-            Type: "mp4"
+            Type: "video/mp4"
         }], //当前页数据的内容
         current_data: [], //当前选中的内容
         navigation: [{ FolderId: 0, Name: "全部文件" }]  //导航栏的FolderId的集合
@@ -212,13 +212,14 @@ function playVideo(e) {
     }
     var mp4id = btn.attributes["mp4id"].value;
     if (mp4id != undefined && mp4id != 0) {
-        player.src("/File/GetContent?mp4id=" + mp4id)
+        var src = "http://" + window.location.host + "/File/GetContent/" + mp4id + "?fileName=video.mp4";
+        player.src(src);
+        player.play()
         app.video = true;
     }
 }
 
 function playVideoById(id) {
-    player.src("/File/GetContent?mp4id=" + id)
     app.video = true;
 }
 
@@ -277,18 +278,22 @@ function inToFolderById(folderId, name) {
 
 function downloadFile(e) {
     var btn = e.target;
-    while (btn.localName != "button") {
+    var fileName = null;
+    if (btn.localName != "button") {
+        fileName = btn.innerText;
         btn = btn.parentElement;
+    } else {
+        fileName = btn.children.innerText;
     }
     var fileid = btn.attributes["fileid"].value;
     if (fileid != undefined && fileid != 0) {
-        window.open("https://" + window.location.host + "/File/GetContent" + "?Id=" + fileid)
+        window.open("http://" + window.location.host + "/File/GetContent/" + fileid + "?fileName=" + fileName)
     }
 }
 
-function downloadFileById(fileId) {
+function downloadFileById(fileId, fileName) {
     if (fileid != undefined && fileid != 0) {
-        window.open("https://" + window.location.host + "/File/GetContent" + "?Id=" + fileid)
+        window.open("http://" + window.location.host + "/File/GetContent/" + fileid + "?fileName=" + fileName)
     }
 }
 
@@ -301,7 +306,7 @@ function showError(error) {
         content: "服务器异常,请稍后再试",
         onOk: function (e) {
             app.$modal.remove()
-            window.location.href = "https://" + window.location.host;
+            window.location.href = "http://" + window.location.host;
         }
     })
 }

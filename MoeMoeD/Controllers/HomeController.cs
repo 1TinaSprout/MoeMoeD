@@ -99,10 +99,11 @@ namespace MoeMoeD.Controllers
                 Console.Write(Request.Files[0].GetType());
                 for (int i = 0; i < Request.Files.Count; i++)
                 {
-                    var file = Request.Files[i];
-                    var md5 = new System.Security.Cryptography.MD5CryptoServiceProvider();
-                    var md5byte = md5.ComputeHash(file.InputStream);
+                    var file = Request.Files[i] as HttpPostedFileWrapper;
+                    var sha1 = new System.Security.Cryptography.MD5CryptoServiceProvider();
+                    var md5byte = sha1.ComputeHash(file.InputStream);
                     String MD5 = Convert.ToBase64String(md5byte);
+                    MD5 = Hash_MD5_16(MD5);
 
                     int folderId = 1;
                     int userId = user.Id;
@@ -117,12 +118,12 @@ namespace MoeMoeD.Controllers
                     {
                         var File = new File() { FileContentId = fileContent.Id, FolderId = folderId, UserId = userId, Name = file.FileName, Size = file.ContentLength.ToString(), Type = file.ContentType, UpdateTime = DateTime.Now.ToShortDateString() };
                         File value = FileBLL.Add(File);
-
+                        fileContent.Data.Close();
                         ResponseHelper.WriteObject(Response, new { Result = true, File = value });
                     }
                     else
                     {
-                        file.SaveAs(AppDomain.CurrentDomain.BaseDirectory + MD5);
+                        file.SaveAs(AppDomain.CurrentDomain.BaseDirectory + "/file/" + MD5);
 
                         var content = new FileContent() { Data = file.InputStream, MD5 = MD5 };
 
@@ -130,6 +131,8 @@ namespace MoeMoeD.Controllers
 
                         var File = new File() { FileContentId = content.Id, FolderId = folderId, UserId = userId, Name = file.FileName, Size = file.ContentLength.ToString(), Type = file.ContentType, UpdateTime = DateTime.Now.ToShortDateString() };
                         var value = FileBLL.Add(File);
+
+                        content.Data.Close();
 
                         ResponseHelper.WriteObject(Response, new { Result = true, File = value });
                     }
@@ -213,6 +216,61 @@ namespace MoeMoeD.Controllers
             public String Size { get; set; }
             public String UpdateTime { get; set; }
             public String Name { get; set; }
+        }
+
+        public static string Hash_MD5_16(string word, bool toUpper = true)
+        {
+            try
+            {
+                string sHash = Hash_MD5_32(word).Substring(8, 16);
+                return toUpper ? sHash : sHash.ToLower();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public static string Hash_MD5_32(string word, bool toUpper = true)
+        {
+            try
+            {
+                System.Security.Cryptography.MD5CryptoServiceProvider MD5CSP
+                 = new System.Security.Cryptography.MD5CryptoServiceProvider();
+                byte[] bytValue = System.Text.Encoding.UTF8.GetBytes(word);
+                byte[] bytHash = MD5CSP.ComputeHash(bytValue);
+                MD5CSP.Clear();
+                //根据计算得到的Hash码翻译为MD5码
+                string sHash = "", sTemp = "";
+                for (int counter = 0; counter < bytHash.Count(); counter++)
+                {
+                    long i = bytHash[counter] / 16;
+                    if (i > 9)
+                    {
+                        sTemp = ((char)(i - 10 + 0x41)).ToString();
+                    }
+                    else
+                    {
+                        sTemp = ((char)(i + 0x30)).ToString();
+                    }
+                    i = bytHash[counter] % 16;
+                    if (i > 9)
+                    {
+                        sTemp += ((char)(i - 10 + 0x41)).ToString();
+                    }
+                    else
+                    {
+                        sTemp += ((char)(i + 0x30)).ToString();
+                    }
+                    sHash += sTemp;
+                }
+                //根据大小写规则决定返回的字符串
+                return toUpper ? sHash : sHash.ToLower();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
     }
 }

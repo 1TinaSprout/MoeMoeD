@@ -15,6 +15,8 @@ namespace MoeMoeD.Controllers
     {
         [Dependency]
         public IFileBLL FileBLL { get; set; }
+        [Dependency]
+        public IFileContentBLL FileContentBLL { get; set; }
         // GET: File
         public ActionResult Index()
         {
@@ -75,11 +77,21 @@ namespace MoeMoeD.Controllers
             return null;
         }
 
-        public ActionResult GetContent()
+        public ActionResult GetContent(String Id, String fileName)
         {
-            return null;
+            int id = Convert.ToInt32(Id);
+
+            File file = FileBLL.GetById(id);
+
+            if(file != null)
+            {
+                var fileContent = FileContentBLL.GetById(file.FileContentId);
+                Response.ContentType = file.Type;
+                FileResult result = File(fileContent.Data, file.Type, fileName);
+                return result;
+            }
+
+            return RedirectToAction("Index", "Error");
         }
-
-
     }
 }

@@ -20,7 +20,8 @@ namespace MoeMoeD.BLL
 
         public Model.ViewData.FileContent GetById(int id)
         {
-            return null;
+            if(id == 0) return null;
+            return EntityToData(FileContentDAL.GetById(id));
         }
 
         protected override Model.Entity.FileContent DataToEntity(Model.ViewData.FileContent t)
@@ -44,7 +45,7 @@ namespace MoeMoeD.BLL
             if (fileContent == null) return null;
             FileContent content = new FileContent();
             content.Id = fileContent.Id;
-            content.Data = System.IO.File.Open(AppDomain.CurrentDomain.BaseDirectory + fileContent.Content, System.IO.FileMode.Open);
+            content.Data = System.IO.File.Open(AppDomain.CurrentDomain.BaseDirectory + "/file/" + fileContent.Content, System.IO.FileMode.Open);
             content.MD5 = fileContent.MD5;
 
             return content;
