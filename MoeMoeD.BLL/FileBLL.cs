@@ -91,21 +91,27 @@ namespace MoeMoeD.BLL
             return vFile;
         }
 
-        private string DataSizeToView(int t)
+        private string DataSizeToView(Int64 t)
         {
+            
             double item = 0;
             if (t < 1024 && t >= 0)
             {
-                return (t).ToString() + "K";
+                return (t).ToString() + "B";
             }
             else if (t < 1048576 && t >= 1024)
             {
                 item = t / 1024;
-                return (Math.Round(item, 2)).ToString() + "M";
+                return (Math.Round(item, 2)).ToString() + "K";
             }
-            else if (t < 100000000 && t > 1048576)
+            else if (t < 1073741824 && t > 1048576)
             {
                 item = t / 1048576;
+                return (Math.Round(item, 2)).ToString() + "M";
+            }
+            else if (t < 1099511627776  && t >= 1073741824)
+            {
+                item = t / 1073741824;
                 return (Math.Round(item, 2)).ToString() + "G";
             }
             return "0";
