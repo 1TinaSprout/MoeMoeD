@@ -11,5 +11,7 @@ namespace MoeMoeD.IDAL
     public interface IFileContentDAL : IBaseDAL<FileContent>
     {
         FileContent GetById(int id);
+        FileContent GetByMD5(string mD5);
+        new FileContent Add(FileContent fileContent);
     }
 }

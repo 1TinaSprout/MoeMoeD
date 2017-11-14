@@ -12,6 +12,7 @@ namespace MoeMoeD.IDAL
         IList<Flie> GetRootByUserId(int userId);
         Flie GetById(int id);
         System.IO.Stream GetContentById(int id);
+        new Flie Add(Flie flie);
     }
     
 }

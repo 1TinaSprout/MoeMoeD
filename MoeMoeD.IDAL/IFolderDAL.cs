@@ -8,7 +8,7 @@ namespace MoeMoeD.IDAL
     {
         //根据UserId查出此用户的所有Folder
         IList<Folder> GetByUserId(int userId);
-
+        IList<Folder> GetByFolderId(int folderId);
         //根据UserId查出此用户Root目录下的所有Folder
         IList<Folder> GetRootByUserId(int userId);
 
@@ -17,7 +17,8 @@ namespace MoeMoeD.IDAL
 
         bool UpdateNameById(int id, String name);
 
+        Folder GetByNameAndUserId(string name, int userId);
 
-        Folder GetByName(string name);
+        Folder GetByNameAndFolderId(string name, int folderId);
     }
 }

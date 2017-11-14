@@ -16,19 +16,15 @@ namespace MoeMoeD.BLL
     public class FileBLL : BaseBLL<Model.ViewData.File, Model.Entity.Flie>, IFileBLL
     {
         private IFileDAL FilDAL { get; set; }
+
         public FileBLL(IFileDAL fileDAL) : base(fileDAL)
         {
             this.FilDAL = fileDAL;
         }
 
-        protected override Model.Entity.Flie DataToEntity(Model.ViewData.File t)
-        {
-            throw new NotImplementedException();
-        }
-
         public override bool DeleteById(int id)
         {
-            Flie flie = FilDAL.GetById(id);
+            Model.Entity.Flie flie = FilDAL.GetById(id);
             return FilDAL.Delete(flie);
         }
 
@@ -47,14 +43,9 @@ namespace MoeMoeD.BLL
             return DataToView(FilDAL.GetById(id));
         }
 
-        public Stream GetContentById(int id)
-        {
-            throw new NotImplementedException();
-        }
-
         public IList<Model.ViewData.File> GetByFolderId(int folderid)
         {
-            IList<Flie> flie = FilDAL.GetByFolderId(folderid);
+            IList<Model.Entity.Flie> flie = FilDAL.GetByFolderId(folderid);
             return ListDataToView(flie);
         }
 
@@ -76,24 +67,24 @@ namespace MoeMoeD.BLL
 
         protected IList<Model.ViewData.File> ListDataToView(IList<Model.Entity.Flie> t)
         {
+            if (t == null) return null;
             IList<Model.ViewData.File> vFileLst = new List<Model.ViewData.File>();
             foreach (Model.Entity.Flie file in t)
             {
-                Model.ViewData.File vFile = new Model.ViewData.File();
-                vFile.Id = file.Id;
-                vFile.UpdateTime = file.UpdateTime;
-                vFile.Name = file.Name;
-                vFile.Size = DataSizeToView(file.Size);
-                vFileLst.Add(vFile);
+                vFileLst.Add(DataToView(file));
             }
             return vFileLst;
         }
 
-        protected Model.ViewData.File DataToView(Flie t)
+        protected Model.ViewData.File DataToView(Model.Entity.Flie t)
         {
+            if (t == null) return null;
             Model.ViewData.File vFile = new Model.ViewData.File();
             vFile.Id = t.Id;
-            vFile.Name = vFile.Name;
+            vFile.Name = t.Name;
+            vFile.UserId = t.UserId;
+            vFile.FolderId = t.FolderId;
+            vFile.FileContentId = t.FileContentId;
             vFile.Size = DataSizeToView(t.Size);
             vFile.Type = t.Type;
             vFile.UpdateTime = t.UpdateTime;
@@ -120,9 +111,33 @@ namespace MoeMoeD.BLL
             return "0";
         }
 
-        public bool IsContains(byte[] MD5)
+        Model.ViewData.File IFileBLL.Add(Model.ViewData.File file)
         {
-            throw new NotImplementedException();
+            var File = DataToEntity(file);
+            File = FilDAL.Add(File);
+            if(File.Id != 0)
+            {
+                return DataToView(File);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        protected override Flie DataToEntity(Model.ViewData.File t)
+        {
+            if (t == null) return null;
+            Model.Entity.Flie vFile = new Model.Entity.Flie();
+            vFile.Id = t.Id;
+            vFile.Name = t.Name;
+            vFile.UserId = t.UserId;
+            vFile.FolderId = t.FolderId;
+            vFile.FileContentId = t.FileContentId;
+            vFile.Size = Convert.ToInt32(t.Size);
+            vFile.Type = t.Type;
+            vFile.UpdateTime = t.UpdateTime;
+            return vFile;
         }
     }
 }

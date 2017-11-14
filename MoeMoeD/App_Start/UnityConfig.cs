@@ -1,4 +1,5 @@
 using MoeMoeD.BLL;
+using MoeMoeD.Controllers;
 using MoeMoeD.DAL;
 using MoeMoeD.IBLL;
 using MoeMoeD.IDAL;
@@ -15,13 +16,13 @@ namespace MoeMoeD
     public static class UnityConfig
     {
         #region Unity Container
-        private static Lazy<IUnityContainer> container = new Lazy<IUnityContainer>(
-            () =>{
-                      var container = new UnityContainer();
-                      RegisterTypes(container);
-                      return container;
-                 }
-            );
+        private static Lazy<IUnityContainer> container =
+          new Lazy<IUnityContainer>(() =>
+          {
+              var container = new UnityContainer();
+              RegisterTypes(container);
+              return container;
+          });
 
         /// <summary>
         /// Configured Unity Container.
@@ -47,9 +48,32 @@ namespace MoeMoeD
 
             // TODO: Register your type's mappings here.
             // container.RegisterType<IProductRepository, ProductRepository>();
+            container.RegisterType<HomeController>();
+            container.RegisterType<UserController>();
+            container.RegisterType<FileController>();
+            container.RegisterType<ErrorController>();
+            container.RegisterType<FolderController>();
+
             container.RegisterType<IUserBLL, UserBLL>();
+            container.RegisterType<IFileBLL, FileBLL>();
+            container.RegisterType<IFileContentBLL, FileContentBLL>();
+            container.RegisterType<IFolderBLL, FolderBLL>();
+
             container.RegisterType<IUserDAL, UserDAL>();
+            container.RegisterType<IFileDAL, FlieDAL>();
+            container.RegisterType<IFileContentDAL, FileContentDAL>();
+            container.RegisterType<IFolderDAL, FolderDAL>();
+
             container.RegisterType<MoeMoeDEntities>();
+            container.RegisterType<User>();
+            container.RegisterType<Flie>();
+            container.RegisterType<FileContent>();
+            container.RegisterType<Folder>();
+
+            container.RegisterType<Model.ViewData.User>();
+            container.RegisterType<Model.ViewData.File>();
+            container.RegisterType<Model.ViewData.FileContent>();
+            container.RegisterType<Model.ViewData.Folder>();
         }
     }
 }

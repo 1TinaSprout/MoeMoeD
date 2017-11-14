@@ -1,4 +1,8 @@
-﻿var app = new Vue({
+﻿var instance = axios.create({
+    baseURL: 'https://localhost:2959/',
+    timeout: 1000
+});
+var app = new Vue({
     el: "#app",
     data: {
         single: "true",
@@ -27,10 +31,11 @@
             })
             if (isValid) {
                 this.loading = true;
-                axios.post("Home/Login", { "Name": this.username, "Password": this.password }).then(function (response) {
-                    if (response.Data.Result != true) {
-                        this.$Message.error('用户名或密码错误!');
+                axios.post("Home/Login", { "Name": app.formValidate.username, "Password": app.formValidate.password }).then(function (response) {
+                    if (response.data.Result != true) {
+                        app.$Message.error('用户名或密码错误!');
                     }
+                    window.location.href = "Home/Index"
                 }).catch(function (e) {
                     app.modal = true;
                 });
@@ -38,8 +43,8 @@
                 this.$Message.error('请输入格式正确的账号和密码!');
             }
         },
-        clean: function(e){
-            app.username = "";
+        clean: function (e) {
+            app.formValidate.username = "";
         },
         ok: function () {
             app.loading = false;

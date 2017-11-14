@@ -32,17 +32,19 @@ namespace MoeMoeD.BLL
 
         protected Model.ViewData.User DataToView(Model.Entity.User t)
         {
+            if (t == null) return null;
             Model.ViewData.User eUser = new Model.ViewData.User();
 
             eUser.Email = t.Email;
             eUser.Id = t.Id;
             eUser.Name = t.Name;
-            eUser.Name = t.Password;
+            eUser.Password = t.Password;
             return eUser;
         }
 
         protected override Model.Entity.User DataToEntity(User t)
         {
+            if (t == null) return null;
             throw new NotImplementedException();
         }
     }

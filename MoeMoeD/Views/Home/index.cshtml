@@ -5,9 +5,9 @@
     <title>MoeMoeD网盘</title>
     @Scripts.Render("~/js")
     @Styles.Render("~/css")
-    <link href="http://vjs.zencdn.net/6.2.8/video-js.css" rel="stylesheet">
-    <script src="http://vjs.zencdn.net/ie8/1.1.0/videojs-ie8.min.js"></script>
-    <script src="http://vjs.zencdn.net/6.2.8/video.js"></script>
+    <link href="https://vjs.zencdn.net/6.2.8/video-js.css" rel="stylesheet">
+    <script src="https://vjs.zencdn.net/ie8/1.1.0/videojs-ie8.min.js"></script>
+    <script src="https://vjs.zencdn.net/6.2.8/video.js"></script>
 </head>
 <body style="min-height:610px;overflow:hidden">
     <div id="app" style="background-color:#EFF4F8;min-width:850px">
@@ -73,11 +73,11 @@
                             </menugroup>
                         </i-menu>
                     </i-col>
-                    <i-col span="24" style="position:absolute;min-width:1000px;padding-right:5px;height:100%;padding-left:194px">
+                    <i-col span="24" style="position:absolute;min-width:1150px;padding-right:5px;height:100%;padding-left:194px">
                         <card :dis-hover="true" style="height:100%;width:100%">
                             <row style="margin-bottom:10px">
                                 <i-col span="4" style="width:120px">
-                                    <Upload v-on:on-success="this.onUploadSuccess" action="Home/Upload" style="display:inline-block;margin-right:10px" :multiple="true" :max-size="500000">
+                                    <Upload v-on:on-success="this.onUploadSuccess" max-size="512000" :data="{ FolderId : navigation[navigation.length - 1].FolderId }" action="Home/Upload" style="display:inline-block;margin-right:10px" :multiple="true" :max-size="500000">
                                         <i-button type="primary" size="large" icon="ios-cloud-upload-outline">上传文件</i-button>
                                     </Upload>
                                 </i-col>
@@ -98,7 +98,7 @@
                                         <Icon type="android-share-alt" size="16"></Icon>
                                         分享
                                     </i-button>
-                                    <i-button v-if="current" :disabled="!is_download" size="large" style="border-radius:0px 0px 0px 0px;margin-left:-4px">
+                                    <i-button v-if="current" :disabled="!download" size="large" style="border-radius:0px 0px 0px 0px;margin-left:-4px">
                                         <Icon type="ios-cloud-download-outline" size="16"></Icon>
                                         下载
                                     </i-button>
@@ -107,7 +107,7 @@
                                         删除
                                     </i-button>
                                     <Dropdown v-if="current">
-                                        <i-button size="large" style="border-radius:0px 4px 4px 0px;margin-left:-4px">
+                                        <i-button size="large" style="border-radius:0px 4px 4px 0px;margin-left:-0.3em">
                                             <Icon type="ios-more-outline" size="16"></Icon>
                                             更多
                                         </i-button>
@@ -146,7 +146,12 @@
                             <row>
                                 <i-col span="12">
                                     <div style="margin-bottom:10px">
-                                        <span>全部文件</span>
+                                        <div style="display:inline-block" v-for="item in this.navigation" >
+                                            <span v-if="item.FolderId != 0">/</span>
+                                            <i-button type="text" v-on:click="toNavigation" href="#" style="margin:3px;padding:3px" :folderid="item.FolderId">
+                                                {{item.Name}}
+                                            </i-button>
+                                        </div>
                                     </div>
                                 </i-col>
                                 <i-col span="12">
@@ -174,8 +179,7 @@
 
         <section v-show="video" style="position:absolute;left:25%;top:20%;z-index:1000;width:50%;height:40%">
             <i-button type="ghost" style="position:absolute;left:100%;" v-on:click="this.closeVideo"><Icon type="ios-close-outline" size="32"></Icon></i-button>
-            <video id="myvideo" class="video-js" controls preload="auto" data-setup="{}">
-                <source :src="video_src" type='video/webm'>
+            <video id="myvideo" class="video-js" controls="controls" preload="auto" data-setup="">
                 <p class="vjs-no-js">
                     To view this video please enable JavaScript, and consider upgrading to a web browser that
                     <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>

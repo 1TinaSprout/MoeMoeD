@@ -12,6 +12,9 @@ namespace MoeMoeD.IBLL
         //根据UserId查出此用户的所有Folder
         IList<Folder> GetByUserId(int userId);
 
+        //根据FolderId查出此文件夹下的所有Folder
+        IList<Folder> GetByFolderId(int folderId);
+
         //根据UserId查出此用户Root目录下的所有Folder
         IList<Folder> GetRootByUserId(int userId);
 
@@ -20,6 +23,10 @@ namespace MoeMoeD.IBLL
 
         bool UpdateNameById(int id, String name);
 
-        Folder GetByName(string name);
+        Folder GetByNameAndUserId(string name, int userId);
+
+        Folder GetByNameAndFolderId(string name, int folderId);
+
+        new Folder Add(Folder folder);
     }
 }
