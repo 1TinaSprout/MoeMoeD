@@ -34,6 +34,11 @@ namespace MoeMoeD.Controllers
             {
                 ResponseHelper.WriteObject(Response, UserBLL.GetByName(email));
             }
+            else if (Session["User"] != null)
+            {
+                User user = Session["User"] as User;
+                ResponseHelper.WriteObject(Response, user);
+            }
             else
             {
                 ResponseHelper.WriteNull(Response);
