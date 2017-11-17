@@ -1,5 +1,6 @@
 ﻿
 using MagneticNote.Common;
+using MoeMoeD.Filter;
 using MoeMoeD.IBLL;
 using MoeMoeD.Model.ViewData;
 using System;
@@ -17,12 +18,8 @@ namespace MoeMoeD.Controllers
         public IFileBLL FileBLL { get; set; }
         [Dependency]
         public IFileContentBLL FileContentBLL { get; set; }
-        // GET: File
-        public ActionResult Index()
-        {
-            return View();
-        }
 
+        [FilterIsLogin]
         public ActionResult Get()
         {
             if (Request["Id"] != null && Request["Id"] != "")
@@ -47,6 +44,7 @@ namespace MoeMoeD.Controllers
             return null;
         }
 
+        [FilterIsLogin]
         public ActionResult UpdateName()
         {
             if (Request["Id"] != null && Request["Name"] != null
@@ -63,6 +61,7 @@ namespace MoeMoeD.Controllers
             return null;
         }
 
+        [FilterIsLogin]
         public ActionResult Delete()
         {
             if (Request["Id"] != null && Request["id"] != "")
@@ -77,6 +76,7 @@ namespace MoeMoeD.Controllers
             return null;
         }
 
+        [FilterIsLogin]
         public ActionResult GetContent(String Id, String fileName)
         {
             int id = Convert.ToInt32(Id);

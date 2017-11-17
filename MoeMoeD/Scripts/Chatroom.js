@@ -1,4 +1,4 @@
-﻿var conn = $.connection("/connection");
+﻿var conn = null;
 
 var app = new Vue({
     el: "#app",
@@ -37,6 +37,7 @@ window.onload = function () {
     axios.get("../User/Get").then(function (response) {
         app.userName = response.data.Name;
         app.userSign = response.data.Email;
+        conn = $.connection("/connection?UserName=" + app.userName);
     }).catch(function (error) {
 
     })

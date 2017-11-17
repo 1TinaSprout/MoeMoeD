@@ -1,4 +1,5 @@
 ﻿using MagneticNote.Common;
+using MoeMoeD.Filter;
 using MoeMoeD.IBLL;
 using MoeMoeD.Model.ViewData;
 using System;
@@ -40,6 +41,7 @@ namespace MoeMoeD.Controllers
             }
         }
 
+        [FilterIsLogin]
         public ActionResult Get(String FolderId)
         {
             User user = Session["User"] as User;
@@ -86,6 +88,7 @@ namespace MoeMoeD.Controllers
             return null;
         }
 
+        [FilterIsLogin]
         public ActionResult Upload(String FolderId)
         {
             User user = Session["User"] as User;
@@ -178,6 +181,7 @@ namespace MoeMoeD.Controllers
             return null;
         }
 
+        [FilterIsLogin]
         public ActionResult Delete(List<IdList> IdList)
         {
             if (IdList != null && IdList.Count > 0)
@@ -212,6 +216,7 @@ namespace MoeMoeD.Controllers
             public int Id { get; set; }
             public String Type { get; set; }
         }
+
         public class DataList
         {
             public int Id { get; set; }

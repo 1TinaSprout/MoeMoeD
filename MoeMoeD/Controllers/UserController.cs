@@ -1,4 +1,5 @@
 ﻿using MagneticNote.Common;
+using MoeMoeD.Filter;
 using MoeMoeD.IBLL;
 using MoeMoeD.Model.ViewData;
 using System;
@@ -16,23 +17,19 @@ namespace MoeMoeD.Controllers
         [Dependency]
         public IUserBLL UserBLL { get; set; }
 
-        public ActionResult Index()
-        {
-            return View();
-        }
-
+        [FilterIsLogin]
         public ActionResult Get()
         {
             string email = Request["Email"];
             string name = Request["Name"];
 
-            if (email == null)
+            if (name != null)
             {
                 ResponseHelper.WriteObject(Response, UserBLL.GetByName(name));
             }
-            else if (name != null && name != "")
+            else if (email != null)
             {
-                ResponseHelper.WriteObject(Response, UserBLL.GetByName(email));
+                ResponseHelper.WriteObject(Response, UserBLL.GetByEmail(email));
             }
             else if (Session["User"] != null)
             {
@@ -48,6 +45,7 @@ namespace MoeMoeD.Controllers
         }
 
         [HttpPost]
+        [FilterIsLogin]
         public ActionResult UpdateName()
         {
             string name = Request["Name"];
@@ -69,6 +67,7 @@ namespace MoeMoeD.Controllers
             return null;
         }
 
+        [FilterIsLogin]
         public ActionResult UpdateEmail()
         {
             string email = Request["Email"];

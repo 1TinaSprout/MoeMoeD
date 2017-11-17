@@ -200,6 +200,7 @@
     <Compile Include="Controllers\FolderController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Filter\FilterIsLogin.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -213,8 +214,8 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="image\chatroom_bg.svg" />
     <Content Include="image\chatroom_bg1.jpg" />
-    <Content Include="image\chatroom_bg2.jpg" />
     <Content Include="image\index_bg1.jpg" />
     <Content Include="image\index_bg2.jpg" />
     <Content Include="image\index_bg3.jpg" />
