@@ -6,23 +6,17 @@ var app = new Vue({
         userName: "用户名",
         userSign: "个性化签名",
         roomName: "会话窗口名",
-        message_content:"",
+        message_content: "",
         work_list: [{
+            Id:0,
             name: "111",
-            nickName: "222"
+            Email: "222"
         }, {
+            Id: 1,
             name: "333",
-            nickName: "444"
+            Email: "444"
         }],
-        message_list: [{
-            type: "other",
-            name: "111",
-            content: "11111111111"
-        }, {
-            type: "oneself",
-            name: "",
-            content: "1111111111"
-        }]
+        message_list: []
     },
     methods: {
         ToHome: function (e) {
@@ -39,8 +33,18 @@ var app = new Vue({
     }
 })
 
-window.onload = {
+window.onload = function () {
+    axios.get("../User/Get").then(function (response) {
+        app.userName = response.data.Name;
+        app.userSign = response.data.Email;
+    }).catch(function (error) {
 
+    })
+    axios.get("../Chatroom/Get").then(function (response) {
+        app.work_list = response.data;
+    }).catch(function (error) {
+
+    })
 }
 
 //接受服务器的推送
@@ -49,7 +53,7 @@ conn.received(function (data) {
     var name = data.name;
     var content = data.content;
     if (name == app.userName) {
-        app.message_list.push({ type: "oneself", name: "", content: data.content })
+        app.message_list.push({ type: "oneself", name: "", content: content })
     } else {
         app.message_list.push({ type: "other", name: name, content: content })
     }

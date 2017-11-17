@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using Microsoft.AspNet.SignalR;
+using MoeMoeD.Model.ViewData;
 
 namespace MoeMoeD
 {
@@ -11,6 +12,7 @@ namespace MoeMoeD
     {
         protected override Task OnConnected(IRequest request, string connectionId)
         {
+            var user = HttpContext.Current.Session["User"] as User;
             return Connection.Send(request.QueryString.ToString(), "Welcome!");
         }
 

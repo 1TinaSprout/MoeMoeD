@@ -13,5 +13,11 @@ namespace MoeMoeD.Controllers
         {
             return View();
         }
+
+        public ActionResult Get()
+        {
+            
+            return null;
+        }
     }
 }
