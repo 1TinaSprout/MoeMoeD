@@ -16,7 +16,6 @@ namespace MoeMoeD.Controllers
 
         public ActionResult Get()
         {
-            
             return null;
         }
     }
