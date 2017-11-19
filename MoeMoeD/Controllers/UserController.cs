@@ -34,7 +34,7 @@ namespace MoeMoeD.Controllers
             else if (Session["User"] != null)
             {
                 User user = Session["User"] as User;
-                ResponseHelper.WriteObject(Response, user);
+                ResponseHelper.WriteObject(Response, "User", user);
             }
             else
             {

@@ -12,21 +12,10 @@ namespace MoeMoeD.Controllers
 {
     public class ChatroomController : Controller
     {
-        public static Dictionary<String, User> UserSet { get; set; }
+        private static Dictionary<String, User> userSet = new Dictionary<string, Model.ViewData.User>();
 
-        public ChatroomController()
-        {
-            if(UserSet == null)
-            {
-                lock (this)
-                {
-                    if(UserSet == null)
-                    {
-                        UserSet = new Dictionary<string, Model.ViewData.User>();
-                    }
-                }
-            }
-        }
+        public static Dictionary<String, User> UserSet { get => userSet; }
+
         [FilterIsLogin]
         // GET: Chatroom
         public ActionResult Index()
