@@ -17,7 +17,7 @@ var app = new Vue({
         click_sendMessage: function (e) {
             conn.start().done(function (data) {
                 if (app.message_content != "") {
-                    conn.send({ Command = 0, Name: app.userName, Content: app.message_content });//发送给服务器
+                    conn.send({ Command: 0, Name: app.userName, Content: app.message_content });//发送给服务器
                     app.message_content = "";
                 }
             });
@@ -32,7 +32,9 @@ window.onload = function () {
         conn = $.connection("/connection");
 
         conn.received(function (data) {
-            data = JSON.parse(data);
+            if (typeof (data) != "object") {
+                data = JSON.parse(data);
+            }
 
             if (data.Command == 0) {
                 var name = data.Name;
@@ -43,9 +45,11 @@ window.onload = function () {
                     app.message_list.push({ type: "other", name: name, content: content })
                 }
             } else if (data.Command == 1) {
-                app.work_list.push({ Id = data.User.Id, Name = data.User.Name, Email = data.User.Email })
+                if (typeof (data.User) != "object") { data.User = JSON.parse(data.User) }
+                app.work_list.push({ Id : data.User.Id, Name : data.User.Name, Email : data.User.Email })
             } else if (data.Command == 2) {
                 for (var i in app.work_list) {
+                    if (typeof (data.User) != "object") { data.User = JSON.parse(data.User) }
                     if (app.work_list[i].Name == data.User.Name) {
                         app.work_list.splice(i, 1)
                     }
@@ -53,7 +57,7 @@ window.onload = function () {
             }
         });
 
-        conn.send({ Command = 1 ,Name: app.userName });
+        conn.send({ Command: 1 ,Name: app.userName });
         //接受服务器的推送
         
     }).catch(function (error) {
@@ -62,7 +66,7 @@ window.onload = function () {
 }
 
 window.onbeforeunload = function () {
-    conn.send({ Command = 2, Name: app.userName, Content: app.message_content });
+    conn.send({ Command: 2, Name: app.userName, Content: app.message_content });
 }
 
 

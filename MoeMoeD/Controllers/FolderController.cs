@@ -3,15 +3,13 @@ using MoeMoeD.Model.ViewData;
 using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
-using MagneticNote.Common;
-using Unity.Attributes;
+using MoeMoeD.Common;
 using MoeMoeD.Filter;
 
 namespace MoeMoeD.Controllers
 {
     public class FolderController : Controller
     {
-        [Dependency]
         protected IFolderBLL FolderBLL { get; set; }
 
         [FilterIsLogin]

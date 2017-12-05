@@ -1,5 +1,5 @@
 ﻿
-using MagneticNote.Common;
+using MoeMoeD.Common;
 using MoeMoeD.Filter;
 using MoeMoeD.IBLL;
 using MoeMoeD.Model.ViewData;
@@ -8,15 +8,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Unity.Attributes;
 
 namespace MoeMoeD.Controllers
 {
     public class FileController : Controller
     {
-        [Dependency]
         public IFileBLL FileBLL { get; set; }
-        [Dependency]
+        
         public IFileContentBLL FileContentBLL { get; set; }
 
         [FilterIsLogin]
