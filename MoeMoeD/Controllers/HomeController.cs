@@ -138,7 +138,6 @@ namespace MoeMoeD.Controllers
                         ResponseHelper.WriteObject(Response, new { Result = true, File = value });
                     }
                 }
-                ResponseHelper.WriteFalse(Response);
             }
 
             return null;

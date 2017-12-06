@@ -10,7 +10,7 @@ namespace MoeMoeD.Controllers
 {
     public class FolderController : Controller
     {
-        protected IFolderBLL FolderBLL { get; set; }
+        public  IFolderBLL FolderBLL { get; set; }
 
         [FilterIsLogin]
         public ActionResult Get()
