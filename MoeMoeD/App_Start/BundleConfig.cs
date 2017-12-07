@@ -9,9 +9,9 @@ namespace MoeMoeD
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/js").Include(
-                        "~/Scripts/vue.js",
-                        "~/Scripts/iview.js",
-                        "~/Scripts/axios.js"));
+                        "~/Scripts/vue.min.js",
+                        "~/Scripts/iview.min.js",
+                        "~/Scripts/axios.min.js"));
 
             bundles.Add(new StyleBundle("~/css").Include(
                       "~/Content/iview.css",

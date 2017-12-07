@@ -3,7 +3,7 @@ using System.Web;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace MagneticNote.Common
+namespace MoeMoeD.Common
 {
     public class ResponseHelper
     {

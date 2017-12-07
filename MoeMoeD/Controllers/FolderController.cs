@@ -3,22 +3,16 @@ using MoeMoeD.Model.ViewData;
 using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
-using MagneticNote.Common;
-using Unity.Attributes;
+using MoeMoeD.Common;
+using MoeMoeD.Filter;
 
 namespace MoeMoeD.Controllers
 {
     public class FolderController : Controller
     {
-        [Dependency]
-        protected IFolderBLL FolderBLL { get; set; }
+        public  IFolderBLL FolderBLL { get; set; }
 
-        // GET: Folder
-        public ActionResult Index()
-        {
-            return View();
-        }
-
+        [FilterIsLogin]
         public ActionResult Get()
         {
             if (Request["Id"] != null && Request["Id"] != "")
@@ -41,6 +35,7 @@ namespace MoeMoeD.Controllers
         }
 
         [HttpPost]
+        [FilterIsLogin]
         public ActionResult UpdateName()
         {
             if (Request["Name"] != null && Request["Name"] != "" &&
@@ -56,6 +51,7 @@ namespace MoeMoeD.Controllers
         }
 
         [HttpPost]
+        [FilterIsLogin]
         public ActionResult Delete(int Id)
         {
             if (Id != 0)
@@ -70,6 +66,7 @@ namespace MoeMoeD.Controllers
         }
 
         [HttpPost]
+        [FilterIsLogin]
         public ActionResult Add(String Name, String FolderId)
         {
             User user = Session["User"] as User;

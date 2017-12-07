@@ -1,4 +1,5 @@
-﻿using MagneticNote.Common;
+﻿using MoeMoeD.Common;
+using MoeMoeD.Filter;
 using MoeMoeD.IBLL;
 using MoeMoeD.Model.ViewData;
 using System;
@@ -7,19 +8,14 @@ using System.Linq;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
-using Unity.Attributes;
 
 namespace MoeMoeD.Controllers
 {
     public class HomeController : Controller
     {
-        [Dependency]
         public IUserBLL UserBLL { get; set; }
-        [Dependency]
         public IFileBLL FileBLL { get; set; }
-        [Dependency]
         public IFileContentBLL FileContentBLL { get; set; }
-        [Dependency]
         public IFolderBLL FolderBLL { get; set; }
 
         public ActionResult Index()
@@ -40,6 +36,7 @@ namespace MoeMoeD.Controllers
             }
         }
 
+        [FilterIsLogin]
         public ActionResult Get(String FolderId)
         {
             User user = Session["User"] as User;
@@ -86,6 +83,7 @@ namespace MoeMoeD.Controllers
             return null;
         }
 
+        [FilterIsLogin]
         public ActionResult Upload(String FolderId)
         {
             User user = Session["User"] as User;
@@ -140,7 +138,6 @@ namespace MoeMoeD.Controllers
                         ResponseHelper.WriteObject(Response, new { Result = true, File = value });
                     }
                 }
-                ResponseHelper.WriteFalse(Response);
             }
 
             return null;
@@ -178,6 +175,7 @@ namespace MoeMoeD.Controllers
             return null;
         }
 
+        [FilterIsLogin]
         public ActionResult Delete(List<IdList> IdList)
         {
             if (IdList != null && IdList.Count > 0)
@@ -212,6 +210,7 @@ namespace MoeMoeD.Controllers
             public int Id { get; set; }
             public String Type { get; set; }
         }
+
         public class DataList
         {
             public int Id { get; set; }

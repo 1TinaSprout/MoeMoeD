@@ -6,7 +6,7 @@
     @Scripts.Render("~/js")
     @Styles.Render("~/css")
 </head>
-<body style="background-image:url('../../image/chatroom_bg1.jpg');background-size:cover">
+<body style="background-image:url('../../image/chatroom_bg.svg');background-size:contain">
     <div id="app" style="height:100%;width:100%">
         <Row style="filter:alpha(opacity=50);padding:10px;height:95%">
             <i-col span="6" offset="2" style="height:100%;width:240px">
@@ -26,7 +26,7 @@
                     <div style="height:75%;min-height:300px;">
                         <card v-for="value in work_list">
                             <h3 style="display:inline-block">{{value.name}}</h3>
-                            <span v-if="value.nickName!=undefined&&value.nickName!=''" style="color: rgb(158, 167, 180);">({{value.nickName}})</span>
+                            <span v-if="value.Email!=undefined&&value.Email!=''" style="color: rgb(158, 167, 180);">({{value.Email}})</span>
                         </card>
                     </div>
                     <div style="height:50px;line-height:50px;text-align:center;border:0px;background-color:#a8a8a8;border-radius:0px 0px 10px 10px">
@@ -110,7 +110,7 @@
             </i-col>
         </Row>
     </div>
-    <script src="~/Scripts/jquery-1.6.4.min.js"></script>
+    <script src="~/Scripts/jquery-3.2.1.min.js"></script>
     <script src="~/Scripts/jquery.signalR-2.2.2.min.js"></script>
     <script type="text/javascript" src="~/Scripts/Chatroom.js"></script>
   
